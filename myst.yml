@@ -1,0 +1,54 @@
+version: 1
+project:
+  title: TU Delft's JB Starterkit
+  # description:
+  keywords: [Jupyter Book, Open Science, TU Delft, Starterkit]
+
+  github: https://github.com/TUD-JB-OS/starterkit
+  date: 2026-01-31
+  thumbnail: style/thumbnail.jpg
+  numbering: 
+    title: true
+  # specify authors in authors.yml file
+
+  # used to load /reuse materials from other repositories
+  references:
+    myst-guide: https://mystmd.org/guide
+    JB-workshop: https://jupyter-book.github.io/workshop-template/
+    
+  # the following chapters are excluded from building the pdf version
+  exclude: 
+    - errorlog.md 
+    - README.md
+    - content/Cheatsheet.md
+    
+  bibliography:
+    - references.bib
+  
+  jupyter:
+    binder:
+      repo: https://github.com/executablebooks/thebe-binder-base
+  
+extends:
+  - toc.yml       # includes table of contents
+  - export.yml    # includes export configurations
+  - plugins.yml   # includes plugin configurations
+  - authors.yml   # includes author and contributor information
+  
+site:
+  template: book-theme
+  options:
+    favicon: style/favicon.ico
+    logo: style/tudelft.png
+    logo_dark: style/tudelft-dark.png
+    hide_authors: true
+    style: style/custom.css
+  actions:
+    - title: PDF
+      url: ./exports/report_tex.pdf
+    - title: Typst PDF
+      url: ./exports/report_typst.pdf
+  parts:
+    footer: style/footer.md
+
+
