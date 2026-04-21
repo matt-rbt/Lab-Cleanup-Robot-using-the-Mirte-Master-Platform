@@ -1,0 +1,2 @@
+working latex book: https://github.com/luukfroling/BEP/tree/main
+latex setup: https://tud-jb-os.github.io/book/content/general/overleaf/
