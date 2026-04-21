@@ -1,11 +1,11 @@
 version: 1
 project:
-  title: TU Delft's JB Starterkit
+  title: Lab Cleanup Robot using Mirte Master Platform
   # description:
-  keywords: [Jupyter Book, Open Science, TU Delft, Starterkit]
+  keywords: [Navigation2, ROS2, SLAM, Mobile_Manipulation]
 
-  github: https://github.com/TUD-JB-OS/starterkit
-  date: 2026-01-31
+  github: https://github.com/matt-rbt/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform
+  date: 2026-04-21
   thumbnail: style/thumbnail.jpg
   numbering: 
     title: true
@@ -15,6 +15,7 @@ project:
   references:
     myst-guide: https://mystmd.org/guide
     JB-workshop: https://jupyter-book.github.io/workshop-template/
+    Mirte-labclean: https://github.com/matt-rbt/Mirte_Lab_Clean
     
   # the following chapters are excluded from building the pdf version
   exclude: 
