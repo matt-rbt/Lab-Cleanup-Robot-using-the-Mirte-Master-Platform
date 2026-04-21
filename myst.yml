@@ -15,7 +15,6 @@ project:
   references:
     myst-guide: https://mystmd.org/guide
     JB-workshop: https://jupyter-book.github.io/workshop-template/
-    Mirte-labclean: https://github.com/matt-rbt/Mirte_Lab_Clean
     
   # the following chapters are excluded from building the pdf version
   exclude: 
