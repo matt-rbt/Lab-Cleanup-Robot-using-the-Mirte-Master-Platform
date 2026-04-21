@@ -3,23 +3,31 @@ project:
   
   authors:
     - id: student
-      name: student without a name yet
+      name: Matthew de Lannoy
       affiliations:
         - tud
 
   contributors:
     - id: supervisor-1
-      name: prof. dr. John Doe
+      name: prof. dr. ir. Martijn Wisse
       affiliations:
         - tud
-    - id: committee-1
-      name: Prof. Dr. C. Examiner
+    - id: supervisor-2
+      name: prof. Martin Klomp
       affiliations:
         - tud
-    - id: committee-2
-      name: Dr. D. Examiner
+    - id: supervisor-3
+      name: prof. dr. ir. Chris Pek
       affiliations:
         - tud
+    # - id: committee-1
+    #   name: Prof. Dr. C. Examiner
+    #   affiliations:
+    #     - tud
+    # - id: committee-2
+    #   name: Dr. D. Examiner
+    #   affiliations:
+    #     - tud
 
   affiliations:
     - id: tud
