@@ -2,10 +2,10 @@ version: 1
 project:
   exports:
 
-    - format: typst
-      template: https://github.com/TUD-JB-OS/typst_template.git 
-      output: exports/report_typst.pdf
-      id: report_typst
+    - format: latex
+      template: https://github.com/TUD-JB-OS/latex_template.git 
+      output: exports/report_latex.pdf
+      id: report_tex
 
       cover_page_variant: graphical
       cover_background_image: content/figures/cover.png
