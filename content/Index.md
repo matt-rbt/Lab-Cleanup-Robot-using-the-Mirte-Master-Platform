@@ -22,7 +22,7 @@ no-update-date: true
 
 a quick setup for your open publishing project.
 
-{button}`Use this template <https://github.com/new?template_name=starterkit&template_owner=TUD-JB-OS>`  
+{button}`View source code <https://github.com/matt-rbt/Mirte_Lab_Clean.git>`  
 
 
 
