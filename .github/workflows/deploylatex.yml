@@ -64,10 +64,18 @@ jobs:
           find "$TEX_DIR" -name "*.bib" -exec cp {} latex/ \;
 
           # Copy any images/assets (optional but useful)
-          # find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/ \;
+          find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/ \;
 
           # Optional: copy everything (simpler but heavier)
           # cp -r "$TEX_DIR"/* latex/
+      - name: Ensure files folder is included
+        run: |
+          if [ -d "files" ]; then
+            echo "files/ folder exists — adding to git"
+            git add -f files/
+          else
+            echo "WARNING: files/ folder not found"
+          fi
 
       - name: Commit and push exports folder
         run: |
