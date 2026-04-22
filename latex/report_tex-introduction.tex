@@ -1,0 +1,32 @@
+\section{Introduction}
+
+Jupyter Book has been rebuild from ground up using the MyST engine \citep{jupyter2025}. This allows to export content in multiple output formats including HTML, PDF and docx. In this paper we present an overview of the possibilities and demonstrate its working.
+
+In an introduction. you often cite. Than can be done in various ways, either using a .bib file or directly using the doi.
+
+\textbf{cite with doi}
+
+\begin{itemize}
+\item \texttt{[@doi:10.25080/hwcj9957]} resulting in \citep{jupyter2025}
+\item \texttt{@doi:10.25080/hwcj9957} resulting in \cite{jupyter2025}
+\end{itemize}
+
+\textbf{cite from bib-file}
+
+\begin{itemize}
+\item \texttt{\{cite:t\}}jupyter2025`` resulting in \citet{jupyter2025}
+\item \texttt{\{cite:p\}}jupyter2025`` resulting in \citep{jupyter2025}
+\end{itemize}
+
+\subsection{Background}
+
+Jupyter Book has been rebuild with the intend to export content in multiple output formats including HTML, PDF and docx. Figure~\ref{fig-diagram} provides this idea.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/diagram-bf57245f2e0d3e142ecc1f0b2d0436e8.png}
+\caption[]{The myst engine allows Jupyter Notebook, markdown and even tex files to be converted to multiple output formats.}
+\label{fig-diagram}
+\end{figure}
+
+As exporting to different formats is possible, it is not always desired. Some content should only be visible in the HTML version, and some content only need to be included in the PDF version. You can use blocks like \texttt{+++\{"no-pdf":true\}} to enable this, as shown below where the figure is seen in the HTML version but not in the PDF version.
