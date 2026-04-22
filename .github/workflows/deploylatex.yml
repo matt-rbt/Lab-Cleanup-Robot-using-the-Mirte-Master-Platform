@@ -64,6 +64,14 @@ jobs:
             mkdir -p "exports/tex/$name"
             cp -r _build/exports/* "exports/tex/$name"
           done
+      - name: Flatten tex files
+        run: |
+          mkdir -p exports/flat
+      
+          for d in exports/tex/*; do
+            name=$(basename "$d")
+            cp "$d/index.tex" "exports/flat/${name}.tex"
+          done
       - name: Commit and push exports folder
         run: |
           git config user.name "github-actions[bot]"
