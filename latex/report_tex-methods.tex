@@ -5,12 +5,12 @@
 The system essentially consists of a mobile manipulator (Mirte Master) tasked with
 autonomously exploring an indoor environment (the robotics lab), identifying objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
 
-the pipeline integrates three main components: \textbf{perception}, \textbf{coverage planning} and \textbf{high-level task strategy}.
+the pipeline integrates three main components: \textbf{perception}, \textbf{coverage planning} , and \textbf{high-level task strategy}.
 
 \subsubsection{Perception}
 
-Perception is responsible for object detection, classification and spatial localization. For this study we limited the object detection and localization approaches to two. A \textbf{2D detection and depth projection} approach, and 3D segmentation with \textbf{point cloud clustering}.
-As for classification methods, this study evaluates a classical cv approach, aswell as a classification model based approach.
+Perception is responsible for object detection, classification, and spatial localization. For this study, we limited the object detection and localization approaches to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
+As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
 
 objects are categorized into:
 
@@ -29,7 +29,7 @@ Coverage planning refers to how the robot explores the mapped environment to loo
 Two coverage strategies are implemented:
 
 \begin{itemize}
-\item \textbf{Systematic coverage:} The environment is traversed using a structured pattern like a  boustrophedon pattern to ensure complete coverage.
+\item \textbf{Systematic coverage:} The environment is traversed using a structured pattern ,like a  boustrophedon pattern to ensure complete coverage.
 \item \textbf{Reactive coverage}: The robot dynamically traverses and selects exploration targets based on frontier regions or detected objects, prioritizing areas of high information gain.
 \end{itemize}
 
