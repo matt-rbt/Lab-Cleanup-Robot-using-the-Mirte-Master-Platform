@@ -1,0 +1,49 @@
+name: Sync Markdown from LaTeX (overwrite matched files)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Sync LaTeX → existing Markdown files
+        run: |
+          LATEX_DIR="latex"
+          MD_DIR="."
+
+          if [ ! -d "$LATEX_DIR" ]; then
+            echo "No latex directory found"
+            exit 1
+          fi
+
+          echo "Syncing LaTeX files into existing Markdown..."
+
+          for tex in $(find "$LATEX_DIR" -name "*.tex"); do
+            base=$(basename "$tex" .tex)
+            md_file=$(find "$MD_DIR" -name "$base.md" | head -n 1)
+
+            if [ -z "$md_file" ]; then
+              echo "No matching markdown for $base.md → skipping"
+              continue
+            fi
+
+            echo "Updating $md_file from $tex"
+
+            pandoc "$tex" \
+              -f latex \
+              -t markdown \
+              --wrap=none \
+              -o "$md_file"
+          done
