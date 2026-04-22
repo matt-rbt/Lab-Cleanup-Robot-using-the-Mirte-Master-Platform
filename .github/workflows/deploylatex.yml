@@ -43,13 +43,27 @@ jobs:
 
       - name: Build PDFs
         run: myst build --pdf
-      - name: Build LaTeX
-        run: myst build --tex
-      - name: Flatten LaTeX export
+      - name: Build per-file LaTeX
         run: |
-          rm -rf exports
-          mkdir -p exports
-          cp _build/exports/index_tex/index.tex exports/index.tex
+          mkdir -p exports/tex
+      
+          files=(
+            content/Introduction.md
+            content/Theory.md
+            content/Methods.md
+            content/Results.ipynb
+            content/Conclusion.md
+          )
+      
+          for f in "${files[@]}"; do
+            name=$(basename "$f" | sed 's/\.[^.]*$//')
+      
+            myst build "$f" --tex
+      
+            # copy output
+            mkdir -p "exports/tex/$name"
+            cp -r _build/exports/* "exports/tex/$name"
+          done
       - name: Commit and push exports folder
         run: |
           git config user.name "github-actions[bot]"
