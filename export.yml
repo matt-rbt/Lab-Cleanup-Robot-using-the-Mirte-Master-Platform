@@ -8,7 +8,7 @@ project:
       id: report_tex
 
       cover_page_variant: graphical
-      cover_background_image: content/figures/cover.png
+      cover_background_image: content/figures/MIRTE_Master_Cover.jpg
       title_page_variant: "formal"
       title_page_image_anchor: bottom
       title_page_image_width_cm: 3
@@ -25,9 +25,9 @@ project:
       mainmatter_numbering: arabic
 
   options:      
-    thesis_degree: Master of Science
-    thesis_program: Applied Physics
-    thesis_faculty: Faculty of Applied Sciences
+    thesis_degree: Bachelor of Science
+    thesis_program: Mechanical Engineering
+    thesis_faculty: Faculty of Mechanical Engineering
     thesis_institution: Delft University of Technology
     thesis_defense_date: Friday June 19, 2026 at 10:00
 
