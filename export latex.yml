@@ -6,8 +6,8 @@ project:
       output: exports/report_tex.pdf
       id: report_tex
     
-  # downloads:
-  #   - id: report_tex
-  #     title: PDF (LaTeX)
+  downloads:
+    - id: report_tex
+      title: PDF (LaTeX)
   #   - id: report_typst
   #     title: PDF (Typst)
