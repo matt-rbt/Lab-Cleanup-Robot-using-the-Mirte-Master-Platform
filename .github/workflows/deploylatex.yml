@@ -45,7 +45,7 @@ jobs:
         run: myst build --pdf
       - name: Build per-file LaTeX 
         run: |
-          mkdir -p exports/flat
+          mkdir -p latex/mainmatter
         
           files=(
             content/Introduction.md
@@ -68,7 +68,7 @@ jobs:
               exit 1
             fi
         
-            cp "$TEX_FILE" "exports/flat/${name}.tex"
+            cp "$TEX_FILE" "latex/mainmatter/${name}.tex"
         
             # clean between builds to avoid cross-contamination
             rm -rf _build/exports
