@@ -44,13 +44,18 @@ jobs:
       - name: Build PDFs
         run: myst build --pdf
         
-      - name: Build single LaTeX document
-        run: myst build --tex
-      
-      - name: Collect LaTeX output
+      - name: Collect full LaTeX output
         run: |
           mkdir -p latex
-          cp _build/exports/index_tex/index.tex latex/report.tex
+
+          TEX_FILE=$(find _build/temp -name "report_tex.tex" | head -n 1)
+
+          if [ -z "$TEX_FILE" ]; then
+            echo "Could not find report_tex.tex"
+            exit 1
+          fi
+
+          cp "$TEX_FILE" latex/report.tex
 
       - name: Commit and push exports folder
         run: |
