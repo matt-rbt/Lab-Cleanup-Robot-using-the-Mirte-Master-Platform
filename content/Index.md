@@ -5,6 +5,9 @@ site:
   hide_toc: true
   hide_title_block: true
   hide_authors: false
+
+exports:
+  - format: tex
       
 numbering:
   title:
