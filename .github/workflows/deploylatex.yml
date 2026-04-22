@@ -43,19 +43,31 @@ jobs:
 
       - name: Build PDFs
         run: myst build --pdf
-        
+
       - name: Collect full LaTeX output
         run: |
           mkdir -p latex
 
-          TEX_FILE=$(find _build/temp -name "report_tex.tex" | head -n 1)
+          TEX_DIR=$(find _build/temp -type d -name "*" | head -n 1)
 
-          if [ -z "$TEX_FILE" ]; then
-            echo "Could not find report_tex.tex"
+          if [ -z "$TEX_DIR" ]; then
+            echo "Could not find LaTeX temp directory"
             exit 1
           fi
 
-          cp "$TEX_FILE" latex/report.tex
+          echo "Copying LaTeX files from $TEX_DIR"
+
+          # Copy all .tex files
+          find "$TEX_DIR" -name "*.tex" -exec cp {} latex/ \;
+
+          # Copy bibliography files if present
+          find "$TEX_DIR" -name "*.bib" -exec cp {} latex/ \;
+
+          # Copy any images/assets (optional but useful)
+          # find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/ \;
+
+          # Optional: copy everything (simpler but heavier)
+          # cp -r "$TEX_DIR"/* latex/
 
       - name: Commit and push exports folder
         run: |
