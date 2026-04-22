@@ -73,7 +73,7 @@ jobs:
             # clean between builds to avoid cross-contamination
             rm -rf _build/exports
           done
-        - name: Flatten tex files
+      - name: Flatten tex files
         run: |
           mkdir -p latex/flat
       
