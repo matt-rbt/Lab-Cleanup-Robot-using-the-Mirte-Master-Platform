@@ -43,15 +43,45 @@ jobs:
 
       - name: Build PDFs
         run: myst build --pdf
-        
-      - name: Build single LaTeX document
-        run: myst build --tex
-      
-      - name: Collect LaTeX output
+      - name: Build per-file LaTeX 
         run: |
-          mkdir -p latex
-          cp _build/exports/index_tex/index.tex latex/report.tex
-
+          mkdir -p latex/mainmatter
+        
+          files=(
+            content/Introduction.md
+            content/Theory.md
+            content/Methods.md
+            content/Results.ipynb
+            content/Conclusion.md
+          )
+        
+          for f in "${files[@]}"; do
+            name=$(basename "$f" | sed 's/\.[^.]*$//')
+        
+            myst build "$f" --tex
+        
+            # find actual tex output (MyST is not consistent in naming)
+            TEX_FILE=$(find _build/exports -name "*.tex" | head -n 1)
+        
+            if [ -z "$TEX_FILE" ]; then
+              echo "No tex file found for $f"
+              exit 1
+            fi
+        
+            cp "$TEX_FILE" "latex/mainmatter/${name}.tex"
+        
+            # clean between builds to avoid cross-contamination
+            rm -rf _build/exports
+          done
+      - name: Strip LaTeX preamble (make chapter files)
+        run: |
+          for f in latex/mainmatter/*.tex; do
+            # extract only content between \begin{document} and \end{document}
+            awk '/\\begin{document}/, /\\end{document}/' "$f" \
+              | sed '1d;$d' > "${f}.tmp"
+            
+            mv "${f}.tmp" "$f"
+          done
       - name: Commit and push exports folder
         run: |
           git config user.name "github-actions[bot]"
