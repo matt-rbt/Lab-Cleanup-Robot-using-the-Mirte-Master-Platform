@@ -45,7 +45,7 @@ jobs:
         run: myst build --pdf
       - name: Build per-file LaTeX
         run: |
-          mkdir -p exports/tex
+          mkdir -p latex/mainmatter
       
           files=(
             content/Introduction.md
@@ -61,16 +61,16 @@ jobs:
             myst build "$f" --tex
       
             # copy output
-            mkdir -p "exports/tex/$name"
-            cp -r _build/exports/* "exports/tex/$name"
+            mkdir -p "latex/mainmatter/$name"
+            cp -r _build/exports/* "latex/mainmatter/$name"
           done
       - name: Flatten tex files
         run: |
-          mkdir -p exports/flat
+          mkdir -p latex/flat
       
-          for d in exports/tex/*; do
+          for d in latex/mainmatter/*; do
             name=$(basename "$d")
-            cp "$d/index.tex" "exports/flat/${name}.tex"
+            cp "$d/index.tex" "latex/flat/${name}.tex"
           done
       - name: Commit and push exports folder
         run: |
@@ -79,6 +79,7 @@ jobs:
 
           # Add exports folder
           git add -f exports
+          git add -f latex
 
           # Commit if there are changes
           if ! git diff --cached --quiet; then
