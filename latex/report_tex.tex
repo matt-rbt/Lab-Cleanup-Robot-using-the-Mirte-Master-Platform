@@ -1,0 +1,169 @@
+% Created with jtex v.1.0.21
+\documentclass{article}
+\PassOptionsToPackage{short, nodayofweek}{datetime}
+
+\input{TUD-thesis-template.def}
+
+\usepackage[acronym]{glossaries}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%  acronyms  %%%%%%%%%%%%%%%%%%%
+\newacronym{.yml}{.yml}{a human-readable data format used to store and exchange structured data.}
+\newacronym{myst}{MyST}{Markedly Structured Text}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% colors for hyperlinks
+\hypersetup{
+  colorlinks=true,
+  allcolors=blue,
+  pdftitle={\@title},
+  pdfsubject={},
+  pdfauthor={\@author},
+  pdfkeywords={},
+  addtopdfcreator={written using the TU Delft Thesis Template}
+}
+\pagenumbering{gobble}
+
+% Use \replaceBS to replace backslashes in file paths with forward slashes. 
+% solution from https://tex.stackexchange.com/questions/213779/replace-every-backslash-in-a-string-with-a-forwardslash 
+
+\makeatletter
+\newcommand{\replaceBS}[2]{{\escapechar=`/ 
+  \xdef#2{\expandafter\zap@space\detokenize\expandafter{#1} \@empty}}}
+\makeatother
+
+% Cover image width
+\newcommand{\CoverWidth}{0.9\linewidth} % Set default
+
+% Default cover margin (vertical space between title and cover image)
+\newcommand{\CoverMargin}{2em} % Set default
+
+% ---- Logo settings (from template options) ----
+\newif\ifThesisLogo
+\ThesisLogofalse          % default: no logo
+
+\newcommand{\marginTop}{2.5cm} % margin top for document
+\newcommand{\marginBottom}{2.5cm} % margin bottom for document
+\newcommand{\marginLeft}{2.5cm} % margin left for document
+\newcommand{\marginRight}{2.5cm} % margin right for document
+
+\newcommand{\paperSize}{a4paper} % paper size, e.g. letterpaper, a4paper
+\newcommand{\showPageNumbers}{arabic} % show page numbers: true/false
+
+\newcommand{\ThesisLogo}{}      % path after normalization
+\newcommand{\ThesisLogoWidth}{1cm} % logo width, default is 1 cm
+
+
+% If a logo is provided in options, normalize its path and enable the flag
+
+
+% Extra information on title page
+\newcommand{\ThesisExtraInfo}{  }
+
+
+\usepackage{TUD-thesis-template}
+
+
+\usepackage{etoolbox}
+% Flag to skip the first \section (before abstract)
+\newtoggle{skipclearpage}
+\toggletrue{skipclearpage}
+
+\pretocmd{\section}{%
+  \iftoggle{skipclearpage}{%
+    \global\togglefalse{skipclearpage}%
+  }{%
+    \clearpage%
+  }%
+}{}{}
+
+% Force figures to be placed exactly where they are in the source
+\usepackage{float}
+\restylefloat{figure}
+\let\oldfigure\figure
+\let\endoldfigure\endfigure
+\renewenvironment{figure}[1][]{%
+  \oldfigure[H]%
+}{%
+  \endoldfigure%
+}
+
+\replaceBS{}{\newCovername}
+
+\title{Lab Cleanup Robot using Mirte Master Platform}
+
+\newdate{articleDate}{21}{4}{2026}
+\date{%
+  \ThesisExtraInfo\\[1.5em]
+  \displaydate{articleDate}\\[1.5em]
+}
+
+\author{
+\textsc{
+author: %
+}}
+
+\begin{document}
+
+
+\maketitle
+\vfill
+
+
+\vfill
+
+\newpage
+
+\begin{abstract}
+In this demo, we demonstrate how Jupyter Book can be used to create and publish a content rich paper that includes
+interactive elements such as code cells, visualizations, and multimedia. We will walk through the process of setting
+up a Jupyter Book, adding content, and deploying the final product online.
+\end{abstract}
+\vspace{1.5em}\keywords{Navigation2, ROS2, SLAM, Mobile_Manipulation}
+\clearpage
+
+% Default TOC depth
+\setcounter{tocdepth}{2}
+
+% Override via template variable
+  \setcounter{tocdepth}{2}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\pagenumbering{\showPageNumbers}
+
+
+\include{report_tex-introduction}
+
+\include{report_tex-theory}
+
+\include{report_tex-methods}
+
+\include{report_tex-results}
+
+\include{report_tex-conclusion}
+
+\section{Appendix}
+
+\include{report_tex-cheatsheet}
+
+\include{report_tex-errorlog}
+
+\include{report_tex-readme}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%  acronyms & glossary  %%%%%%%%%%%%%
+\printglossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\clearpage
+\bibliography{main.bib}
+
+\end{document}
