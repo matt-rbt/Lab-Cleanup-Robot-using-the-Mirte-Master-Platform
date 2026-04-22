@@ -43,10 +43,10 @@ jobs:
 
       - name: Build PDFs
         run: myst build --pdf
-      - name: Build per-file LaTeX
+      - name: Build per-file LaTeX 
         run: |
-          mkdir -p latex/mainmatter
-      
+          mkdir -p exports/flat
+        
           files=(
             content/Introduction.md
             content/Theory.md
@@ -54,17 +54,26 @@ jobs:
             content/Results.ipynb
             content/Conclusion.md
           )
-      
+        
           for f in "${files[@]}"; do
             name=$(basename "$f" | sed 's/\.[^.]*$//')
-      
+        
             myst build "$f" --tex
-      
-            # copy output
-            mkdir -p "latex/mainmatter/$name"
-            cp -r _build/exports/* "latex/mainmatter/$name"
+        
+            # find actual tex output (MyST is not consistent in naming)
+            TEX_FILE=$(find _build/exports -name "*.tex" | head -n 1)
+        
+            if [ -z "$TEX_FILE" ]; then
+              echo "No tex file found for $f"
+              exit 1
+            fi
+        
+            cp "$TEX_FILE" "exports/flat/${name}.tex"
+        
+            # clean between builds to avoid cross-contamination
+            rm -rf _build/exports
           done
-      - name: Flatten tex files
+        - name: Flatten tex files
         run: |
           mkdir -p latex/flat
       
