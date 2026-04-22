@@ -45,6 +45,11 @@ jobs:
         run: myst build --pdf
       - name: Build LaTeX
         run: myst build --tex
+      - name: Flatten LaTeX export
+        run: |
+          rm -rf exports
+          mkdir -p exports
+          cp _build/exports/index_tex/index.tex exports/index.tex
       - name: Commit and push exports folder
         run: |
           git config user.name "github-actions[bot]"
