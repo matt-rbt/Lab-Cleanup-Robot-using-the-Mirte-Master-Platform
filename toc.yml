@@ -4,6 +4,11 @@ project:
     - file: content/Index.md
     - file: content/Introduction.md
     - file: content/Theory.md
+    - title: System Overview
+      children:
+      - file: content/SystemStrategy.md
+      - file: content/Navigation.md
+      - file: content/Perception.md
     - file: content/SystemOverview.md
     - file: content/Methods.md
     - file: content/Results.ipynb
