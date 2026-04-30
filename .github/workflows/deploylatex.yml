@@ -47,6 +47,9 @@ jobs:
       - name: Collect full LaTeX output
         run: |
           mkdir -p latex
+          mkdir -p latex/mainmatter
+          mkdir -p latex/figures
+          mkdir -p latex/pdf
 
           TEX_DIR=$(find _build/temp -type d -name "*" | head -n 1)
 
@@ -58,24 +61,16 @@ jobs:
           echo "Copying LaTeX files from $TEX_DIR"
 
           # Copy all .tex files
-          find "$TEX_DIR" -name "*.tex" -exec cp {} latex/ \;
+          find "$TEX_DIR" -name "*.tex" -exec cp {} latex/mainmatter \;
 
           # Copy bibliography files if present
           find "$TEX_DIR" -name "*.bib" -exec cp {} latex/ \;
 
           # Copy any images/assets (optional but useful)
-          find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/ \;
+          find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/figures \;
 
           # Optional: copy everything (simpler but heavier)
           # cp -r "$TEX_DIR"/* latex/
-      - name: Ensure files folder is included
-        run: |
-          if [ -d "files" ]; then
-            echo "files/ folder exists — adding to git"
-            git add -f files/
-          else
-            echo "WARNING: files/ folder not found"
-          fi
 
       - name: Commit and push exports folder
         run: |
