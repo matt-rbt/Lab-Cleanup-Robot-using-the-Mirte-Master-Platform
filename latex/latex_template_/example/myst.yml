@@ -1,0 +1,26 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 90e47c20-77c7-4be2-84e1-248c166d3fad
+  title: Title of thesis
+  authors: [Name Student, Name Supervisor]
+  github: https://github.com/TUD-JB-OS/latex_template
+  date: 2025-30-11
+  toc:
+    - file: project.md
+    - file: notebooks/data-analysis.ipynb
+    - file: notebooks/data-collection.ipynb
+
+  bibliography:
+    - references/references.bib
+
+  # downloads:
+  #   - id: tud-thesis-export
+  
+extends:
+  - export.yml
+    
+site:
+  template: article-theme
+
+
