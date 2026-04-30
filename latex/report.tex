@@ -63,7 +63,7 @@
 \newcommand{\ThesisExtraInfo}{  }
 
 
-\usepackage{latex_template/TUD-thesis-template}
+\usepackage{latex_template_/TUD-thesis-template}
 
 \usepackage{etoolbox}
 % Flag to skip the first \section (before abstract)
@@ -136,25 +136,27 @@ up a Jupyter Book, adding content, and deploying the final product online.
 \pagenumbering{\showPageNumbers}
 
 
-\include{report_tex-introduction}
+\include{mainmatter/report_tex-introduction}
 
-\include{report_tex-theory}
+\include{mainmatter/report_tex-theory}
 
-\include{report_tex-methods}
+\include{mainmatterreport_tex-methods}
 
-\include{report_tex-results}
+\include{mainmatter/report_tex-systemoverview}
 
-\include{latex/otto_temp}
+\include{mainmatter/report_tex-results}
 
-\include{report_tex-conclusion}
+\include{mainmatter/otto_temp}
+
+\include{mainmatter/report_tex-conclusion}
 
 \section{Appendix}
 
-\include{report_tex-cheatsheet}
+% \include{report_tex-cheatsheet}
 
-\include{report_tex-errorlog}
+% \include{report_tex-errorlog}
 
-\include{report_tex-readme}
+% \include{report_tex-readme}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
