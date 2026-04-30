@@ -41,7 +41,7 @@ site:
     favicon: style/favicon.ico
     logo: style/tudelft.png
     logo_dark: style/tudelft-dark.png
-    hide_authors: true
+    hide_authors: false
     style: style/custom.css
   actions:
     - title: PDF
