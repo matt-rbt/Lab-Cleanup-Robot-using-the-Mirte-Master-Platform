@@ -47,7 +47,7 @@ jobs:
       - name: Collect full LaTeX output
         run: |
           mkdir -p latex
-          mkdir -p latex/mainmatter
+          mkdir -p latex/latex_export
           mkdir -p latex/figures
           mkdir -p latex/pdf
 
@@ -61,7 +61,7 @@ jobs:
           echo "Copying LaTeX files from $TEX_DIR"
 
           # Copy all .tex files
-          find "$TEX_DIR" -name "*.tex" -exec cp {} latex/mainmatter \;
+          find "$TEX_DIR" -name "*.tex" -exec cp {} latex/latex_export \;
 
           # Copy bibliography files if present
           find "$TEX_DIR" -name "*.bib" -exec cp {} latex/ \;
