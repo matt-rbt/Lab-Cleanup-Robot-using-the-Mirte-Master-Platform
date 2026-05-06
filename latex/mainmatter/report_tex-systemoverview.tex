@@ -1,4 +1,6 @@
 \section{System Overview}
+\begin{paracol}
+{2}
 
 The system essentially consists of a mobile manipulator (Mirte Master) tasked with
 autonomously exploring an indoor environment (the robotics lab), identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows:
@@ -15,6 +17,8 @@ The scope of our investigation includes how different perception(classification)
 \subsection{System level strategy}
 
 The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in \texttt{\{numref\}Figure \{number\} \textless fig-global\_tree\textgreater } is also used here to describe and execute the cleaning strategy.
+
+\switchcolumn
 
 \begin{figure}[!htbp]
 \centering
@@ -39,6 +43,8 @@ Before the robot can navigate properly through the environment and ensure proper
 Add ros2 bag playback
 \end{quote}
 
+\switchcolumn
+\newpage
 \subsubsection{Patrolling}
 
 Two categories of coverage strategies are implemented:
@@ -70,3 +76,4 @@ objects are categorized into:
 \begin{quote}
 iets meer over classification.
 \end{quote}
+\end{paracol}
