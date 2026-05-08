@@ -1,48 +1,60 @@
 
 @article{choset2005coverage,
-  title={Coverage for robotics—a survey of recent results},
-  author={Choset, Howie},
-  journal={Annals of mathematics and artificial intelligence},
-  year={2005},
-  url = {https://scispace.com/pdf/coverage-path-planning-the-boustrophedon-cellular-43u5b5ntj3.pdf}
+  title   = {Coverage for robotics—a survey of recent results},
+  author  = {Choset, Howie},
+  journal = {Annals of mathematics and artificial intelligence},
+  year    = {2005},
+  url     = {https://scispace.com/pdf/coverage-path-planning-the-boustrophedon-cellular-43u5b5ntj3.pdf}
 }
 
 @article{scirp2023,
-  title={A Survey of Coverage Path Planning Algorithms for Robotics},
-  author={Scirp},
-  journal={SCIRP Journal},
-  year={2023},
-  url = {https://www.scirp.org/journal/paperinformation?paperid=129504}
+  title   = {A Survey of Coverage Path Planning Algorithms for Robotics},
+  author  = {Scirp},
+  journal = {SCIRP Journal},
+  year    = {2023},
+  url     = {https://www.scirp.org/journal/paperinformation?paperid=129504}
 }
 
 @article{Mier_Fields2Cover_An_open-source_2023,
-  author={Mier, Gonzalo and Valente, João and de Bruin, Sytze},
-  journal={IEEE Robotics and Automation Letters},
-  title={Fields2Cover: An Open-Source Coverage Path Planning Library for Unmanned Agricultural Vehicles},
-  year={2023},
-  volume={8},
-  number={4},
-  pages={2166-2172},
-  doi={10.1109/LRA.2023.3248439}
+  author  = {Mier, Gonzalo and Valente, João and de Bruin, Sytze},
+  journal = {IEEE Robotics and Automation Letters},
+  title   = {Fields2Cover: An Open-Source Coverage Path Planning Library for Unmanned Agricultural Vehicles},
+  year    = {2023},
+  volume  = {8},
+  number  = {4},
+  pages   = {2166-2172},
+  doi     = {10.1109/LRA.2023.3248439}
 }
 
-@InProceedings{macenski2020marathon2,
-  title = {The Marathon 2: A Navigation System},
-  author = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
-  year = {2020},
+@inproceedings{macenski2020marathon2,
+  title     = {The Marathon 2: A Navigation System},
+  author    = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
+  year      = {2020},
   booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  url = {https://github.com/ros-planning/navigation2},
-  pdf = {https://arxiv.org/abs/2003.00368}
+  url       = {https://github.com/ros-planning/navigation2},
+  pdf       = {https://arxiv.org/abs/2003.00368}
 }
 
 @article{williams2017mppi,
-  title={Model Predictive Path Integral Control: From Theory to Parallel Computation},
-  author={Williams, Grady and Aldrich, Andrew and Theodorou, Evangelos A.},
-  journal={Journal of Guidance, Control, and Dynamics},
-  volume={40},
-  number={2},
-  pages={344--357},
-  year={2017},
-  publisher={AIAA},
-  pdf={https://arxiv.org/pdf/1509.01149}
+  title     = {Model Predictive Path Integral Control: From Theory to Parallel Computation},
+  author    = {Williams, Grady and Aldrich, Andrew and Theodorou, Evangelos A.},
+  journal   = {Journal of Guidance, Control, and Dynamics},
+  volume    = {40},
+  number    = {2},
+  pages     = {344--357},
+  year      = {2017},
+  publisher = {AIAA},
+  pdf       = {https://arxiv.org/pdf/1509.01149}
+}
+
+@article{10.3389/frobt.2025.1601862,
+  author   = {Becoy, Alexander James  and Khomenko, Kseniia  and Peternel, Luka  and Rajan, Raj Thilak },
+  title    = {Autonomous navigation of quadrupeds using coverage path planning with morphological skeleton maps},
+  journal  = {Frontiers in Robotics and AI},
+  volume   = {Volume 12 - 2025},
+  year     = {2025},
+  url      = {https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1601862},
+  doi      = {10.3389/frobt.2025.1601862},
+  issn     = {2296-9144},
+  abstract = {This article proposes a novel method of coverage path planning for the purpose of scanning an unstructured environment autonomously. The method uses the morphological skeleton of a prior 2D navigation map via SLAM to generate a sequence of points of interest (POIs). This sequence is then ordered to create an optimal path based on the robot’s current position. To control the high-level operation, a finite state machine (FSM) is used to switch between two modes: navigating toward a POI using Nav2 and scanning the local surroundings. We validate the method in a leveled, indoor, obstacle-free, non-convex environment, evaluating time efficiency and reachability over five trials. The map reader and path planner can quickly process maps of widths and heights ranging between [196,225] pixels and [185,231] pixels in 2.52 ms and 1.7 ms, respectively. Their computation time increases with 22.0 ns/pixel and 8.17 μs/pixel, respectively. The robot managed to reach 86.5% of all waypoints across the five runs. The proposed method suffers from drift occurring in the 2D navigation map.}
 }
