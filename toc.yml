@@ -11,9 +11,7 @@ project:
         children:
         - file: content/NavigationPre.md
         - file: content/CoveragePlanners.ipynb
-      - file: content/Navigation.md
       - file: content/Perception.md
-    - file: content/SystemOverview.md
     - file: content/Methods.md
     - file: content/Results.ipynb
     - file: content/Conclusion.md
