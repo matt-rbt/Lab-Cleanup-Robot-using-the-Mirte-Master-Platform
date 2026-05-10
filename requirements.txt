@@ -1,0 +1,11 @@
+numpy
+matplotlib
+opencv-python
+ipywidgets
+ipympl
+jupyterlab_widgets
+scipy
+networkx
+shapely
+scikit-image
+trajgenpy

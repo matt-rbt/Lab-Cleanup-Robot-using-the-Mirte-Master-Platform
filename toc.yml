@@ -7,6 +7,10 @@ project:
     - title: System Overview
       children:
       - file: content/SystemStrategy.md
+      - title: Navigation
+        children:
+        - file: content/NavigationPre.md
+        - file: content/CoveragePlanners.ipynb
       - file: content/Navigation.md
       - file: content/Perception.md
     - file: content/SystemOverview.md
