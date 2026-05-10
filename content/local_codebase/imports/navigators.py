@@ -19,8 +19,8 @@ from skimage.morphology import skeletonize
 class StraightLinePath(SystematicNavigator):
     name = "StraightLinePlanner"
 
-    def __init__(self, node=None, resolution=0.1, length=2.0):
-        super().__init__(node, resolution)
+    def __init__(self, resolution=0.1, length=2.0):
+        super().__init__(resolution=resolution)
         self.length = length
         self.start_pose = (0, 0, 0)
 
@@ -42,9 +42,8 @@ class StraightLinePath(SystematicNavigator):
 class BousPath(SystematicNavigator):
     name = "BousPlanner"
 
-    def __init__(self, node=None, resolution=0.1):
-        self.node = node
-        super().__init__(node, resolution)
+    def __init__(self, resolution=0.1):
+        super().__init__(resolution=resolution)
 
     def bcd(self):
         ut.log(self.node, LogType.INFO, f"Contours: {len(self.polymap)}")
@@ -163,8 +162,8 @@ class BousPath(SystematicNavigator):
 class SkeletonPath(SystematicNavigator):
     name = "SkeletonPlanner"
 
-    def __init__(self, node=None, resolution=0.1):
-        super().__init__(node, resolution)
+    def __init__(self, resolution=0.1):
+        super().__init__(resolution=resolution)
 
         self.MAP_CELL_LIST_UNKNOWN = -1
         self.MAP_CELL_LIST_FREE = 0
