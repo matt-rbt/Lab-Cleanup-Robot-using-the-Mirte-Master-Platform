@@ -1,3 +1,4 @@
+% ------------------- Possible Coverage Path Planning approaches ----------------------
 
 @article{choset2005coverage,
   title   = {Coverage for robotics—a survey of recent results},
@@ -15,6 +16,10 @@
   url     = {https://www.scirp.org/journal/paperinformation?paperid=129504}
 }
 
+
+% --------------------- Libraries and Software Packages ------------------------------
+
+% Fields2Cover
 @article{Mier_Fields2Cover_An_open-source_2023,
   author  = {Mier, Gonzalo and Valente, João and de Bruin, Sytze},
   journal = {IEEE Robotics and Automation Letters},
@@ -26,6 +31,16 @@
   doi     = {10.1109/LRA.2023.3248439}
 }
 
+% TrajGenPy
+@inproceedings{grontved2022icar,
+  title={Decentralized Multi-UAV Trajectory Task Allocation in Search and Rescue Applications},
+  author={Gr{\o}ntved, Kasper Andreas R{\o}mer and Schultz, Ulrik Pagh and Christensen, Anders Lyhne},
+  booktitle={21st International Conference on Advanced Robotics},
+  year={2023},
+  organization={IEEE}
+}
+
+% Nav2
 @inproceedings{macenski2020marathon2,
   title     = {The Marathon 2: A Navigation System},
   author    = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
@@ -35,6 +50,7 @@
   pdf       = {https://arxiv.org/abs/2003.00368}
 }
 
+% MPPI (Not necessarily a software package but the low level motion planner we use)
 @article{williams2017mppi,
   title     = {Model Predictive Path Integral Control: From Theory to Parallel Computation},
   author    = {Williams, Grady and Aldrich, Andrew and Theodorou, Evangelos A.},
@@ -47,6 +63,19 @@
   pdf       = {https://arxiv.org/pdf/1509.01149}
 }
 
+
+% --------------------- Chosen Coverage Path Planners ------------------------------
+
+% Boustrophedon Coverage
+@conference{Choset1997,
+  author    = {Howie Choset and Philippe Pignon},
+  title     = {Coverage Path Planning: The Boustrophedon Cellular Decomposition},
+  booktitle = {Proceedings of 1st International Conference on Field and Service Robotics (FSR '97)},
+  year      = {1997},
+  pages     = {216--222}
+}
+
+% Morphological Skeleton Coverage
 @article{10.3389/frobt.2025.1601862,
   author   = {Becoy, Alexander James  and Khomenko, Kseniia  and Peternel, Luka  and Rajan, Raj Thilak },
   title    = {Autonomous navigation of quadrupeds using coverage path planning with morphological skeleton maps},
@@ -58,3 +87,40 @@
   issn     = {2296-9144},
   abstract = {This article proposes a novel method of coverage path planning for the purpose of scanning an unstructured environment autonomously. The method uses the morphological skeleton of a prior 2D navigation map via SLAM to generate a sequence of points of interest (POIs). This sequence is then ordered to create an optimal path based on the robot’s current position. To control the high-level operation, a finite state machine (FSM) is used to switch between two modes: navigating toward a POI using Nav2 and scanning the local surroundings. We validate the method in a leveled, indoor, obstacle-free, non-convex environment, evaluating time efficiency and reachability over five trials. The map reader and path planner can quickly process maps of widths and heights ranging between [196,225] pixels and [185,231] pixels in 2.52 ms and 1.7 ms, respectively. Their computation time increases with 22.0 ns/pixel and 8.17 μs/pixel, respectively. The robot managed to reach 86.5% of all waypoints across the five runs. The proposed method suffers from drift occurring in the 2D navigation map.}
 }
+@misc{niu2025skeletonbasedtopologicalplannerexploration,
+      title={A Skeleton-Based Topological Planner for Exploration in Complex Unknown Environments}, 
+      author={Haochen Niu and Xingwu Ji and Lantao Zhang and Fei Wen and Rendong Ying and Peilin Liu},
+      year={2025},
+      eprint={2412.13664},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2412.13664}, 
+}
+
+% Spanning Tree Coverage
+@INPROCEEDINGS{SpanningTree2001,
+  author={Gabriely, Y. and Rimon, E.},
+  booktitle={Proceedings 2001 ICRA. IEEE International Conference on Robotics and Automation (Cat. No.01CH37164)}, 
+  title={Spanning-tree based coverage of continuous areas by a mobile robot}, 
+  year={2001},
+  volume={2},
+  number={},
+  pages={1927-1933 vol.2},
+  keywords={Mobile robots;Robot sensing systems;Tree graphs;Cleaning;Algorithm design and analysis;Shape;Floors;Coatings;Robotics and automation;Machining},
+  doi={10.1109/ROBOT.2001.932890}
+}
+
+
+% --------------------- Previous Work in ------------------------------
+
+% Robot Base Placement (Locomanipulation)
+@article{Makhal2017ReuleauxRB,
+  title={Reuleaux: Robot Base Placement by Reachability Analysis},
+  author={Abhijit Makhal and Alex K. Goins},
+  journal={2018 Second IEEE International Conference on Robotic Computing (IRC)},
+  year={2017},
+  pages={137-142},
+  url={https://api.semanticscholar.org/CorpusID:4596903}
+}
+
+% -------------------- Misc ----------------------
