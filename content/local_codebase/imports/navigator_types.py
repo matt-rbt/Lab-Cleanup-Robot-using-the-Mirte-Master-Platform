@@ -1,11 +1,5 @@
 import numpy as np
 import cv2
-import os
-
-from geometry_msgs.msg import PolygonStamped, Point32
-from visualization_msgs.msg import Marker, MarkerArray
-from nav_msgs.msg import Path
-from geometry_msgs.msg import PoseStamped
 
 import local_codebase.imports.utils as ut
 from local_codebase.imports.utils import LogType
