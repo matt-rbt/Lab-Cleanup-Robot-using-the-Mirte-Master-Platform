@@ -9,3 +9,5 @@ networkx
 shapely
 scikit-image
 trajgenpy
+geojson
+pyproj

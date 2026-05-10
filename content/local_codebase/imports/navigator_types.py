@@ -7,8 +7,8 @@ from visualization_msgs.msg import Marker, MarkerArray
 from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped
 
-import utils as ut
-from utils import LogType
+import local_codebase.imports.utils as ut
+from local_codebase.imports.utils import LogType
 
 
 class SystematicNavigator:
