@@ -25,9 +25,13 @@ project:
   bibliography:
     - references.bib
   
+  # jupyter:
+  #   binder:
+  #     repo: https://github.com/executablebooks/thebe-binder-base
+
   jupyter:
     binder:
-      repo: https://github.com/executablebooks/thebe-binder-base
+      repo: https://github.com/matt-rbt/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform
   
 extends:
   - toc.yml       # includes table of contents
