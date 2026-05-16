@@ -1,9 +1,9 @@
 import numpy as np
 import cv2
 
-from local_codebase.imports.navigator_types import SystematicNavigator, ReactiveNavigator
-import local_codebase.imports.utils as ut
-from local_codebase.imports.utils import LogType
+from content._static.local_codebase.imports.navigator_types import SystematicNavigator, ReactiveNavigator
+import content._static.local_codebase.imports.utils as ut
+from content._static.local_codebase.imports.utils import LogType
 
 from trajgenpy import Geometries
 

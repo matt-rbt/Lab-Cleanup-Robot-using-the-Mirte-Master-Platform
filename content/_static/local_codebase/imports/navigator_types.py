@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-import local_codebase.imports.utils as ut
-from local_codebase.imports.utils import LogType
+import content._static.local_codebase.imports.utils as ut
+from content._static.local_codebase.imports.utils import LogType
 
 
 class SystematicNavigator:
