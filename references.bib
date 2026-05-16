@@ -19,6 +19,63 @@
 
 % --------------------- Libraries and Software Packages ------------------------------
 
+% ROS2 
+@article{ROS22022,
+  author   = {Steven Macenski  and Tully Foote  and Brian Gerkey  and Chris Lalancette  and William Woodall },
+  title    = {Robot Operating System 2: Design, architecture, and uses in the wild},
+  journal  = {Science Robotics},
+  volume   = {7},
+  number   = {66},
+  pages    = {eabm6074},
+  year     = {2022},
+  doi      = {10.1126/scirobotics.abm6074},
+  url      = {https://www.science.org/doi/abs/10.1126/scirobotics.abm6074},
+  eprint   = {https://www.science.org/doi/pdf/10.1126/scirobotics.abm6074},
+  abstract = {The next chapter of the robotics revolution 
+              is well underway with the deployment of robots for a broad range 
+              of commercial use cases. Even in a myriad of applications and environments,
+              there exists a common vocabulary of components that robots share—the need for a modular, 
+              scalable, and reliable architecture; sensing; planning; mobility; and autonomy. 
+              The Robot Operating System (ROS) was an integral part of the last chapter, 
+              demonstrably expediting robotics research with freely available 
+              components and a modular framework. However, ROS 1 was not designed with many necessary
+              production-grade features and algorithms. ROS 2 and its related projects have been redesigned 
+              from the ground up to meet the challenges set forth by modern robotic systems in new and 
+              exploratory domains at all scales. In this Review, we highlight the philosophical 
+              and architectural changes of ROS 2 powering this new chapter in the robotics 
+              revolution. We also show through case studies the influence 
+              ROS 2 and its adoption has had on accelerating real robot systems to reliable 
+              deployment in an assortment of challenging environments.
+              This Review describes ROS 2’s design, 
+              features, and performance with four case studies on land, air, sea, and even space.}
+}
+
+% SLAM Toolbox
+@article{SlamTBX2021,
+  doi       = {10.21105/joss.02783},
+  url       = {https://doi.org/10.21105/joss.02783},
+  year      = {2021},
+  publisher = {The Open Journal},
+  volume    = {6},
+  number    = {61},
+  pages     = {2783},
+  author    = {Macenski, Steve and Jambrecic, Ivona},
+  title     = {SLAM Toolbox: SLAM for the dynamic world},
+  journal   = {Journal of Open Source Software}
+}
+
+% Moveit 2
+@article{Coleman2014MoveIt,
+  title={Reducing the Barrier to Entry of Complex Robotic Software: a MoveIt! Case Study},
+  author={Coleman, David and Sucan, Ioan A. and Chitta, Sachin and Correll, Nikolaus},
+  journal={Journal of Software Engineering for Robotics},
+  volume={5},
+  number={1},
+  pages={3--16},
+  year={2014},
+  doi={10.6092/JOSER_2014_05_01_p3}
+}
+
 % Fields2Cover
 @article{Mier_Fields2Cover_An_open-source_2023,
   author  = {Mier, Gonzalo and Valente, João and de Bruin, Sytze},
@@ -33,11 +90,11 @@
 
 % TrajGenPy
 @inproceedings{grontved2022icar,
-  title={Decentralized Multi-UAV Trajectory Task Allocation in Search and Rescue Applications},
-  author={Gr{\o}ntved, Kasper Andreas R{\o}mer and Schultz, Ulrik Pagh and Christensen, Anders Lyhne},
-  booktitle={21st International Conference on Advanced Robotics},
-  year={2023},
-  organization={IEEE}
+  title        = {Decentralized Multi-UAV Trajectory Task Allocation in Search and Rescue Applications},
+  author       = {Gr{\o}ntved, Kasper Andreas R{\o}mer and Schultz, Ulrik Pagh and Christensen, Anders Lyhne},
+  booktitle    = {21st International Conference on Advanced Robotics},
+  year         = {2023},
+  organization = {IEEE}
 }
 
 % Nav2
@@ -88,26 +145,26 @@
   abstract = {This article proposes a novel method of coverage path planning for the purpose of scanning an unstructured environment autonomously. The method uses the morphological skeleton of a prior 2D navigation map via SLAM to generate a sequence of points of interest (POIs). This sequence is then ordered to create an optimal path based on the robot’s current position. To control the high-level operation, a finite state machine (FSM) is used to switch between two modes: navigating toward a POI using Nav2 and scanning the local surroundings. We validate the method in a leveled, indoor, obstacle-free, non-convex environment, evaluating time efficiency and reachability over five trials. The map reader and path planner can quickly process maps of widths and heights ranging between [196,225] pixels and [185,231] pixels in 2.52 ms and 1.7 ms, respectively. Their computation time increases with 22.0 ns/pixel and 8.17 μs/pixel, respectively. The robot managed to reach 86.5% of all waypoints across the five runs. The proposed method suffers from drift occurring in the 2D navigation map.}
 }
 @misc{niu2025skeletonbasedtopologicalplannerexploration,
-      title={A Skeleton-Based Topological Planner for Exploration in Complex Unknown Environments}, 
-      author={Haochen Niu and Xingwu Ji and Lantao Zhang and Fei Wen and Rendong Ying and Peilin Liu},
-      year={2025},
-      eprint={2412.13664},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2412.13664}, 
+  title         = {A Skeleton-Based Topological Planner for Exploration in Complex Unknown Environments},
+  author        = {Haochen Niu and Xingwu Ji and Lantao Zhang and Fei Wen and Rendong Ying and Peilin Liu},
+  year          = {2025},
+  eprint        = {2412.13664},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2412.13664}
 }
 
 % Spanning Tree Coverage
-@INPROCEEDINGS{SpanningTree2001,
-  author={Gabriely, Y. and Rimon, E.},
-  booktitle={Proceedings 2001 ICRA. IEEE International Conference on Robotics and Automation (Cat. No.01CH37164)}, 
-  title={Spanning-tree based coverage of continuous areas by a mobile robot}, 
-  year={2001},
-  volume={2},
-  number={},
-  pages={1927-1933 vol.2},
-  keywords={Mobile robots;Robot sensing systems;Tree graphs;Cleaning;Algorithm design and analysis;Shape;Floors;Coatings;Robotics and automation;Machining},
-  doi={10.1109/ROBOT.2001.932890}
+@inproceedings{SpanningTree2001,
+  author    = {Gabriely, Y. and Rimon, E.},
+  booktitle = {Proceedings 2001 ICRA. IEEE International Conference on Robotics and Automation (Cat. No.01CH37164)},
+  title     = {Spanning-tree based coverage of continuous areas by a mobile robot},
+  year      = {2001},
+  volume    = {2},
+  number    = {},
+  pages     = {1927-1933 vol.2},
+  keywords  = {Mobile robots;Robot sensing systems;Tree graphs;Cleaning;Algorithm design and analysis;Shape;Floors;Coatings;Robotics and automation;Machining},
+  doi       = {10.1109/ROBOT.2001.932890}
 }
 
 
@@ -115,12 +172,12 @@
 
 % Robot Base Placement (Locomanipulation)
 @article{Makhal2017ReuleauxRB,
-  title={Reuleaux: Robot Base Placement by Reachability Analysis},
-  author={Abhijit Makhal and Alex K. Goins},
-  journal={2018 Second IEEE International Conference on Robotic Computing (IRC)},
-  year={2017},
-  pages={137-142},
-  url={https://api.semanticscholar.org/CorpusID:4596903}
+  title   = {Reuleaux: Robot Base Placement by Reachability Analysis},
+  author  = {Abhijit Makhal and Alex K. Goins},
+  journal = {2018 Second IEEE International Conference on Robotic Computing (IRC)},
+  year    = {2017},
+  pages   = {137-142},
+  url     = {https://api.semanticscholar.org/CorpusID:4596903}
 }
 
 % -------------------- Misc ----------------------

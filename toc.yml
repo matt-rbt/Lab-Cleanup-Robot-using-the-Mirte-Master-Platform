@@ -3,14 +3,12 @@ project:
   toc:
     - file: content/Index.md
     - file: content/Introduction.md
+    - file: content/Materials.md
     - file: content/Theory.md
     - title: System Overview
       children:
       - file: content/SystemStrategy.md
-      - title: Navigation
-        children:
-        - file: content/NavigationPre.md
-        - file: content/CoveragePlanners.ipynb
+      - file: content/Navigation.md
       - file: content/Perception.md
     - file: content/Methods.md
     - file: content/Results.ipynb
@@ -20,12 +18,3 @@ project:
         - file: content/Cheatsheet.md
         - file: errorlog.md
         - file: README.md
-
-
-# Chapter 1: Introduction
-# Chapter 2: Theory & Related Work
-# Chapter 3: System Design 
-# Chapter 4: Implementation / Methods
-# Chapter 5: Results and Evaluation
-# Chapter 6: Discussion and Conclusion
-# Appendix: Notebooks + code + extra figures

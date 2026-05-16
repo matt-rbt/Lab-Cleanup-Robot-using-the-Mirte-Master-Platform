@@ -11,3 +11,7 @@ scikit-image
 trajgenpy
 geojson
 pyproj
+trimesh
+pythreejs
+pycollada
+pygltflib
