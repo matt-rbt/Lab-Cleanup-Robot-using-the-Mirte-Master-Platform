@@ -5,12 +5,13 @@ project:
     - file: content/Materials.md
     - file: content/Theory.md
 
-    - file: content/SystemOverview.md
+    - title: System Overview
       children:
         - file: content/SystemStrategy.md
-
-        - file: Navigation.md
+        
+        - title: Navigation
           children:
+            - file: Navigation.md
             - file: content/CoveragePlanners.ipynb
 
         - file: content/Perception.md
