@@ -1,18 +1,26 @@
-version: 1
 project:
   toc:
     - file: content/Index.md
     - file: content/Introduction.md
     - file: content/Materials.md
     - file: content/Theory.md
-    - title: System Overview
+
+    - file: content/SystemOverview.md
       children:
-      - file: content/SystemStrategy.md
-      - file: content/Navigation.md
-      - file: content/Perception.md
+        - file: content/SystemStrategy.md
+
+        - file: Navigation.md
+          children:
+            - file: content/CoveragePlanners.ipynb
+
+        - file: content/Perception.md
+
+        - file: content/Mechanical.ipynb
+
     - file: content/Methods.md
     - file: content/Results.ipynb
     - file: content/Conclusion.md
+
     - title: Appendix
       children:
         - file: content/Cheatsheet.md

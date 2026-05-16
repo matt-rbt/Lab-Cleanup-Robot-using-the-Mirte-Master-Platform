@@ -1,4 +1,4 @@
-## System level strategy
+# System level strategy
 
 The setup consists of a mobile manipulator (Mirte Master) tasked with
 autonomously exploring an indoor environment (the robotics lab), identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows.
