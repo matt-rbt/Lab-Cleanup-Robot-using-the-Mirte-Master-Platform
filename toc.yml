@@ -5,12 +5,11 @@ project:
     - file: content/Introduction.md
     - file: content/Materials.md
     - file: content/Theory.md
-    - title: System Overview
+    - file: content/SystemOverview.md
       children:
       - file: content/SystemStrategy.md
-      - title: Navigation
+      - file: content/Navigation.md
         children:
-        - file: content/Navigation.md
         - file: content/CoveragePlanners.ipynb
       - file: content/Mechanical.md
       - file: content/Navigation.md
