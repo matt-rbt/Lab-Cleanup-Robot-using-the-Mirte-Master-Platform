@@ -106,7 +106,7 @@ jobs:
           find _build -name "*.glb"
 
           echo "=== Static folder ==="
-          find _build/html/_static -type f | head -50
+          find _build/html/models -type f | head -50
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
