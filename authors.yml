@@ -2,11 +2,22 @@ version: 1
 project:
   
   authors:
-    - id: student
+    - id: student-1
       name: Matthew de Lannoy
       affiliations:
         - tud
-
+    - id: student-2
+      name: Max van 't Hart
+      affiliations:
+        - tud
+    - id: student-3
+      name: Florian van den berg
+      affiliations:
+        - tud
+    - id: student-4
+      name: Otto Meijerhof
+      affiliations:
+        - tud        
   contributors:
     - id: supervisor-1
       name: prof. dr. ir. Martijn Wisse
