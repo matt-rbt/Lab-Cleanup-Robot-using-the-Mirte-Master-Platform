@@ -100,6 +100,11 @@ jobs:
       - name: Build HTML Assets
         run: myst build --html --execute
 
+      - name: Copy 3D model assets
+        run: |
+          mkdir -p _build/html/models
+          cp -R content/models/* _build/html/models/
+
       - name: Debug build contents
         run: |
           echo "=== GLB files ==="
