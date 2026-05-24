@@ -11,7 +11,7 @@ project:
       - file: content/Navigation.md
         children:
         - file: content/CoveragePlanners.ipynb
-      - file: content/Mechanical.md
+      - file: content/Mechanical.ipynb
       - file: content/Navigation.md
       - file: content/Perception.md
     - file: content/Methods.md
