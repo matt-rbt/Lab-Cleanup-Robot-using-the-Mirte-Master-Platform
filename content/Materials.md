@@ -5,7 +5,7 @@
 ## Software specifications
 
 The Mirte master robot has free open source software available for any user to install. \
-The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2202`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
+The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2_2022`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
 
 The particular ROS distribution the Mirte Master robot implements is ROS2 Humble Hawksbill on Ubuntu 20.04.
 
