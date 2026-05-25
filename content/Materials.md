@@ -18,7 +18,7 @@ To implement SLAM into the Mirte Master robot, SLAM Toolbox is used {cite:t}`Sla
 It was assumed the robot would only navigate in unknown environments without predefined or reocurring maps. Therefore localization (using amcl) was disabled in the application.
 
 ### Navigation
->
+
 > NAV2
 
 ### Manipulation
