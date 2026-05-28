@@ -23,7 +23,7 @@ It was assumed the robot would only navigate in unknown environments without pre
 
 ### Manipulation
 
-While the arm on the mirte master can be controlled in joint-space, our implementation \ relies on task-space (cartesian-space) control over the end effector position. \
-The manner in motion planners are typically implemented requires the integration of several comlpex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, we use MoveIt 2 {cite:t}`Coleman2014MoveIt`.
+While the arm on the mirte master can be controlled in joint-space, our implementation \ relies on task-space (cartesian-space) control over the end effector pose (position & orientation). \
+The manner in which motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, we use MoveIt 2 {cite:t}`Coleman2014MoveIt`.
 
 ### Vision
