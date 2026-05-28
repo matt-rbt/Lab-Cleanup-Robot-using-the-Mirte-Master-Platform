@@ -1,58 +1,57 @@
 \section{Methodology}
 \begin{paracol}
-{2}
+    {2}
 
-This study follows factorial experimental design, analyzing the interplay between
-perception, coverage and system level decision making.
+    This study follows factorial experimental design, analyzing the interplay
+    between perception, coverage and system level decision making.
 
-Three independent variables are defined:
+    Three independent variables are defined:
 
-\begin{itemize}
-\item perception quality
+    \begin{itemize}
+        \item perception quality
 
-\begin{itemize}
-\item Classical cv based classification
-\item Model based classification
-\end{itemize}
+              \begin{itemize}
+                  \item Classical cv based classification
+                  \item Model based classification
+              \end{itemize}
 
+        \item detection method
 
-\item detection method
+              \begin{itemize}
+                  \item point cloud clustering
+                  \item depth projection
+              \end{itemize}
 
-\begin{itemize}
-\item point cloud clustering
-\item depth projection
-\end{itemize}
+        \item coverage strategy
 
+              \begin{itemize}
+                  \item Systematic Coverage following a predefined path
+                  \item Reactive Coverage by acting in real time
+              \end{itemize}
 
-\item coverage strategy
+        \item System-level strategy
 
-\begin{itemize}
-\item Systematic Coverage following a predefined path
-\item Reactive Coverage by acting in real time
-\end{itemize}
+              \begin{itemize}
+                  \item Clean-as-you-go
+                  \item Map-then-optimize
+              \end{itemize}
+    \end{itemize}
 
+    this results in a total of 16 experimental configurations, however some of
+    these setups are fundamentally incompatible, such as Systematic coverage with a
+    clean as you go approach. The full setup is shown in table x.
 
-\item System-level strategy
+    \subsection{Evaluation Metrics}
 
-\begin{itemize}
-\item Clean-as-you-go
-\item Map-then-optimize
-\end{itemize}
-\end{itemize}
+    \subsubsection{Task level metrics}
 
-this results in a total of 16 experimental configurations, however some of these setups are fundamentally incompatible, such as Systematic coverage with a clean as you go approach. The full setup is shown in table x.
+    \begin{quote}
+        percentage of electronics, total completion time, failed attempts, distance traveled
+    \end{quote}
 
-\subsection{Evaluation Metrics}
+    \subsubsection{Component level metrics}
 
-\subsubsection{Task level metrics}
-
-\begin{quote}
-percentage of electronics, total completion time, failed attempts, distance traveled
-\end{quote}
-
-\subsubsection{Component level metrics}
-
-\begin{quote}
-detection percision and recall, localization error, coverage percentage.
-\end{quote}
+    \begin{quote}
+        detection percision and recall, localization error, coverage percentage.
+    \end{quote}
 \end{paracol}
