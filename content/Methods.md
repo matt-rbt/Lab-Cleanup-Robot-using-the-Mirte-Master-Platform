@@ -14,7 +14,7 @@ Two independent variables are defined:
     * Morphology based skeleton Coverage
     * Spanning tree coverage
 
-this results in a total of 16 experimental configurations, however some of these setups are fundamentally incompatible, such as Systematic coverage with a clean as you go approach. The full setup is shown in table x.
+This results in a total of 16 experimental configurations. However, some of these setups are fundamentally incompatible, such as Systematic coverage with a clean-as-you-go approach. The full setup is shown in table x.
 
 ## Evaluation Metrics
 
