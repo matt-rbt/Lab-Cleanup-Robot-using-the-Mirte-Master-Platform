@@ -2,11 +2,9 @@
 \documentclass{article}
 \PassOptionsToPackage{short, nodayofweek}{datetime}
 
-\input{latex_template_/TUD-thesis-template.def}
+\input{TUD-thesis-template.def}
 
 \usepackage[acronym]{glossaries}
-\usepackage{paracol}
-\newcommand\note[1]{\textcolor{red}{#1}}
 \makeglossaries
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,6 +12,7 @@
 \newacronym{.yml}{.yml}{a human-readable data format used to store and exchange structured data.}
 \newacronym{myst}{MyST}{Markedly Structured Text}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 % colors for hyperlinks
@@ -65,7 +64,8 @@
 \newcommand{\ThesisExtraInfo}{  }
 
 
-\usepackage{latex_template_/TUD-thesis-template}
+\usepackage{TUD-thesis-template}
+
 
 \usepackage{etoolbox}
 % Flag to skip the first \section (before abstract)
@@ -93,10 +93,9 @@
 
 \replaceBS{}{\newCovername}
 
-\title{Lab Cleanup Robot using MIRTE Master Platform}
+\title{Lab Cleanup Robot using Mirte Master Platform}
 
-\newdate{articleDate}{21}{4}{2026 \note{AANPASSEN!}}
-
+\newdate{articleDate}{21}{4}{2026}
 \date{%
   \ThesisExtraInfo\\[1.5em]
   \displaydate{articleDate}\\[1.5em]
@@ -104,7 +103,7 @@
 
 \author{
 \textsc{
-authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Berg%
+author: %
 }}
 
 \begin{document}
@@ -118,10 +117,7 @@ authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Ber
 
 \newpage
 
-\begin{abstract}
-
-\end{abstract}
-
+\keywords{Navigation2, ROS2, SLAM, Mobile_Manipulation}
 \clearpage
 
 % Default TOC depth
@@ -136,27 +132,38 @@ authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Ber
 
 \pagenumbering{\showPageNumbers}
 
-\include{mainmatter/Introduction}
 
-\include{mainmatter/Materials}
+\include{report_tex-introduction}
 
-\include{mainmatter/otto_temp}
+\include{report_tex-materials}
 
-\include{mainmatter/SystemOverview}
+\include{report_tex-theory}
 
-\include{mainmatter/Methods}
+\include{report_tex-systemoverview}
 
-\include{mainmatter/Results}
+\include{report_tex-navigation}
 
-\include{mainmatter/Conclusion}
+\include{report_tex-coverageplanners}
+
+\include{report_tex-mechanical}
+
+\include{report_tex-navigation}
+
+\include{report_tex-perception}
+
+\include{report_tex-methods}
+
+\include{report_tex-results}
+
+\include{report_tex-conclusion}
 
 \section{Appendix}
 
-% \include{report_tex-cheatsheet}
+\include{report_tex-cheatsheet}
 
-% \include{report_tex-errorlog}
+\include{report_tex-errorlog}
 
-% \include{report_tex-readme}
+\include{report_tex-readme}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

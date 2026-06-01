@@ -1,78 +1,335 @@
 \section{System Overview}
 \begin{paracol}
-{2}
+    {2}
 
-The system essentially consists of a mobile manipulator (Mirte Master) tasked with
-autonomously exploring an indoor environment (the robotics lab), identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows:
+    The system essentially consists of a mobile manipulator (Mirte Master) tasked
+    with autonomously exploring an indoor environment (the robotics lab),
+    identifying and localizing objects, distinguishing between electronics and
+    other objects, and sorting these objects accordingly. The task can be broken
+    down as follows:
 
-The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture. \textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. \texttt{\{numref\}Figure \{number\} \textless fig-task\_bins\textgreater } showcases this idea.
+    The main task of the robot can be broken down into sub-tasks which then fit
+    into specific niches of the entire system architecture. \textbf{Motion
+        planning}, \textbf{perception} and \textbf{navigation}.
+    Figure~\ref{tasks} showcases this idea.
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.7\linewidth]{figures/task_bins-6a576b2f1c55451f442d86eee45bd124.png}
-\end{figure}
+    \begin{figure}[!htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{figures/task_bins-6a576b2f1c55451f442d86eee45bd124.png}
+        \caption[]{Task breakdown of the robotic system.}
+        \label{tasks}
+    \end{figure}
 
-The scope of our investigation includes how different perception(classification) and navigation(mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
+    The scope of our investigation includes how different
+    perception(classification) and navigation(mapping and patrolling) approaches
+    influence the performance of the whole system. The highest performing
+    combination of approaches is then chosen for use in the respective subsystems.
 
-\subsection{System level strategy}
+    \subsection{System Architecture}
 
-The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in \texttt{\{numref\}Figure \{number\} \textless fig-global\_tree\textgreater } is also used here to describe and execute the cleaning strategy.
+    The tasks described above are used as a guideline to construct the full
+    distributed system. The standard in robotics for such navigation and perception
+    heavy tasks is to use a global behavior tree that describes how the robot ought
+    to behave in certain situations. This system level architecture as shown in is
+    also used here to describe and execute the cleaning strategy.
 
-\switchcolumn
+    
+    \begin{figure}[!htbp]
+        \centering
+        \includegraphics[width=0.5\linewidth]{figures/global_tree-eeb791198186b710db5720ebe0f0af19.png}
+    \end{figure}
+    
+    \switchcolumn
+    \subsection{Mechanical}
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.7\linewidth]{figures/global_tree-eeb791198186b710db5720ebe0f0af19.png}
-\end{figure}
+    \subsubsection{Original MIRTE Master Platform}
 
-\subsection{Navigation}
+    The project is based on the MIRTE Master V2. The platform consists of a mobile
+    base propelled by 4 individually driven mecanum wheels and a robotic arm,
+    allowing the robot to navigate through an environment and interact with
+    objects.
 
-The navigation stack of this robot, powered by nav2 and fields2cover, executes three main tasks:
+    The original MIRTE Master hardware consists of three main parts:
 
-\begin{itemize}
-\item Patrolling
-\item Object Approach
-\end{itemize}
+    \begin{enumerate}
+        \item \textbf{Mobile base}
+        \item \textbf{Electronics}
+        \item \textbf{Robotic arm}
+    \end{enumerate}
 
-\subsubsection{Mapping}
+    The mobile base utilizes four geared DC motors with Hall encoders, connected to
+    97mm Mecanum wheels. This allows the robot to move in multiple directions
+    without having to turn first, which is useful for navigating in small indoor
+    spaces. The base also contains various sensors, such as rearward facing
+    ultrasonic sensors, an IMU, a 2D LiDAR, a RGBD camera (depth camera) and a RGB
+    camera mounted on the robotic arm.
 
-Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. Thats where mapping approaches come in handy. Several advanced and specialized mapping approaches exist already, but in this paper only three are considered. Frontier based mapping, \{2\}, \{3\}. These were chosen through a combination of novelty and frequent application in similar contexts. Once the environment is mapped \{sufficiently\} the robot is allowed to navigate the space and propagate its behavior further down the tree.
+    The electronics of the original platform are based on an Orange Pi 3B and a
+    Raspberry Pi Pico H. The Orange Pi functions as the main computer, while the
+    Pico is used for lower-level control tasks such as controlling the motors and
+    general interfacing. The MIRTE Master also includes a custom-made PCB to
+    connect the motors, sensors, and power system in a structured manner. The main
+    powersource for the MIRTE Master is a 5Ah 12v Lion parkside drill battery.
 
-\begin{quote}
-Add ros2 bag playback
-\end{quote}
+    The robot arm is mounted on top of the mobile base. The manipulator has 4
+    degrees of freedom, which are driven by 4 serial bus servo motors of varieing
+    strength. A gripper and a RGB camera are mounted at the end of of the arm for
+    object scanning and manipulation.
 
-\switchcolumn
-\newpage
-\subsubsection{Patrolling}
+    \switchcolumn
 
-Two categories of coverage strategies are implemented:
+    \subsubsection{Hardware Components}
 
-\textbf{Systematic Navigation:} The environment is traversed using a structured pattern to ensure complete coverage. These approaches are often called coverage methods and paired with decomposition methods discussed in the theory section
+    The most important original hardware components are:
 
-\textbf{Reactive Navigation}: The robot dynamically traverses and selects exploration targets based on frontier regions or detected objects, prioritizing areas of high information gain.
+    \bigskip\noindent
+    \begin{tabular}{p{\dimexpr 0.500\linewidth-2\tabcolsep}p{\dimexpr 0.500\linewidth-2\tabcolsep}}
+        \toprule
+        Category           & Components                                                                                       \\
+        \hline
+        Actuation          & Four geared DC motors, mecanum wheels, servo-driven manipulator arm                              \\
+        Main computer      & Orange Pi 3B                                                                                     \\
+        Microcontroller    & Raspberry Pi Pico H                                                                              \\
+        Navigation sensors & 2D LiDAR (RPLiDAR C1), IMU, ultrasonic sensors                                                   \\
+        Vision sensors     & Depth camera (Orbbec3D Astra Mini S), RGB camera (720p USB Camera module)                        \\
+        Manipulation       & Multi-DOF arm with gripper (driven by Hiwonder Bus Servo's)                                      \\
+        Power system       & 5Ah 12v Lion parkside drill battery, 12v to 5v step-down converter, fuse, wiring, and connectors \\
+        \bottomrule
+    \end{tabular}
 
-\begin{quote}
-iets meer over coverage planning.
-\end{quote}
+    \bigskip
 
-\textbf{Free space:}
-The ROS framework allows for integration with a lot of modular software packages. throughout the years this has given rise to many universally applied packages, Nav2 is such a case.
-Using Nav2 the Global Costmap can be used to extrapolate the free space for the robot to move in.
+    These components provide a useful base platform for a mobile manipulation task.
+    However, for our project the original configuration needed changes. The robot
+    had to be adapted for a lab-cleanup task, where it should be able to move
+    around in a lab environment, detect waste on the floor, and eventually collect
+    objects into bins.
 
-\subsection{Perception}
+    \subsubsection{Design Goals for Our Modified Robot}
 
-Perception is responsible for object detection, classification and spatial localization. For this study we limited the object detection and localization approaches to two. A \textbf{2D detection and depth projection} approach, and 3D segmentation with \textbf{point cloud clustering}.
-As for classification methods, this study evaluates a classical cv approach, aswell as a classification model based approach.
+    The goal of our hardware modifications was to make the MIRTE Master more
+    suitable for collecting and transporting small waste objects. This required
+    changes to the chassis and and gripper design.
 
-objects are categorized into:
+    The main design goals were:
 
-\begin{enumerate}
-\item Graspable vs non-graspable
-\item Electronics vs non-electronics
-\end{enumerate}
+    \begin{itemize}
+        \item Increase the stiffness and reliability of the chassis.
+        \item Add space for collecting and separating waste.
+        \item Mount the camera in a useful position for object recognition.
+        \item Improve the battery mounting system.
+        \item Improve cable management.
+        \item Modify the gripper so it can pick up waste objects more reliably.
+    \end{itemize}
+    \switchcolumn
+    \subsubsection{Chassis Modifications}
 
-\begin{quote}
-iets meer over classification.
-\end{quote}
+    The original MIRTE Master chassis was designed as a general-purpose mobile
+    manipulator base. For our use case, the robot also needed to carry waste bins
+    and support the manipulator during picking tasks. Therefore, the chassis was
+    modified to improve strength and usability.
+
+    The chassis consists of 6 side panels and a top and a bottom plate. In the
+    original model, the top and bottom plates were made out of clear PMMA. While
+    PMMA allows the user to see the status of the electronics clearly by looking at
+    the LED's on the inside, it also has a tendency to shatter easily if bendt too
+    much. In early testing of the MIRTE Master it has already shown that the PMMA
+    was not a good choice for any type of loading resulting in shattered PMMA.
+    Therefore we chose to change the material of all plates from PMMA to aluminium
+    with a similair stiffnes, the difference of this being that aluminium can bend
+    way more and will not shatter. To still be able to see the status of the
+    electronics by the LED's we chose to print the 6 side panel elements out of a
+    semi-transparent material.
+
+    Two separate waste bins were added to the robot. These bins allow the robot to
+    collect, store and seperate objects after picking them up.
+
+    \subsubsection{Electronics Modifications}
+
+    The original MIRTE Master already contains the main electronics needed for
+    navigation and control. A RGB camera for object recognition was mounted
+    overlooking the gripper. The camera needs to be placed in a position where it
+    has a clear view of the area in front of the robot and the workspace of the
+    gripper. This is important because the vision system must detect objects and
+    classify objects effectively.
+
+    The battery mounting system got a revision making the battery mounting more
+    secure and userfriendly. A secure battery mount is important because the robot
+    moves in different directions, and sudden movements can shift loose components.
+
+    \subsubsection{Gripper Modifications}
+
+    The gripper is an important part of the lab-cleanup robot because it directly
+    interacts with the objects that need to be collected. The original MIRTE Master
+    gripper is useful as a general robotic gripper, but the cleanup task requires
+    it to handle different small objects reliably.
+
+    The original gripper geometry is suited for holding small and larger objects
+    however the gripping surface is not. Electronic trash tends to have small
+    contact points for the gripper so good gripping performance is a must. For
+    improving the grip on objects the contact patches are layered with a layer of
+    soft 83A TPE coated with an additional layer of Bison Rubber anti-slip coating.
+
+    \switchcolumn
+
+    \subsubsection{Summary of Hardware Changes}
+
+    \bigskip\noindent
+    \begin{tabular}{p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}}
+        \toprule
+        Subsystem & Original design              & Our modification                           \\
+        \hline
+        Chassis   & Standard MIRTE Master frame  & Strengthened top and bottom plates         \\
+        Storage   & No dedicated cleanup storage & Two separate waste bins added              \\
+        Camera    & Original camera setup        & RGB camera mounting for object recognition \\
+        Battery   & Standard battery placement   & Improved battery mounting system planned   \\
+        Wiring    & Standard cable routing       & Improved cable management                  \\
+        Gripper   & Original MIRTE gripper       & Improved gripping surface                  \\
+        \bottomrule
+    \end{tabular}
+
+    \bigskip
+
+    \subsubsection{Current Design}
+
+    The current design of the robot can be seen in ...
+
+    \subsection{Navigation}
+
+    The navigation stack of this robot is responsible for three main tasks:
+
+    \begin{itemize}
+        \item Mapping
+        \item Coverage
+        \item Object Approach
+    \end{itemize}
+
+    \subsubsection{Mapping}
+
+    Before the robot can navigate properly through the environment and ensure
+    proper coverage, this environment must first be known. Thats where mapping
+    approaches come in handy. Several advanced and specialized mapping approaches
+    exist already, but in this paper only one was considered. Frontier based
+    mapping. Once the environment is mapped \{sufficiently\} the robot is allowed
+    to navigate the space and propagate its behavior further down the tree.
+
+    \subsubsection{Coverage Planning Algorithms}
+
+    This section presents the coverage planning algorithms employed in this study.
+    While a comprehensive technical analysis of these algorithms is beyond the
+    scope of this work, \newline they are described with sufficient detail to
+    enable understanding of their application within our framework. 
+    
+    \switchcolumn
+    
+    For in-depth technical details and formal derivations, the reader is referred to
+    the original publications cited herein.
+
+    In order to demonstrate the different navigators, \newline we use a map
+    provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{mirte
+        navigation} ros2 package. \newline
+
+    \paragraph{The Free space Polygon}
+
+    Each defined navigator must update its internal map and as a result plan a path
+    over this map.
+
+    A function first takes the costmap and, given a threshold, sets the free space
+    to 0 and occupied space to 1. \newline It then detects the boundaries of the
+    free space and saves these as contours.
+
+    \paragraph{Boustrophedon Coverage}
+
+    The first navigator that will be covered is a Boustropedon based Coverage
+    planner. \newline This navigator plans in two steps:
+
+    \begin{itemize}
+        \item Decomposition
+        \item Swath Generation
+    \end{itemize}
+
+    \subparagraph{Boustrophedon Cellular Decomposition}
+
+    To effectively cover the entire map with boustrophedon (back and forth) swaths,
+    the map is first partitioned (decomposed) into smalller areas that can be
+    covered fully with these swaths. This is done by sweeping a straight line
+    across the map and creating new cells where the connectivity of this line
+    decreases. Cells are closed and a new one opens when this connectivity
+    increases again or the line is fully restored, The results of Boustrophedon
+    cellular Decomposition can be viewed in the cell below.
+
+    \subparagraph{Boustrophedon Path Generation}
+
+    After decomposition, each cell is populated with a boustrophedon path. Swaths
+    are generated as straight lines parallel to the line used during decomposition.
+    The transitions, often called headlands, are then generated to create one
+    continuous path inside the cell.
+
+    \includegraphics[width=0.7\linewidth]{figures/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
+
+    \paragraph{SkeletonPath}
+
+    The \texttt{SkeletonPath} planner is a topology-based coverage planner that
+    generates navigation paths using the morphological skeleton of the environment.
+
+    Unlike the \texttt{BousPath} planner, which decomposes the free space into
+    sweepable cells, the skeleton planner reduces the free space to a graph-like
+    centerline representation. This representation preserves the connectivity of
+    the environment while simplifying path planning. The implementation is inspired
+    by recent work in morphology-based exploration and autonomous navigation.
+
+    \switchcolumn
+
+    \subparagraph{Reading and Skeletonizing the Map}
+
+    The skeleton planner generates a morphological skeleton. Internally, the
+    planner fills the free-space contours, skeletonizes the free-space region,
+    extracts skeleton pixels, and converts them into Cartesian waypoints. The
+    generated waypoints are then stored.
+
+    \subparagraph{Path Planning}
+
+    After the waypoints have been generated, they are then sampled and ordered.
+    \newline The algorithm does this by first constructing a graph representation
+    of the skeleton tree. \newline The waypoints then become graph nodes. Edges are
+    generated between the nodes with a certain distance threshold.
+
+    To efficiently identify neighboring points, a k-d tree is used for spatial
+    indexing. \newline Starting from the closest waypoint to the robot, the
+    algorithm recursively explores nearby nodes and connects them within the graph.
+
+    Leaf nodes are then identified in the tree, (nodes with one connection).
+
+    \includegraphics[width=0.7\linewidth]{figures/4599d3c4df780082d726948f94d0cc2d.png}
+
+    \subparagraph{Path Ordering}
+
+    First the closest leaf node to the robot is found, this is the starting
+    position. \newline The planner traces a path along the tree and selects the
+    shortest one to the next leaf node. \newline It then appends these points to
+    the path and sets this new leaf node as the current one and marks it as
+    visited. \newline The algorithm repeats this process untill all leaf nodes have
+    been explored successfully.
+
+    \switchcolumn
+
+    \subsection{Perception}
+
+    Perception is responsible for object detection, classification and spatial
+    localization. For this study we limited the object detection and localization
+    approaches to two. A \textbf{2D detection and depth projection} approach, and
+    3D segmentation with \textbf{point cloud clustering}. As for classification
+    methods, this study evaluates a classical cv approach, aswell as a
+    classification model based approach.
+
+    objects are categorized into:
+
+    \begin{enumerate}
+        \item Graspable vs non-graspable
+        \item Electronics vs non-electronics
+    \end{enumerate}
+
+    \begin{quote}
+        iets meer over classification.
+    \end{quote}
 \end{paracol}

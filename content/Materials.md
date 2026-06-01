@@ -23,7 +23,6 @@ Chassis battery coupling component\
 All gripper components\
 
 
-
 ## Software specifications
 
 The MIRTE Master robotic platform has free open-source software available for any user to install. \
@@ -37,7 +36,7 @@ Before the robot is able to perform any complex task in an environment, the envi
 The robot created an occupancy grid map as an image while estimating the robot's pose.
 
 To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, There have been several projects that have implemented SLAM Toolbox, so a ready to use set of parameters for this robot is relatively easy to find. For this system, we use the [mirte navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
-It was assumed the robot would only navigate in unknown environments without predefined or reocurring maps. Therefore localization (using AMCL) was disabled in the application.
+It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
 
 ### Navigation
 >
