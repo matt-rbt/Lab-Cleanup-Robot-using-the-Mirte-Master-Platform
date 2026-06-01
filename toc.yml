@@ -14,6 +14,9 @@ project:
       - file: content/Mechanical.ipynb
       - file: content/Navigation.md
       - file: content/Perception.md
+        children:
+        - file: content/Perception2d.ipynb
+        - file: content/Perception3d.ipynb
     - file: content/Methods.md
     - file: content/Results.ipynb
     - file: content/Conclusion.md
