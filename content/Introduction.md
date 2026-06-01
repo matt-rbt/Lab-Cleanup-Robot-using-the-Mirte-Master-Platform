@@ -14,7 +14,7 @@ In laboratories, items of many kinds may fall onto the floor. While implementati
 
 
 ## Related Works
-Jupyter Book has been rebuild with the intend to export content in multiple output formats including HTML, PDF and docx. {numref}`Figure {number} <fig-diagram>` provides this idea.
+Jupyter Book has been rebuilt with the intend to export content in multiple output formats including HTML, PDF and docx. {numref}`Figure {number} <fig-diagram>` provides this idea.
 
 ```{figure} figures/diagram.*
 :label: fig-diagram
