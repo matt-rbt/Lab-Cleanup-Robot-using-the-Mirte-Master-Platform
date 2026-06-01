@@ -12,6 +12,7 @@ Button\
 OLED Display\
 Gripper servo motors x5\
 Raspberry Pi camera module\
+.
 
 
 Some parts had to be 3D-printed as the MIRTE team, at the time, did not have the capacity to provide these specific components. These include:
