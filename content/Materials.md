@@ -1,13 +1,35 @@
 # Materials
 
 ## Hardware specifications
+% Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
+The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \
+Mecanum wheels x4\
+Orange Pi 3B V1.1.1\
+MIRTE custom PCB\
+Raspberry Pi Pico H\
+12V 107 RPM motor x4\
+Button\
+OLED Display\
+Gripper servo motors x5\
+Raspberry Pi camera module\
+
+
+Some parts had to be 3D-printed as the MIRTE team, at the time, did not have the capacity to provide these specific components. These include:
+DC motor brackets\
+Chassis side components\
+Chassis rear sonar components\
+Chassis front camera mount\
+Chassis battery coupling component\
+All gripper components\
+
+
 
 ## Software specifications
 
-The Mirte master robot has free open source software available for any user to install. \
+The MIRTE Master robotic platform has free open-source software available for any user to install. \
 The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2202`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
 
-The particular ROS distribution the Mirte Master robot implements is ROS2 Humble Hawksbill on Ubuntu 20.04.
+The particular ROS distribution the Mirte Master robot implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
 
 ### Slam
 
