@@ -15,7 +15,7 @@ Raspberry Pi camera module\
 .
 
 
-Some parts had to be 3D-printed as the MIRTE team, at the time, did not have the capacity to provide these specific components. These include:
+Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
 DC motor brackets\
 Chassis side components\
 Chassis rear sonar components\
