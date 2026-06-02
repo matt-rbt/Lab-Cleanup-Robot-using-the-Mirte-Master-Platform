@@ -32,7 +32,6 @@ The manipulator consists of several components that can be found in this list: [
 
 The chassis side panels have been constructed using PETG of the translucent variety which, aside from being easthetically pleasing, allows some ability of looking at status lights on the inside of the robot. This otherwise wouldn't have been an possible due to the enclosure having aluminium top and bottom plates. Add to that, orange PETG strips have been printed within the PETG of both the chassis side panels and the manipulator limbs in order to make the robot stand out more, theoretically leading to people being more cautious around it while it's moving. All of this can be seen in the interactive display [verwijzen naar dat 3D model].
 
-
 ## Software specifications
 
 The MIRTE Master robotic platform has free open-source software available for any user to install. \
