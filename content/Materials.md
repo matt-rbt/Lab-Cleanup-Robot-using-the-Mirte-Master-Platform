@@ -23,6 +23,11 @@ Chassis front camera mount\
 Chassis battery coupling component\
 All gripper components\
 
+The majority of hardware used for this implementation of the MIRTE Master stems from standardized components implemented by the MIRTE team, the corresponding list of items can be found here: [verwijzing naar lijst hier]
+Given that MIRTE doesn't work with large quantities of robots, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. The parts of which can be divided into two groups: chassis and manipulator.\
+
+The chassis consists of a top and bottom plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these tasks, PETG was chosen as the filament to use for the 3D-printing of these panels. This filament is often a popular choice, and here it's been used due to it's relatively high strength and some ductility, compared to filaments like PLA that are more brittle. Not only does this mean that it is less likely to snap, but it also allows for some slight chassis bending which has as an added benefit that the wheels are more likely to keep traction.\
+
 
 ## Software specifications
 
