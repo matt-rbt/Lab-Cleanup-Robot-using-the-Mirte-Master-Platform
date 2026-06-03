@@ -1,6 +1,7 @@
 # Materials
+Within this section, 
 
-## Hardware specifications
+## Hardware Specifications
 % Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
 The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \
 Mecanum wheels x4\
@@ -14,25 +15,26 @@ Gripper servo motors x5\
 Raspberry Pi camera module\
 
 
-
 Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
 DC motor brackets\
 Chassis side components\
 Chassis rear sonar components\
 Chassis front camera mount\
 Chassis battery coupling component\
-All gripper components\
+All gripper components
 
-The majority of hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
+The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
 
-The chassis consists of a top and bottom plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility. The ductility not only makes the robot more resistant to impact, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor.
+## Chassis
 
-The manipulator consists of several components that can be found in this list: [verwijzen naar lijst op de website]. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system.
+The chassis consists of a top and bottom plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility. The ductility not only makes the robot more resistant to impact, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variety of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis which would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
 
-The chassis side panels have been constructed using PETG of the translucent variety which, aside from being aesthetically pleasing, makes it possible to look at status lights on the inside of the robot. This otherwise wouldn't have been an possible due to the enclosure having aluminium top and bottom plates. Added within the PETG panels and manipulator limbs, orange PETG strips have been incorporated in order to make the robot stand out more, theoretically leading to people being more cautious around it while it's moving. All of this can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
+## Manipulator
 
-## Software specifications
+The manipulator consists of several components that can be found within the list at the top of this page ([Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/)). This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
+
+## Software Specifications
 
 The MIRTE Master robotic platform has free open-source software available for any user to install. \
 The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2202`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
