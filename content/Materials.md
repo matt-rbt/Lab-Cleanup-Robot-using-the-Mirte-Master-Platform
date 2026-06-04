@@ -5,43 +5,41 @@ Within this section,
 % Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
 The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \
 
-Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
-DC motor brackets\
-
 | Category | Components |
 |---|---|
-| Chassis | Panels: |
-| |  - Left side panel with OLED-display mount |
-| |  - Right side panel |
-| |  - Rear battery bracket panel |
-| |  - 2x rear Sonar-module panel |
-| |  - Front RGB-D camera module |
-| |  - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate |
-| | Electronics: |
-| |  - Main computer: Orange Pi 3B V1.1.1 |
-| |  - Microcontroller: Raspberry Pi Pico H |
-| |  - MIRTE custom PCB |
-| Manipulation | Multi-DOF arm with gripper: |
-| |  - Upper arm joint, lower arm joint |
-| |  - Schoulder joint bracket, wrist joint bracket |
-| |  - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends |
-| |  - Mounting bracket for RGB-camera module |
-| |  - 5x Hiwonder bus servo-motors |
-| Power system | Power delivery components: |
-| |  - Parkside 12v 5Ah Li-ion battery |
-| |  - Battery-to-circuit connector |
-| |  - 12v to 5v step-down converter |
-| |  - Wiring, connectors, button and fuse |
-| Traversing laboratory | Actuators: |
-| |  - 4x geared DC-motors |
-| |  - 4x mecanum wheels |
-| |  - 4x DC motor brackets |
-| Navigation | Sensors: |
-| |  - 2D-LiDAR: RPLiDAR C1 |
-| |  - 2x Ultrasonic sensor: HC-SR04 |
-| Vision | Sensors: |
-| |  - Depth camera: Orbbec3D Astra Mini S |
-| |  - RGB-camera: 720p USB camera module |
+| Chassis panels | |
+| | - Left side panel with OLED-display mount and (both 3D-printed) |
+| | - Panels for left (with OLED-display) and right chassis sides (3D-printed ) |
+| | - Rear battery bracket panel (3D-printed) |
+| | - 2x rear Sonar-module panel (3D-printed) |
+| | - Front RGB-D camera module (3D-printed) |
+| | - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) |
+| Chassis electronics | |
+| | - Main computer: Orange Pi 3B V1.1.1 |
+| | - Microcontroller: Raspberry Pi Pico H |
+| | - MIRTE custom PCB |
+| | - 12V RGB LED-strip |
+| Manipulation | |
+| | - Upper arm limb, lower arm limb (3D-printed) |
+| | - Schoulder joint bracket, wrist joint bracket (3D-printed) |
+| | - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends (3D-printed) |
+| | - Mounting bracket for RGB-camera module (3D-printed) |
+| | - 5x Hiwonder bus servo-motors |
+| Power system | |
+| | - Parkside 12v 5Ah Li-ion battery |
+| | - Battery-to-circuit connector (3D-printed) |
+| | - 12v to 5v step-down converter |
+| | - Wiring, connectors, button and fuse |
+| Room traversing | |
+| | - 4x geared DC-motors |
+| | - 4x mecanum wheels |
+| | - 4x DC motor brackets (3D-printed) |
+| Navigation sensors | |
+| | - 2D-LiDAR: RPLiDAR C1 |
+| | - 2x Ultrasonic sensor: HC-SR04 |
+| Vision sensors | |
+| | - Depth camera: Orbbec3D Astra Mini S |
+| | - RGB-camera: 720p USB camera module |
 
 The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
