@@ -20,11 +20,11 @@ DC motor brackets\
 | | Electronics: |
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
-| | - MIRTE ucstom PCB |
+| | - MIRTE custom PCB |
 | Manipulation | Multi-DOF arm with gripper: |
 | | - Upper arm joint, lower arm joint |
 | | - Schoulder joint bracket, wrist joint bracket |
-| | - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends |
+| | - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends |
 | | - Mounting bracket for RGB-camera module |
 | | - 5x Hiwonder bus servo-motors |
 | Power system | Power delivery components: |
