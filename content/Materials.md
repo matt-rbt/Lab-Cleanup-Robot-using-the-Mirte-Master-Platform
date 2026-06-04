@@ -25,18 +25,15 @@ All gripper components
 
 | Category | Components |
 |---|---|
-| Movement | Actuattors: |
-| | - 4x geared DC-motors |
-| | - 4x Mecanum wheels |
-| | - Servo-motor-driven manipulator arm |
 | Main computer | Orange Pi 3B |
 | Microcontroller | Raspberry Pi Pico H |
-| Navigation | Sensors: |
-| | - 2D-LiDAR: RPLiDAR C1 |
-| | - 2x Ultrasonic sensor: HC-SR04 |
-| Vision | Sensors: |
-| | - Depth camera (Orbbec3D Astra Mini S) |
-| | - RGB-camera (720p USB Camera module) |
+| Chassis | Panels: |
+| | - Left side panel with OLED-mount |
+| | - Right side panel |
+| | - Rear battery bracket panel |
+| | - 2x rear Sonar-module panel |
+| | - Front RGB-D camera module |
+| | - 1.5 mm aluminium top plate, bottom plate and manipulator-mounting plate |
 | Manipulation | Multi-DOF arm with gripper: |
 | | - Upper arm joint, lower arm joint |
 | | - Schoulder joint bracket, Wrist joint bracket |
@@ -47,6 +44,16 @@ All gripper components
 | | - Parkside 12v 5Ah Li-ion battery |
 | | - 12v to 5v step-down converter |
 | | - Wiring, connectors and fuse |
+| Traversing laboratory | Actuators: |
+| | - 4x geared DC-motors |
+| | - 4x Mecanum wheels |
+| | - 4x DC motor brackets
+| Navigation | Sensors: |
+| | - 2D-LiDAR: RPLiDAR C1 |
+| | - 2x Ultrasonic sensor: HC-SR04 |
+| Vision | Sensors: |
+| | - Depth camera (Orbbec3D Astra Mini S) |
+| | - RGB-camera (720p USB Camera module) |
 
 The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
