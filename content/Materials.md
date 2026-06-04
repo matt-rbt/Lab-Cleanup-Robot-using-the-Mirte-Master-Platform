@@ -33,7 +33,7 @@ All gripper components
 | | - Rear battery bracket panel |
 | | - 2x rear Sonar-module panel |
 | | - Front RGB-D camera module |
-| | - 1.5 mm aluminium top plate, bottom plate and manipulator-mounting plate |
+| | - 1.5 mm aluminium top plate, bottom plate and manipulator-mounting plate |.
 | Manipulation | Multi-DOF arm with gripper: |
 | | - Upper arm joint, lower arm joint |
 | | - Schoulder joint bracket, Wrist joint bracket |
