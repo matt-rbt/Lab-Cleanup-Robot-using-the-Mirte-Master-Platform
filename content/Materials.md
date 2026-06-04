@@ -4,56 +4,44 @@ Within this section,
 ## Hardware Specifications
 % Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
 The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \
-Mecanum wheels x4\
-Orange Pi 3B V1.1.1\
-MIRTE custom PCB\
-Raspberry Pi Pico H\
-12V 107 RPM motor x4\
-Button\
-OLED Display\
-Gripper servo motors x5\
-Raspberry Pi camera module\
-
 
 Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
 DC motor brackets\
-Chassis side components\
-Chassis rear sonar components\
-Chassis front camera mount\
-Chassis battery coupling component\
-All gripper components
 
 | Category | Components |
 |---|---|
-| Main computer | Orange Pi 3B |
-| Microcontroller | Raspberry Pi Pico H |
 | Chassis | Panels: |
-| | - Left side panel with OLED-mount |
+| | - Left side panel with OLED-display mount |
 | | - Right side panel |
 | | - Rear battery bracket panel |
 | | - 2x rear Sonar-module panel |
 | | - Front RGB-D camera module |
-| | - 1.5 mm aluminium top plate, bottom plate and manipulator-mounting plate |.
+| | - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate |
+| | Electronics: |
+| | - Main computer: Orange Pi 3B V1.1.1 |
+| | - Microcontroller: Raspberry Pi Pico H |
+| | - MIRTE ucstom PCB |
 | Manipulation | Multi-DOF arm with gripper: |
 | | - Upper arm joint, lower arm joint |
-| | - Schoulder joint bracket, Wrist joint bracket |
+| | - Schoulder joint bracket, wrist joint bracket |
 | | - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends |
 | | - Mounting bracket for RGB-camera module |
-| | - Hiwonder Bus Servo-motors |
+| | - 5x Hiwonder bus servo-motors |
 | Power system | Power delivery components: |
 | | - Parkside 12v 5Ah Li-ion battery |
+| | - Battery-to-circuit connector |
 | | - 12v to 5v step-down converter |
-| | - Wiring, connectors and fuse |
+| | - Wiring, connectors, button and fuse |
 | Traversing laboratory | Actuators: |
 | | - 4x geared DC-motors |
-| | - 4x Mecanum wheels |
-| | - 4x DC motor brackets
+| | - 4x mecanum wheels |
+| | - 4x DC motor brackets |
 | Navigation | Sensors: |
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
 | Vision | Sensors: |
-| | - Depth camera (Orbbec3D Astra Mini S) |
-| | - RGB-camera (720p USB Camera module) |
+| | - Depth camera: Orbbec3D Astra Mini S |
+| | - RGB-camera: 720p USB camera module |
 
 The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
