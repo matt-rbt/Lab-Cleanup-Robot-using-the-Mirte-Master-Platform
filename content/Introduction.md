@@ -6,8 +6,10 @@ In laboratories, items of many kinds may fall onto the floor. While implementati
 % Het einde bevat nog geen resultaten, die moeten er wel nog in zodra we die hebben!! Vgm is het ook niet de bedoeling om afkortingen (SLAM) erin te hebben staan, not sure
 
 # Introduction
+Developing a MIRTE Master-based autonomous cleaning-robot that detects, sorts and disposes of waste.
 
-
+In laboratory environments, maintainting a good level of cleanliness is often a bit of a challenge. While in modern domestic situations, an autonomous floor-cleaning robot is often used, in laboratory environments this is often not yet the case. In a laboratory, what actually falls onto the floor usually consists of objects, while in domestic spaces these types of robots are generally made to remove dust and hair instead. Hence, a robot for laboratory-cleaning purposes should be able to grab objects instead of dust or hair. But as one may not always want to throw away all objects found in a laboratory setting, one would also want to separate trash from other fallen objects, such as electronics. Hence, the goal for this project was to develop an autonomous laboratory-cleaning robot that can detect, separate and disppose of two different types of objects, based on the MIRTE Master robotic platform.
+To achieve this, the system employs a robotic arm on the top of the chassis with five degrees of freedom to pick up objects, 
 ## Related Works
 
 

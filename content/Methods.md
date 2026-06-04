@@ -1,15 +1,15 @@
 # Experimental Methods
 
 This study follows factorial experimental design, analyzing the interplay between
-perception, coverage and system level decision making.
+perception, coverage and system-level decision making.
 
 Two independent variables are defined:
 
-- detection method
+- Detection method
     * Point cloud clustering
     * 2D Depth projection
 
-- coverage strategy
+- Coverage strategy
     * Boustrophedon Coverage
     * Morphology based skeleton Coverage
     * Spanning tree coverage
