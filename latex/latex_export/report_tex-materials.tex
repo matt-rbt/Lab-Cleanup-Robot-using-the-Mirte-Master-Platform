@@ -6,59 +6,48 @@ Within this section,
 
 % Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
 
-The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \newline
-Mecanum wheels x4\newline
-Orange Pi 3B V1.1.1\newline
-MIRTE custom PCB\newline
-Raspberry Pi Pico H\newline
-12V 107 RPM motor x4\newline
-Button\newline
-OLED Display\newline
-Gripper servo motors x5\newline
-Raspberry Pi camera module{\textbackslash}
+The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. {\textbackslash}
 
 Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
-DC motor brackets\newline
-Chassis side components\newline
-Chassis rear sonar components\newline
-Chassis front camera mount\newline
-Chassis battery coupling component\newline
-All gripper components
+DC motor brackets{\textbackslash}
 
 \bigskip\noindent
 \begin{tabular}{p{\dimexpr 0.500\linewidth-2\tabcolsep}p{\dimexpr 0.500\linewidth-2\tabcolsep}}
 \toprule
 Category & Components \\
 \hline
-Main computer & Orange Pi 3B \\
-Microcontroller & Raspberry Pi Pico H \\
 Chassis & Panels: \\
- & - Left side panel with OLED-mount \\
+ & - Left side panel with OLED-display mount \\
  & - Right side panel \\
  & - Rear battery bracket panel \\
  & - 2x rear Sonar-module panel \\
  & - Front RGB-D camera module \\
- & - 1.5 mm aluminium top plate, bottom plate and manipulator-mounting plate \\
+ & - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate \\
+ & Electronics: \\
+ & - Main computer: Orange Pi 3B V1.1.1 \\
+ & - Microcontroller: Raspberry Pi Pico H \\
+ & - MIRTE ucstom PCB \\
 Manipulation & Multi-DOF arm with gripper: \\
  & - Upper arm joint, lower arm joint \\
- & - Schoulder joint bracket, Wrist joint bracket \\
+ & - Schoulder joint bracket, wrist joint bracket \\
  & - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends \\
  & - Mounting bracket for RGB-camera module \\
- & - Hiwonder Bus Servo-motors \\
+ & - 5x Hiwonder bus servo-motors \\
 Power system & Power delivery components: \\
  & - Parkside 12v 5Ah Li-ion battery \\
+ & - Battery-to-circuit connector \\
  & - 12v to 5v step-down converter \\
- & - Wiring, connectors and fuse \\
+ & - Wiring, connectors, button and fuse \\
 Traversing laboratory & Actuators: \\
  & - 4x geared DC-motors \\
- & - 4x Mecanum wheels \\
+ & - 4x mecanum wheels \\
  & - 4x DC motor brackets \\
 Navigation & Sensors: \\
  & - 2D-LiDAR: RPLiDAR C1 \\
  & - 2x Ultrasonic sensor: HC-SR04 \\
 Vision & Sensors: \\
- & - Depth camera (Orbbec3D Astra Mini S) \\
- & - RGB-camera (720p USB Camera module) \\
+ & - Depth camera: Orbbec3D Astra Mini S \\
+ & - RGB-camera: 720p USB camera module \\
 \bottomrule
 \end{tabular}
 
