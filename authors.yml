@@ -7,7 +7,7 @@ project:
       affiliations:
         - tud
     - id: student-2
-      name: Max van 't Hart, Otto Meijerhof.
+      name: Max van 't Hart, Otto Meijerhof
       affiliations:
         - tud
     #- id: student-3
