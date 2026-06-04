@@ -25,13 +25,16 @@ All gripper components
 
 | Category | Components |
 |---|---|
-| Actuation | Four geared DC motors, mecanum wheels, servo-driven manipulator arm |
+| Movement | Actuattors: |
+| | - 4x geared DC-motors |
+| | - 4x Mecanum wheels |
+| | - Servo-motor-driven manipulator arm |
 | Main computer | Orange Pi 3B |
 | Microcontroller | Raspberry Pi Pico H |
-| Navigation sensors | |
-| | - 2D-LiDAR: RPLiDAR C1
-| | - 2x Ultrasonic sensor: HC-SR04
-| Vision sensors | |
+| Navigation | Sensors: |
+| | - 2D-LiDAR: RPLiDAR C1 |
+| | - 2x Ultrasonic sensor: HC-SR04 |
+| Vision | Sensors: |
 | | - Depth camera (Orbbec3D Astra Mini S) |
 | | - RGB-camera (720p USB Camera module) |
 | Manipulation | Multi-DOF arm with gripper: |
@@ -40,7 +43,7 @@ All gripper components
 | | - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends |
 | | - Mounting bracket for RGB-camera module |
 | | - Hiwonder Bus Servo-motors |
-| Power system | |
+| Power system | Power delivery components: |
 | | - Parkside 12v 5Ah Li-ion battery |
 | | - 12v to 5v step-down converter |
 | | - Wiring, connectors and fuse |
