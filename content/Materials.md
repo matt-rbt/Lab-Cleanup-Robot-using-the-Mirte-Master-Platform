@@ -29,15 +29,14 @@ All gripper components
 | Main computer | Orange Pi 3B |
 | Microcontroller | Raspberry Pi Pico H |
 | Navigation sensors | 2D LiDAR (RPLiDAR C1), IMU, 2x ultrasonic sensor |
-| Vision sensors | Depth camera (Orbbec3D Astra Mini S), RGB camera (720p USB Camera module) |
-| Manipulation | Multi-DOF arm with gripper (driven by Hiwonder Bus Servo's) |
-| | - Upper arm joint
-| | - Lower arm joint
-| | - Schoulder joint bracket
-| | - Wrist joint bracket
-| | - Bars for four-bar linkage
-| | - Tips for gripper
-| | - TPU grip ends
+| Vision sensors | Depth sensing and Object Identification
+| | - Depth camera (Orbbec3D Astra Mini S)
+| | - RGB camera (720p USB Camera module) |
+| Manipulation | Multi-DOF arm with gripper |
+| | - Upper arm joint, lower arm joint
+| | - Schoulder joint bracket, Wrist joint bracket
+| | - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends
+| | - Hiwonder Bus Servo-motors
 | Power system | 5Ah 12v Lion parkside drill battery, 12v to 5v step-down converter, fuse, wiring, and connectors |
 
 The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
