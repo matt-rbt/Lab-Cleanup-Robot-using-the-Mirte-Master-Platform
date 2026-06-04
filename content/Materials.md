@@ -7,36 +7,36 @@ The majority of hardware used in this implementation of the MIRTE Master stems f
 
 | Category | Components |
 |---|---|
-| Chassis | _Panels:_ |
+| **Chassis** | _Panels:_ |
 | | - Panels for left (with OLED-display) and right chassis sides (3D-printed ) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
 | | - Front RGB-D camera module (3D-printed) |
 | | - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) |
-| Chassis | _Electronics:_ |
+| | _Electronics:_ |
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
 | | - MIRTE custom PCB |
 | | - 12V RGB LED-strip |
-| Manipulation | |
+| **Manipulation** | |
 | | - Upper arm limb, lower arm limb (3D-printed) |
 | | - Schoulder joint bracket, wrist joint bracket (3D-printed) |
 | | - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends (3D-printed) |
 | | - Mounting bracket for RGB-camera module (3D-printed) |
 | | - 5x Hiwonder bus servo-motors |
-| Power system | |
+| **Power system** | |
 | | - Parkside 12v 5Ah Li-ion battery |
 | | - Battery-to-circuit connector (3D-printed) |
 | | - 12V to 5V step-down converter |
 | | - Wiring, connectors, button and fuse |
-| Room traversing | |
+| **Space traversing** | |
 | | - 4x geared DC-motors |
 | | - 4x mecanum wheels |
 | | - 4x DC motor brackets (3D-printed) |
-| Navigation sensors | |
+| **Navigation sensors** | |
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
-| Vision sensors | |
+| **Vision sensors** | |
 | | - Depth camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
