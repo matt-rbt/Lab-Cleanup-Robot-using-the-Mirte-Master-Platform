@@ -40,7 +40,7 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
 | **Vision sensors** | |
-| | - Depth camera: Orbbec3D Astra Mini S |
+| | - RGB-D camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
