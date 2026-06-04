@@ -1,14 +1,15 @@
 # Materials
-Within this section, 
+Within this section, all materials within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-% Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
-The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. \
+% De lijst hieronder moet alleen op de website, niet in het verslag. Verwijs er wel naar in het verslag.
+
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
 | **Chassis** | _Panels:_ |
-| | - Panels for left (with OLED-display) and right chassis sides (3D-printed ) |
+| | - Left (with OLED-display) and right chassis side panels (3D-printed) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
 | | - Front RGB-D camera module (3D-printed) |
@@ -40,12 +41,11 @@ The majority of hardware used in this implementation of the MIRTE Master stems f
 | | - Depth camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
-The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
 
 ## Chassis
 
-The chassis consists of a top and bottom plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility. The ductility not only makes the robot more resistant to impact, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variety of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis which would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
+The chassis consists of a top, bottom and manipulator-mounting plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variety of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
 
 ## Manipulator
 
