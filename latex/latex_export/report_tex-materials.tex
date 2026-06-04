@@ -1,51 +1,48 @@
 \section{Materials}
 
-Within this section,
+Within this section, all materials within the MIRTE Master will be displayed and discussed.
 
 \subsection{Hardware Specifications}
 
-% Hieronder later nog goede lijsten van maken, stop het in de Github en verwijs ernaar zodat het minder ruimte opneemt in het verslag.\
+% De lijst hieronder moet alleen op de website, niet in het verslag. Verwijs er wel naar in het verslag.
 
-The majority of hardware used in this implementation of the MIRTE Master stems from the standardized components implemented by the MIRTE team, which is what this section aims to specify. {\textbackslash}
-
-Some parts had to be 3D-printed as, at the time, the MIRTE team did not have the capacity to provide these specific components. These include:
-DC motor brackets{\textbackslash}
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 \bigskip\noindent
 \begin{tabular}{p{\dimexpr 0.500\linewidth-2\tabcolsep}p{\dimexpr 0.500\linewidth-2\tabcolsep}}
 \toprule
 Category & Components \\
 \hline
-Chassis & Panels: \\
- & - Left side panel with OLED-display mount \\
- & - Right side panel \\
- & - Rear battery bracket panel \\
- & - 2x rear Sonar-module panel \\
- & - Front RGB-D camera module \\
- & - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate \\
- & Electronics: \\
+\textbf{Chassis} & \textit{Panels:} \\
+ & - Left (with OLED-display) and right chassis side panels (3D-printed) \\
+ & - Rear battery bracket panel (3D-printed) \\
+ & - 2x rear Sonar-module panel (3D-printed) \\
+ & - Front RGB-D camera module (3D-printed) \\
+ & - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) \\
+ & \textit{Electronics:} \\
  & - Main computer: Orange Pi 3B V1.1.1 \\
  & - Microcontroller: Raspberry Pi Pico H \\
- & - MIRTE ucstom PCB \\
-Manipulation & Multi-DOF arm with gripper: \\
- & - Upper arm joint, lower arm joint \\
- & - Schoulder joint bracket, wrist joint bracket \\
- & - Bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends \\
- & - Mounting bracket for RGB-camera module \\
+ & - MIRTE custom PCB \\
+ & - 12V RGB LED-strip \\
+\textbf{Manipulation} &  \\
+ & - Upper arm limb, lower arm limb (3D-printed) \\
+ & - Schoulder joint bracket, wrist joint bracket (3D-printed) \\
+ & - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends (3D-printed) \\
+ & - Mounting bracket for RGB-camera module (3D-printed) \\
  & - 5x Hiwonder bus servo-motors \\
-Power system & Power delivery components: \\
+\textbf{Power system} &  \\
  & - Parkside 12v 5Ah Li-ion battery \\
- & - Battery-to-circuit connector \\
- & - 12v to 5v step-down converter \\
+ & - Battery-to-circuit connector (3D-printed) \\
+ & - 12V to 5V step-down converter \\
  & - Wiring, connectors, button and fuse \\
-Traversing laboratory & Actuators: \\
+\textbf{Space traversing} &  \\
  & - 4x geared DC-motors \\
  & - 4x mecanum wheels \\
- & - 4x DC motor brackets \\
-Navigation & Sensors: \\
+ & - 4x DC motor brackets (3D-printed) \\
+\textbf{Navigation sensors} &  \\
  & - 2D-LiDAR: RPLiDAR C1 \\
  & - 2x Ultrasonic sensor: HC-SR04 \\
-Vision & Sensors: \\
+\textbf{Vision sensors} &  \\
  & - Depth camera: Orbbec3D Astra Mini S \\
  & - RGB-camera: 720p USB camera module \\
 \bottomrule
@@ -53,16 +50,15 @@ Vision & Sensors: \\
 
 \bigskip
 
-The majority of the hardware used for this implementation of the MIRTE Master stems from components designed by the MIRTE team, of which the corresponding list of items can be found here: [verwijzing naar lijst op de website]
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
 
 \subsection{Chassis}
 
-The chassis consists of a top and bottom plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility. The ductility not only makes the robot more resistant to impact, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variety of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis which would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
+The chassis consists of a top, bottom and manipulator-mounting plate, for which 1.5 mm thick aluminium was used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variety of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
 
 \subsection{Manipulator}
 
-The manipulator consists of several components that can be found within the list at the top of this page (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}). This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical}{Mechanical} overview page.
+The manipulator consists of several components that can be found within the list at the top of the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials} page. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical}{Mechanical} overview page.
 
 \subsection{Software Specifications}
 
