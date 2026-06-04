@@ -18,22 +18,24 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
 | | - MIRTE custom PCB |
+| | - Micro-SD-card |
 | | - 12V RGB LED-strip |
 | **Manipulation** | |
 | | - Upper arm limb, lower arm limb (3D-printed) |
 | | - Schoulder joint bracket, wrist joint bracket (3D-printed) |
-| | - Double gears, bars for 4-bar linkage of gripper, tips for gripper, TPU gripper ends (3D-printed) |
+| | - Double gears, bars for 4-bar linkage of gripper, triangle tips for gripper, TPE gripper ends (3D-printed) |
 | | - Mounting bracket for RGB-camera module (3D-printed) |
 | | - 5x Hiwonder bus servo-motors |
+| | - Ball bearing for shoulder rotation joint |
 | **Power system** | |
-| | - Parkside 12v 5Ah Li-ion battery |
+| | - Parkside 12V 5Ah Li-ion battery |
 | | - Battery-to-circuit connector (3D-printed) |
 | | - 12V to 5V step-down converter |
 | | - Wiring, connectors, button and fuse |
 | **Space traversing** | |
 | | - 4x geared DC-motors |
 | | - 4x mecanum wheels |
-| | - 4x DC motor brackets (3D-printed) |
+| | - 4x DC-motor brackets (3D-printed) |
 | **Navigation sensors** | |
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
