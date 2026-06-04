@@ -8,7 +8,6 @@ The majority of hardware used in this implementation of the MIRTE Master stems f
 | Category | Components |
 |---|---|
 | Chassis | _Panels:_ |
-| | - Left side panel with OLED-display mount and (both 3D-printed) |
 | | - Panels for left (with OLED-display) and right chassis sides (3D-printed ) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
@@ -28,7 +27,7 @@ The majority of hardware used in this implementation of the MIRTE Master stems f
 | Power system | |
 | | - Parkside 12v 5Ah Li-ion battery |
 | | - Battery-to-circuit connector (3D-printed) |
-| | - 12v to 5v step-down converter |
+| | - 12V to 5V step-down converter |
 | | - Wiring, connectors, button and fuse |
 | Room traversing | |
 | | - 4x geared DC-motors |
