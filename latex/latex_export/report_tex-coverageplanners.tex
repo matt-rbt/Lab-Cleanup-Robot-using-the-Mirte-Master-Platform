@@ -14,43 +14,18 @@ we use a map provided by the \href{https://github.com/MartijnWisse/mirte\_naviga
 \end{figure}
 
 \begin{verbatim}
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-ModuleNotFoundError                       Traceback (most recent call last)
-Cell In[6], line 10
-      7 from matplotlib.widgets import Slider
-      9 from local_codebase.imports.navigator_types import SystematicNavigator
- - - -> 10 from local_codebase.imports.navigators import BousPath, SkeletonPath
-     13 def show_imgs(imgs, labels):
-     14     n = len(imgs)
-
-File c:\Users\maxva\Desktop\Bep Eindproject\Lab -Cleanup -Robot -using -the -Mirte -Master -Platform\content\local_codebase\imports\navigators.py:8
-      5 import local_codebase.imports.utils as ut
-      6 from local_codebase.imports.utils import LogType
- - - - -> 8 from trajgenpy import Geometries
-     10 import shapely
-     11 from shapely.validation import explain_validity
-
-ModuleNotFoundError: No module named 'trajgenpy'
+/home/florian/.local/lib/python3.10/site -packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
 \end{verbatim}
 
 \paragraph{The Free space Polygon}
 
 Each defined navigator must update its internal map and as a result plan a path over this map.
 
-A functino ``\texttt{update\_map()}'' first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. \newline
+A function ``\texttt{update\_map()}'' first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. \newline
 It then detects the boundaries of the free space and saves these as contours.
 
-\begin{verbatim}
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-NameError                                 Traceback (most recent call last)
-Cell In[7], line 3
-      1 navigator = SystematicNavigator()
- - - - -> 3 navigator.update_map(map_img)
-      4 contours = navigator.contours
-      6 color_img = cv2.cvtColor(map_img, cv2.COLOR_GRAY2RGB)
-
-NameError: name 'map_img' is not defined
-\end{verbatim}
+\includegraphics[width=0.7\linewidth]{files/56767a8af6767c1c1f2f0859e7195a2c.png}
 
 \paragraph{Boustrophedon Coverage}
 

@@ -15,7 +15,6 @@
 \newacronym{myst}{MyST}{Markedly Structured Text}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 % colors for hyperlinks
 \hypersetup{
   colorlinks=true,
@@ -57,13 +56,10 @@
 \newcommand{\ThesisLogo}{}      % path after normalization
 \newcommand{\ThesisLogoWidth}{1cm} % logo width, default is 1 cm
 
-
 % If a logo is provided in options, normalize its path and enable the flag
-
 
 % Extra information on title page
 \newcommand{\ThesisExtraInfo}{  }
-
 
 \usepackage{latex_template_/TUD-thesis-template}
 
@@ -93,9 +89,9 @@
 
 \replaceBS{}{\newCovername}
 
-\title{Lab Cleanup Robot using MIRTE Master Platform}
+\title{MIRTE Master-based Laboratory Clean-up Robot}
 
-\newdate{articleDate}{21}{4}{2026 \note{AANPASSEN!}}
+\newdate{articleDate}{12}{6}{2026}
 
 \date{%
   \ThesisExtraInfo\\[1.5em]
@@ -104,22 +100,16 @@
 
 \author{
 \textsc{
-authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Berg%
+\small{Authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Berg}%
 }}
 
 \begin{document}
 
-
 \maketitle
 \vfill
 
-
-\vfill
-
-\newpage
-
 \begin{abstract}
-
+\textit{In laboratories, items of many kinds may fall onto the floor. While implementations to clean such floors - like robotic vacuum cleaners - already exist, they don't work with trash-separation mechanics and end up disposing of all waste into the same bin. Yet, in laboratories, one may want one specific dropped items to be returned and reused, such as electronic components. This project aims to use the open-source MIRTE Master robotic platform to combine both cleaning and reusing, by implementing a sorting system. This project presents an automated trash-detecting and sorting robot, using a 4-DOF robotic arm with gripping end-effector for grabbing, a 2-sided bin for sorting, an RGB-D camera for object-detection, MoveIt! 2 for manipulation and Nav2 combined with SLAM for navigation, built on top of the MIRTE Master platform. During this research, methods for path planning and object detection have been tested, compared and implemented with the goal of making the robot as accurate as possible while maintaining operational velocity.}
 \end{abstract}
 
 \clearpage
@@ -137,33 +127,27 @@ authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Ber
 \pagenumbering{\showPageNumbers}
 
 \include{mainmatter/Introduction}
-
 \include{mainmatter/Materials}
-
 \include{mainmatter/otto_temp}
-
 \include{mainmatter/SystemOverview}
-
 \include{mainmatter/Methods}
-
 \include{mainmatter/Results}
-
 \include{mainmatter/Conclusion}
 
+\include{latex/latex_export/report_tex-introduction}
+\include{latex/latex_export/report_tex-materials}
+\include{latex/latex_export/report_tex-systemoverview}
+\include{latex/latex_export/report_tex-methods}
+\include{latex/latex_export/report_tex-results}
+\include{latex/latex_export/report_tex-conclusion}
+
 \section{Appendix}
-
-% \include{report_tex-cheatsheet}
-
-% \include{report_tex-errorlog}
-
-% \include{report_tex-readme}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%  acronyms & glossary  %%%%%%%%%%%%%
 \printglossaries
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \clearpage
 \bibliography{main.bib}

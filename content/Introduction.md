@@ -1,34 +1,17 @@
 ---
 abstract: |
 ---
+In laboratories, items of many kinds may fall onto the floor. While implementations to clean such floors - like robotic vacuum cleaners - already exist, they don't work with trash-separation mechanics and end up disposing of all waste into the same bin. Yet, in laboratories, one may one specific dropped items to be returned and reused, such as electronic components. This project aims to use the open-source MIRTE Master robotic platform to combine both cleaning and reusing, by implementing a sorting system. This project presents an automated trash-detecting and sorting robot, using a 4-DOF robotic arm with gripping end-effector for grabbing, a 2-sided bin for sorting, an RGB-D camera for object-detection, MoveIt! 2 for manipulation and Nav2 combined with SLAM for navigation, built on top of the MIRTE Master platform. During this research, methods for path planning and object detection have been tested, compared and implemented with the goal of making the robot as accurate as possible while maintaining operational velocity.
+
+% Het einde bevat nog geen resultaten, die moeten er wel nog in zodra we die hebben!! Vgm is het ook niet de bedoeling om afkortingen (SLAM) erin te hebben staan, not sure
 
 # Introduction
+Developing a MIRTE Master-based autonomous cleaning-robot that detects, sorts and disposes of waste.
 
-
-**cite from bib-file**
-- `{cite:t}`jupyter2025`` resulting in {cite:t}`jupyter2025`
-- `{cite:p}`jupyter2025`` resulting in {cite:p}`jupyter2025`
-
-
+In laboratory environments, maintainting a good level of cleanliness is often a bit of a challenge. While in modern domestic situations, an autonomous floor-cleaning robot is often used, in laboratory environments this is often not yet the case. In a laboratory, what actually falls onto the floor usually consists of objects, while in domestic spaces these types of robots are generally made to remove dust and hair instead. Hence, a robot for laboratory-cleaning purposes should be able to grab objects instead of dust or hair. But as one may not always want to throw away all objects found in a laboratory setting, one would also want to separate trash from other fallen objects, such as electronics. Hence, the goal for this project was to develop an autonomous laboratory-cleaning robot that can detect, separate and disppose of two different types of objects, based on the MIRTE Master robotic platform.
+To achieve this, the system employs a robotic arm on the top of the chassis with five degrees of freedom to pick up objects, 
 ## Related Works
-Jupyter Book has been rebuild with the intend to export content in multiple output formats including HTML, PDF and docx. {numref}`Figure {number} <fig-diagram>` provides this idea.
 
-```{figure} figures/diagram.*
-:label: fig-diagram
-:alt: Some figure
-
-The myst engine allows Jupyter Notebook, markdown and even tex files to be converted to multiple output formats.
-```
-
-As exporting to different formats is possible, it is not always desired. Some content should only be visible in the HTML version, and some content only need to be included in the PDF version. You can use blocks like `+++{"no-pdf":true}` to enable this, as shown below where the figure is seen in the HTML version but not in the PDF version.
-
-+++{"no-pdf":true}
-```{figure} figures/delft.*
-:label: fig-delft
-:alt: picture of the TUD
-
-A figure that is in the website but not in the PDF version.
-```
 
 ## Contribution
 +++

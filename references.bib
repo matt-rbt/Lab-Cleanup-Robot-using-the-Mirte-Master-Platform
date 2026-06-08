@@ -76,27 +76,6 @@
   doi={10.6092/JOSER_2014_05_01_p3}
 }
 
-% Fields2Cover
-@article{Mier_Fields2Cover_An_open-source_2023,
-  author  = {Mier, Gonzalo and Valente, João and de Bruin, Sytze},
-  journal = {IEEE Robotics and Automation Letters},
-  title   = {Fields2Cover: An Open-Source Coverage Path Planning Library for Unmanned Agricultural Vehicles},
-  year    = {2023},
-  volume  = {8},
-  number  = {4},
-  pages   = {2166-2172},
-  doi     = {10.1109/LRA.2023.3248439}
-}
-
-% TrajGenPy
-@inproceedings{grontved2022icar,
-  title        = {Decentralized Multi-UAV Trajectory Task Allocation in Search and Rescue Applications},
-  author       = {Gr{\o}ntved, Kasper Andreas R{\o}mer and Schultz, Ulrik Pagh and Christensen, Anders Lyhne},
-  booktitle    = {21st International Conference on Advanced Robotics},
-  year         = {2023},
-  organization = {IEEE}
-}
-
 % Nav2
 @inproceedings{macenski2020marathon2,
   title     = {The Marathon 2: A Navigation System},
@@ -132,8 +111,20 @@
   pages     = {216--222}
 }
 
+% Voronoi Centroid Regions
+@article{voronoi,
+author = {Du, Qiang and Faber, Vance and Gunzburger, Max},
+year = {2006},
+month = {08},
+pages = {637-676},
+title = {Centroidal Voronoi Tessellations: Applications and Algorithms},
+volume = {41},
+journal = {SIAM Review},
+doi = {10.1137/S0036144599352836}
+}
+
 % Morphological Skeleton Coverage
-@article{10.3389/frobt.2025.1601862,
+@article{skeleton,
   author   = {Becoy, Alexander James  and Khomenko, Kseniia  and Peternel, Luka  and Rajan, Raj Thilak },
   title    = {Autonomous navigation of quadrupeds using coverage path planning with morphological skeleton maps},
   journal  = {Frontiers in Robotics and AI},
@@ -144,7 +135,7 @@
   issn     = {2296-9144},
   abstract = {This article proposes a novel method of coverage path planning for the purpose of scanning an unstructured environment autonomously. The method uses the morphological skeleton of a prior 2D navigation map via SLAM to generate a sequence of points of interest (POIs). This sequence is then ordered to create an optimal path based on the robot’s current position. To control the high-level operation, a finite state machine (FSM) is used to switch between two modes: navigating toward a POI using Nav2 and scanning the local surroundings. We validate the method in a leveled, indoor, obstacle-free, non-convex environment, evaluating time efficiency and reachability over five trials. The map reader and path planner can quickly process maps of widths and heights ranging between [196,225] pixels and [185,231] pixels in 2.52 ms and 1.7 ms, respectively. Their computation time increases with 22.0 ns/pixel and 8.17 μs/pixel, respectively. The robot managed to reach 86.5% of all waypoints across the five runs. The proposed method suffers from drift occurring in the 2D navigation map.}
 }
-@misc{niu2025skeletonbasedtopologicalplannerexploration,
+@misc{skeleton2,
   title         = {A Skeleton-Based Topological Planner for Exploration in Complex Unknown Environments},
   author        = {Haochen Niu and Xingwu Ji and Lantao Zhang and Fei Wen and Rendong Ying and Peilin Liu},
   year          = {2025},
@@ -299,3 +290,36 @@
   keywords = {Scene segmentation, Grasp planning, Mobile manipulation},
   abstract = {In this article, we describe efficient methods for tackling everyday mobile manipulation tasks that require object pick-up. In order to achieve real-time performance in complex environments, we focus our approach on fast yet robust solutions. For 3D perception of objects on planar surfaces, we develop scene segmentation methods that process depth images in real-time at high frame rates. We efficiently plan feasible, collision-free grasps for the segmented objects directly from the perceived point clouds to achieve fast execution times. We evaluate our approaches quantitatively in lab experiments and also report on the successful integration of our methods in public demonstrations at RoboCup@Home competitions in 2011 and 2012.}
 }
+
+% -------------------- YOLO26 ----------------------
+@article{yolo26keyarchitecturalenhancements,
+      title={YOLO26: Key Architectural Enhancements and Performance Benchmarking for Real-Time Object Detection}, 
+      author={Ranjan Sapkota and Rahul Harsha Cheppally and Ajay Sharda and Manoj Karkee},
+      year={2026},
+      eprint={2509.25164},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.25164}, 
+}
+
+@article{2026ultralyticsyoloevolutionoverview,
+      title={Ultralytics YOLO Evolution: An Overview of YOLO26, YOLO11, YOLOv8 and YOLOv5 Object Detectors for Computer Vision and Pattern Recognition}, 
+      author={Ranjan Sapkota and Manoj Karkee},
+      year={2026},
+      eprint={2510.09653},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.09653}, 
+}
+
+@article{Yolo11RK3566,
+      author = {Limaran, Alwin and Wicaksono, Agung and Herwanto, Patah},
+      year = {2026},
+      month = {02},
+      pages = {126},
+      title = {Performance enhancement of embedded object detection via neural hardware acceleration},
+      volume = {24},
+      journal = {TELKOMNIKA (Telecommunication Computing Electronics and Control)},
+      doi = {10.12928/telkomnika.v24i1.27448}
+}
+

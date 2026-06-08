@@ -67,7 +67,7 @@ jobs:
           find "$TEX_DIR" -name "*.bib" -exec cp {} latex/ \;
 
           # Copy any images/assets (optional but useful)
-          find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/figures \;
+          find "$TEX_DIR" \( -name "*.png" -o -name "*.jpg" -o -name "*.pdf" \) -exec cp {} latex/files \;
 
           # Optional: copy everything (simpler but heavier)
           # cp -r "$TEX_DIR"/* latex/

@@ -3,21 +3,21 @@ project:
   
   authors:
     - id: student-1
-      name: Matthew de Lannoy
+      name: Matthew de Lannoy, Florian van den berg
       affiliations:
         - tud
     - id: student-2
-      name: Max van 't Hart
+      name: Max van 't Hart, Otto Meijerhof
       affiliations:
         - tud
-    - id: student-3
-      name: Florian van den berg
-      affiliations:
-        - tud
-    - id: student-4
-      name: Otto Meijerhof
-      affiliations:
-        - tud        
+    #- id: student-3
+    #  name: Florian van den berg
+    #  affiliations:
+    #    - tud
+    #- id: student-4
+    #  name: Otto Meijerhof
+    #  affiliations:
+    #    - tud        
   contributors:
     - id: supervisor-1
       name: prof. dr. ir. Martijn Wisse
@@ -27,10 +27,10 @@ project:
       name: prof. Martin Klomp
       affiliations:
         - tud
-    - id: supervisor-3
-      name: prof. dr. ir. Chris Pek
-      affiliations:
-        - tud
+    #- id: supervisor-3
+    #  name: prof. dr. ir. Chris Pek
+    #  affiliations:
+    #    - tud
     # - id: committee-1
     #   name: Prof. Dr. C. Examiner
     #   affiliations:

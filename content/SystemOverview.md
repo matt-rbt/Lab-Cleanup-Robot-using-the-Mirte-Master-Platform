@@ -1,6 +1,6 @@
-# System level strategy
+# System Overview
 
-The setup consists of a mobile manipulator (Mirte Master) tasked with
+The setup consists of a mobile manipulator (MIRTE Master) tasked with
 autonomously exploring an indoor environment (the robotics lab), identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows.
 
 The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture. **Motion planning**, **perception** and **navigation**. {numref}`Figure {number} <fig-task_bins>` showcases this idea.

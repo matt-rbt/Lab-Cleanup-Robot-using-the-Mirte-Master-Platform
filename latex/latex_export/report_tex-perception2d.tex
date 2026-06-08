@@ -1,0 +1,33 @@
+\subsubsection{Perception 2D}
+
+For determening the type, and possibly, the distance of objects we use a YOLO26 object classification model. We made our own dataset by recording video using the USB Camera included in the MIRTE Master hardware package. After recording the video we extracted one in every fifteen frames to use for our training dataset. A picture of 4 frames in different environments is shown below
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/af458f197da824164636251818009f3f.png}
+\caption[]{Picture of 4 individual frames}
+\label{fig_trainingdataset}
+\end{figure}
+
+Training was done manually using Label Studio. Inittially, {\textasciitilde}280 frames were captured in 4 different environments. Due to a large amount of blurring in the images, about 100 pictures were deleted. Of the remaining 180 pictures, 24 pictures were imported into Label Studio and labelled per colour: Green, Red, Purple, White, Light grey, Dark grey, and Black. In total 509 bounding boxes were drawn. The relevant results of the training session are shown below.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/4ee2fe1eae7993355b85632bcbc7a4d6.jpeg}
+\caption[]{Picture of tests performed during training}
+\label{fig_trainingdatasetresults}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/759577a4e723063155d921695fc15039.png}
+\caption[]{Plots of trainingresults}
+\label{fig_trainingdatasetplots}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/f8ce65a5f1e1e34b97820b1f2a8191e4.png}
+\caption[]{Confusion matrix normalized}
+\label{fig_trainingdatasetplots}
+\end{figure}
