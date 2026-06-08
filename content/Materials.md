@@ -2,8 +2,6 @@
 Within this section, all materials within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-% De lijst hieronder moet alleen op de website, niet in het verslag. Verwijs er wel naar in het verslag.
-
 The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
@@ -51,7 +49,7 @@ The chassis consists of a top, bottom and manipulator-mounting plate, for which 
 
 ## Manipulator
 
-The manipulator consists of several components that can be found within the list at the top of the [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) page. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
+The manipulator consists of several components that can be found within the list at the top of the [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) webpage. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
 
 ## Software Specifications
 
@@ -78,3 +76,5 @@ While the arm on the MIRTE Master can be controlled in joint-space, the implemen
 The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
 
 ### Vision
+
+For vision, an RGBD 
