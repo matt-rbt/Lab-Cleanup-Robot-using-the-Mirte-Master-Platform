@@ -10,7 +10,6 @@ In laboratory environments, maintainting a good level of cleanliness is often a 
 
 This report outlines the roadmap and methodology required to make such a robot. Section 1 [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) includes information about the hardware and software used to realize the robot. Section 2 [Theory](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/theory/) explains in detail how the theory behind the implemented ideas works. Section 3 [System Overview](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/systemoverview/) breaks down the implementation of all major aspects of the robot into the robot. Section 4 [Experimental Methods](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/methods/) shows how the implementations are tested. Section 5 [Results](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/results/) covers the results of the tests that have been performed. At the end, Section 6 [Conclusion](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/conclusion/) revisits the purpose of the project and reflects on that using the results that have been obtained and explained in Section 5 [Results](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/results/).
 
-To achieve this, the system employs a robotic arm on the top of the chassis with five degrees of freedom to pick up objects, 
 ## Related Works
 
 
