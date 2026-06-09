@@ -6,8 +6,8 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 
 | Category | Components |
 |---|---|
-| | |
-| **Chassis** | _Panels:_ |
+| **Chassis** | |
+| | _Panels:_ |
 | | - Left (with OLED-display) and right chassis side panels (3D-printed) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
@@ -65,7 +65,7 @@ The particular ROS distribution the MIRTE Master platform implements is ROS2 Hum
 Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this we use SLAM (Simultaneous Localization and Mapping). This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
 The robot created an occupancy grid map as an image while estimating the robot's pose.
 
-To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, there have been several projects that have implemented SLAM Toolbox, so a ready-to-use set of parameters for this robot is relatively easy to find. For this system, we use the [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
+To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, there have been several projects that have implemented SLAM Toolbox, so a ready-to-use set of parameters for this robot is relatively easy to find. For this system, we use the [MIRTE Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
 It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
 
 ### Navigation
@@ -75,7 +75,7 @@ It was assumed the robot would only navigate in unknown environments without pre
 ### Manipulation
 
 While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 ({cite:t}`Coleman2014MoveIt`) was used.
 
 ### Vision
 
