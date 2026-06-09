@@ -6,12 +6,14 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 
 | Category | Components |
 |---|---|
+| | |
 | **Chassis** | _Panels:_ |
 | | - Left (with OLED-display) and right chassis side panels (3D-printed) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
 | | - Front RGB-D camera module (3D-printed) |
 | | - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) |
+| | |
 | | _Electronics:_ |
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
