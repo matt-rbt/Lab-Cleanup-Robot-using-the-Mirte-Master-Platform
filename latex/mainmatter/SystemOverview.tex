@@ -2,27 +2,24 @@
 \begin{paracol}
     {2}
 
-    The setup consists of a mobile manipulator (MIRTE Master) tasked with
-    autonomously exploring an indoor environment (the robotics lab), identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows.
-    
+    The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows:
+
     The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture. \textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. Figure~\ref{fig-task_bins} showcases this idea.
-
+    
     \begin{figure}[!htbp]
-        \centering
-        \includegraphics[width=0.7\linewidth]{figures/task_bins-6a576b2f1c55451f442d86eee45bd124.png}
-        \caption[]{Task breakdown of the robotic system.}
-        \label{tasks}
+    \centering
+    \includegraphics[width=0.7\linewidth]{files/task_bins-c76f03ba15402b682416d31a4de77e31.png}
     \end{figure}
-
-    The scope of our investigation includes how different perception(classification) and navigation(mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
-
+    
+    The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
+    
     \subsection{System Architecture}
-
+    
     The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig-global_tree} is also used here to describe and execute the cleaning strategy.
     
     \begin{figure}[!htbp]
-        \centering
-        \includegraphics[width=0.99\linewidth]{figures/task_bins-2cd24017829c1f053a0f5974e45d76ea.png}
+    \centering
+    \includegraphics[width=0.7\linewidth]{files/global_tree-6146064133e9bb5d269004d445c505a2.png}
     \end{figure}
     
     \switchcolumn
@@ -30,66 +27,29 @@
 
     \subsubsection{Original MIRTE Master Platform}
 
-    The project is based on the MIRTE Master V2. The platform consists of a mobile
-    base propelled by 4 individually driven mecanum wheels and a robotic arm,
-    allowing the robot to navigate through an environment and interact with
-    objects.
+    The project is based on the MIRTE Master V2. The platform consists of a mobile base propelled by four individually driven mecanum wheels and a robotic arm, allowing the robot to navigate through an environment and interact with objects.
 
     The original MIRTE Master hardware consists of three main parts:
-
+    
     \begin{enumerate}
-        \item \textbf{Mobile base}
-        \item \textbf{Electronics}
-        \item \textbf{Robotic arm}
+    \item \textbf{Mobile base}
+    \item \textbf{Electronics}
+    \item \textbf{Robotic arm}
     \end{enumerate}
-
-    The mobile base utilizes four geared DC motors with Hall encoders, connected to
-    97mm Mecanum wheels. This allows the robot to move in multiple directions
-    without having to turn first, which is useful for navigating in small indoor
-    spaces. The base also contains various sensors, such as rearward facing
-    ultrasonic sensors, an IMU, a 2D LiDAR, a RGBD camera (depth camera) and a RGB
-    camera mounted on the robotic arm.
-
-    The electronics of the original platform are based on an Orange Pi 3B and a
-    Raspberry Pi Pico H. The Orange Pi functions as the main computer, while the
-    Pico is used for lower-level control tasks such as controlling the motors and
-    general interfacing. The MIRTE Master also includes a custom-made PCB to
-    connect the motors, sensors, and power system in a structured manner. The main
-    powersource for the MIRTE Master is a 5Ah 12v Lion parkside drill battery.
-
-    The robot arm is mounted on top of the mobile base. The manipulator has 4
-    degrees of freedom, which are driven by 4 serial bus servo motors of varieing
-    strength. A gripper and a RGB camera are mounted at the end of of the arm for
-    object scanning and manipulation.
+    
+    The mobile base utilizes four geared DC motors with Hall encoders, connected to 97 mm mecanum wheels. This allows the robot to move in multiple directions without having to turn first, which is useful for navigating in small indoor spaces. The base also contains various sensors, such as rearward facing ultrasonic sensors, an IMU, a 2D LiDAR and an RGBD (depth) camera mounted on the robotic arm.
+    
+    The electronics of the original platform are based on an Orange Pi 3B and a Raspberry Pi Pico H. The Orange Pi functions as the main computer, while the Pico is used for lower-level control tasks such as controlling the motors and general interfacing. The MIRTE Master also includes a custom-made PCB to connect the motors, sensors, and power system in a structured manner. The main power source for the MIRTE Master is a 5Ah 12V Lion Parkside drill battery. No significant changes were made to the electronics used for this project.
+    
+    The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of of the arm for object scanning and manipulation.
 
     \switchcolumn
 
     \subsubsection{Hardware Components}
 
-    The most important original hardware components are:
+    The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
 
-    \bigskip\noindent
-    \begin{tabular}{p{\dimexpr 0.500\linewidth-2\tabcolsep}p{\dimexpr 0.500\linewidth-2\tabcolsep}}
-        \toprule
-        Category           & Components                                                                                       \\
-        \hline
-        Actuation          & Four geared DC motors, mecanum wheels, servo-driven manipulator arm                              \\
-        Main computer      & Orange Pi 3B                                                                                     \\
-        Microcontroller    & Raspberry Pi Pico H                                                                              \\
-        Navigation sensors & 2D LiDAR (RPLiDAR C1), IMU, ultrasonic sensors                                                   \\
-        Vision sensors     & Depth camera (Orbbec3D Astra Mini S), RGB camera (720p USB Camera module)                        \\
-        Manipulation       & Multi-DOF arm with gripper (driven by Hiwonder Bus Servo's)                                      \\
-        Power system       & 5Ah 12v Lion parkside drill battery, 12v to 5v step-down converter, fuse, wiring, and connectors \\
-        \bottomrule
-    \end{tabular}
-
-    \bigskip
-
-    These components provide a useful base platform for a mobile manipulation task.
-    However, for our project the original configuration needed changes. The robot
-    had to be adapted for a lab-cleanup task, where it should be able to move
-    around in a lab environment, detect waste on the floor, and eventually collect
-    objects into bins.
+    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
 
     \subsubsection{Design Goals for Our Modified Robot}
 
@@ -161,7 +121,7 @@
     \subsubsection{Summary of Hardware Changes}
 
     \bigskip\noindent
-    \begin{tabular}{p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}}
+    \begin{tabular}{p{\dimexpr 0.2\linewidth-2\tabcolsep}p{\dimexpr 0.4\linewidth-2\tabcolsep}p{\dimexpr 0.4\linewidth-2\tabcolsep}}
         \toprule
         Subsystem & Original design              & Our modification                           \\
         \hline
@@ -305,7 +265,7 @@
     localization. For this study we limited the object detection and localization
     approaches to two. A \textbf{2D detection and depth projection} approach, and
     3D segmentation with \textbf{point cloud clustering}. As for classification
-    methods, this study evaluates a classical cv approach, aswell as a
+    methods, this study evaluates a classical cv approach, as well as a
     classification model based approach.
 
     objects are categorized into:
