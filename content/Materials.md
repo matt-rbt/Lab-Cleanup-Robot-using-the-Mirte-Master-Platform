@@ -27,19 +27,19 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - Mounting bracket for RGB-camera module (3D-printed) |
 | | - 5x Hiwonder bus servo-motors |
 | | - Ball bearing for shoulder rotation joint |
-| **Power system** | |
+| **Powertrain** | |
 | | - Parkside 12V 5Ah Li-ion battery |
 | | - Battery-to-circuit connector (3D-printed) |
 | | - 12V to 5V step-down converter |
 | | - Wiring, connectors, button and fuse |
-| **Space traversing** | |
+| **Locomotion** | |
 | | - 4x geared DC-motors |
 | | - 4x mecanum wheels |
 | | - 4x DC-motor brackets (3D-printed) |
-| **Navigation sensors** | |
+| **Distance sensors** | |
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
-| **Vision sensors** | |
+| **Cameras** | |
 | | - RGB-D camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
@@ -65,18 +65,17 @@ The particular ROS distribution the MIRTE Master platform implements is ROS2 Hum
 Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this we use SLAM (Simultaneous Localization and Mapping). This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
 The robot created an occupancy grid map as an image while estimating the robot's pose.
 
-To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, there have been several projects that have implemented SLAM Toolbox, so a ready-to-use set of parameters for this robot is relatively easy to find. For this system, we use the [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
+To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using the set of parameters it provides. In the case of the MIRTE Master, there are several projects that have implemented SLAM Toolbox, so finding a ready-to-use set of SLAM parameters for this robot is relatively simple. The [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package is used for configuration files and SLAM parameter settings.
 It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
-
-### Navigation
->
-> NAV2
 
 ### Manipulation
 
 While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+
+### Navigation
+
+Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to Moveit2, there exists a package that solves this 
 
 ### Vision
 
-For vision, an RGBD 
