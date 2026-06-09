@@ -1,8 +1,8 @@
 # Materials
-Within this section, all materials within the MIRTE Master will be displayed and discussed.
+Within this section, all hardware employed within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
