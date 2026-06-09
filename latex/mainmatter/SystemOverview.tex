@@ -122,25 +122,16 @@
     \centerline{\rule{7.8cm}{0.4pt}}
     \subsubsection{Coverage Planning Algorithms}
 
-    This section presents the coverage planning algorithms employed in this study.
-    While a comprehensive technical analysis of these algorithms is beyond the
-    scope of this work, they are described with sufficient detail to
-    enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to
-    the original publications cited herein.
+    This section presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
 
     In order to demonstrate the different navigators, \newline we use a map
     provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ros2 package.
 
-    \paragraph{The Free space Polygon}
+    \paragraph{The Free Space Polygon:}
 
-    Each defined navigator must update its internal map and as a result plan a path
-    over this map.
+    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
 
-    A function first takes the costmap and, given a threshold, sets the free space
-    to 0 and occupied space to 1. It then detects the boundaries of the
-    free space and saves these as contours.
-
-    \paragraph{Boustrophedon Coverage}
+    \paragraph{Boustrophedon Coverage:}
 
     The first navigator that will be covered is a Boustrophedon based Coverage
     planner. This navigator plans in two steps:
@@ -148,7 +139,7 @@
         \item Decomposition
         \item Swath Generation
     \end{itemize}
-    \paragraph{Boustrophedon Cellular Decomposition}
+    \paragraph{Boustrophedon Cellular Decomposition:}
 
     To effectively cover the entire map with boustrophedon (back and forth) swaths,
     the map is first partitioned (decomposed) into smaller areas that can be
@@ -158,7 +149,7 @@
     increases again or the line is fully restored, The results of Boustrophedon
     cellular Decomposition can be viewed in the cell below.
 
-    \paragraph{Boustrophedon Path Generation}
+    \paragraph{Boustrophedon Path Generation:}
     After decomposition, each cell is populated with a boustrophedon path. Swaths
     are generated as straight lines parallel to the line used during decomposition.
     The transitions, often called headlands, are then generated to create one
@@ -169,7 +160,7 @@
     \begin{paracol}
         {2}
     \includegraphics[width=0.95\linewidth]{figures/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
-    \paragraph{SkeletonPath}
+    \paragraph{SkeletonPath:}
 
     The \texttt{SkeletonPath} planner is a topology-based coverage planner that
     generates navigation paths using the morphological skeleton of the environment.
@@ -180,14 +171,14 @@
     the environment while simplifying path planning. The implementation is inspired
     by recent work in morphology-based exploration and autonomous navigation.
 
-    \paragraph{Reading and Skeletonizing the Map}
+    \paragraph{Reading and Skeletonizing the Map:}
 
     The skeleton planner generates a morphological skeleton. Internally, the
     planner fills the free-space contours, skeletonizes the free-space region,
     extracts skeleton pixels, and converts them into Cartesian waypoints. The
     generated waypoints are then stored.
 
-    \paragraph{Path Planning}
+    \paragraph{Path Planning:}
 
     After the waypoints have been generated, they are then sampled and ordered.
     \newline The algorithm does this by first constructing a graph representation
@@ -204,7 +195,7 @@
 
     \includegraphics[width=0.95\linewidth]{figures/4599d3c4df780082d726948f94d0cc2d.png}
 
-    \paragraph{Path Ordering}
+    \paragraph{Path Ordering:}
 
     First the closest leaf node to the robot is found, this is the starting
     position. \newline The planner traces a path along the tree and selects the
