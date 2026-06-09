@@ -8,7 +8,7 @@
     
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{files/task_bins-c76f03ba15402b682416d31a4de77e31.png}
+    \includegraphics[width=0.6\linewidth]{files/task_bins-c76f03ba15402b682416d31a4de77e31.png}
     \end{figure}
     
     The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
@@ -19,7 +19,7 @@
     
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{files/global_tree-6146064133e9bb5d269004d445c505a2.png}
+    \includegraphics[width=0.6\linewidth]{files/global_tree-6146064133e9bb5d269004d445c505a2.png}
     \end{figure}
     
     \switchcolumn
@@ -43,8 +43,11 @@
     
     The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of of the arm for object scanning and manipulation.
 
-    \switchcolumn
-
+    \newpage
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \subsubsection{Hardware Components}
 
     The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
@@ -64,7 +67,7 @@
     \item Improve cable management.
     \item Modify the gripper so it can pick up waste objects more reliably.
     \end{itemize}
-    \switchcolumn
+
     \subsubsection{Chassis Modifications}
     
     The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For our use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
@@ -72,6 +75,8 @@
     The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LED's on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more and will not shatter. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
     
     Two separate waste bins were added to the robot. These bins allow the robot to collect, store and separate objects after picking them up.
+
+    \switchcolumn
     
     \subsubsection{Gripper Modifications}
     
@@ -80,8 +85,6 @@
     The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper so good gripping performance is a must. For improving the grip on objects the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
     
     During the initial testing phase of the RGBD camera, it was found that the mounting location for it was too low to the ground for it to be able to confidently display any accurate results regarding the distance towards objects. While this was the intended way for the camera to be implemented, for this project it was a better plan to mount this RGBD camera onto the end of the arm, right above the gripper. This gives it elevation which makes it able to look slightly more downward and therefore it could more accurately display distances. This also makes the need for the secondary RGB camera mounted onto the gripper insignificant, as the RGBD camera can also be used for object detection.
-
-    \switchcolumn
 
     \subsubsection{Current Design}
 
@@ -101,14 +104,17 @@
     
     Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialized mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'. Once the environment is mapped \{sufficiently\}, the robot is allowed to navigate the space and propagate its behavior further down the tree.
 
+    \end{paracol}
+
+    \newpage
+    \begin{paracol}
+        {2}
     \subsubsection{Coverage Planning Algorithms}
 
     This section presents the coverage planning algorithms employed in this study.
     While a comprehensive technical analysis of these algorithms is beyond the
     scope of this work, \newline they are described with sufficient detail to
     enable understanding of their application within our framework. 
-    
-    \switchcolumn
     
     For in-depth technical details and formal derivations, the reader is referred to
     the original publications cited herein.
@@ -136,7 +142,7 @@
         \item Swath Generation
     \end{itemize}
 
-    \subparagraph{Boustrophedon Cellular Decomposition}
+    \paragraph{Boustrophedon Cellular Decomposition}
 
     To effectively cover the entire map with boustrophedon (back and forth) swaths,
     the map is first partitioned (decomposed) into smalller areas that can be
@@ -146,14 +152,16 @@
     increases again or the line is fully restored, The results of Boustrophedon
     cellular Decomposition can be viewed in the cell below.
 
-    \subparagraph{Boustrophedon Path Generation}
+    \paragraph{Boustrophedon Path Generation}
 
     After decomposition, each cell is populated with a boustrophedon path. Swaths
     are generated as straight lines parallel to the line used during decomposition.
     The transitions, often called headlands, are then generated to create one
     continuous path inside the cell.
 
-    \includegraphics[width=0.7\linewidth]{figures/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
+    \switchcolumn
+
+    \includegraphics[width=0.95\linewidth]{figures/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
 
     \paragraph{SkeletonPath}
 
@@ -166,16 +174,18 @@
     the environment while simplifying path planning. The implementation is inspired
     by recent work in morphology-based exploration and autonomous navigation.
 
-    \switchcolumn
-
-    \subparagraph{Reading and Skeletonizing the Map}
+    \paragraph{Reading and Skeletonizing the Map}
 
     The skeleton planner generates a morphological skeleton. Internally, the
     planner fills the free-space contours, skeletonizes the free-space region,
     extracts skeleton pixels, and converts them into Cartesian waypoints. The
     generated waypoints are then stored.
+    \end{paracol}
 
-    \subparagraph{Path Planning}
+    \newpage
+    \begin{paracol}
+        {2}
+    \paragraph{Path Planning}
 
     After the waypoints have been generated, they are then sampled and ordered.
     \newline The algorithm does this by first constructing a graph representation
@@ -188,9 +198,9 @@
 
     Leaf nodes are then identified in the tree, (nodes with one connection).
 
-    \includegraphics[width=0.7\linewidth]{figures/4599d3c4df780082d726948f94d0cc2d.png}
+    \includegraphics[width=0.95\linewidth]{figures/4599d3c4df780082d726948f94d0cc2d.png}
 
-    \subparagraph{Path Ordering}
+    \paragraph{Path Ordering}
 
     First the closest leaf node to the robot is found, this is the starting
     position. \newline The planner traces a path along the tree and selects the
@@ -198,8 +208,6 @@
     the path and sets this new leaf node as the current one and marks it as
     visited. \newline The algorithm repeats this process untill all leaf nodes have
     been explored successfully.
-
-    \switchcolumn
 
     \subsection{Perception}
 
@@ -220,4 +228,4 @@
     \begin{quote}
         iets meer over classification.
     \end{quote}
-\end{paracol}
+    \end{paracol}
