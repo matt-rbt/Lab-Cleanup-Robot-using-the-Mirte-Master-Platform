@@ -1,13 +1,13 @@
 # Materials
-Within this section, all materials within the MIRTE Master will be displayed and discussed.
+Within this section, all hardware employed within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
-| | |
-| **Chassis** | _Panels:_ |
+| **Chassis** | |
+| | _Panels:_ |
 | | - Left (with OLED-display) and right chassis side panels (3D-printed) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
@@ -56,7 +56,7 @@ The manipulator consists of several components that can be found within the list
 ## Software Specifications
 
 The MIRTE Master robotic platform has free open-source software available for any user to install. \
-The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2202`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
+The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2_2022`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
 
 The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
 
@@ -71,7 +71,7 @@ It was assumed the robot would only navigate in unknown environments without pre
 ### Manipulation
 
 While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
 
 ### Navigation
 
