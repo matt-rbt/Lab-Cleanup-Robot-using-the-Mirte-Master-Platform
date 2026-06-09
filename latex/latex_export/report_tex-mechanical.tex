@@ -12,11 +12,11 @@ The original MIRTE Master hardware consists of three main parts:
 \item \textbf{Robotic arm}
 \end{enumerate}
 
-The mobile base utilizes four geared DC motors with Hall encoders, connected to 97 mm mecanum wheels. This allows the robot to move in multiple directions without having to turn first, which is useful for navigating in small indoor spaces. The base also contains various sensors, such as rearward facing ultrasonic sensors, an IMU, a 2D LiDAR, a RGBD (depth) camera and an RGB camera mounted on the robotic arm.
+The mobile base utilizes four geared DC motors with Hall encoders, connected to 97 mm mecanum wheels. This allows the robot to move in multiple directions without having to turn first, which is useful for navigating in small indoor spaces. The base also contains various sensors, such as rearward facing ultrasonic sensors, an IMU, a 2D LiDAR and an RGBD (depth) camera mounted on the robotic arm.
 
 The electronics of the original platform are based on an Orange Pi 3B and a Raspberry Pi Pico H. The Orange Pi functions as the main computer, while the Pico is used for lower-level control tasks such as controlling the motors and general interfacing. The MIRTE Master also includes a custom-made PCB to connect the motors, sensors, and power system in a structured manner. The main power source for the MIRTE Master is a 5Ah 12V Lion Parkside drill battery. No significant changes were made to the electronics used for this project.
 
-The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths A gripper and an RGB camera are mounted at the end of of the arm for object scanning and manipulation.
+The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of of the arm for object scanning and manipulation.
 
 \subsubsection{Hardware Components}
 
@@ -61,7 +61,7 @@ During the initial testing phase of the RGBD camera, it was found that the mount
 \bigskip\noindent
 \begin{tabular}{p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}}
 \toprule
-Subsystem & Original design & Modificatied version \\
+Subsystem & Original design & Modified version \\
 \hline
 Chassis & Standard MIRTE Master frame with PMMA & Strengthened top and bottom plates with aluminium \\
 Storage & No dedicated cleanup storage & Two separate waste bins added \\
