@@ -11,12 +11,14 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 \toprule
 Category & Components \\
 \hline
+ &  \\
 \textbf{Chassis} & \textit{Panels:} \\
  & - Left (with OLED-display) and right chassis side panels (3D-printed) \\
  & - Rear battery bracket panel (3D-printed) \\
  & - 2x rear Sonar-module panel (3D-printed) \\
  & - Front RGB-D camera module (3D-printed) \\
  & - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) \\
+ &  \\
  & \textit{Electronics:} \\
  & - Main computer: Orange Pi 3B V1.1.1 \\
  & - Microcontroller: Raspberry Pi Pico H \\
@@ -67,7 +69,7 @@ The latest stable release is used in this robotic system. This software comes pa
 
 The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
 
-\subsubsection{Slam}
+\subsubsection{SLAM}
 
 Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this we use SLAM (Simultaneous Localization and Mapping). This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
 The robot created an occupancy grid map as an image while estimating the robot's pose.
