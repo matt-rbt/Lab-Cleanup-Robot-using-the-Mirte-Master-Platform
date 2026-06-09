@@ -1,19 +1,19 @@
 # Materials
-Within this section, all materials within the MIRTE Master will be displayed and discussed.
+Within this section, all hardware employed within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-% De lijst hieronder moet alleen op de website, niet in het verslag. Verwijs er wel naar in het verslag.
-
-The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
-| **Chassis** | _Panels:_ |
+| **Chassis** | |
+| | _Panels:_ |
 | | - Left (with OLED-display) and right chassis side panels (3D-printed) |
 | | - Rear battery bracket panel (3D-printed) |
 | | - 2x rear Sonar-module panel (3D-printed) |
 | | - Front RGB-D camera module (3D-printed) |
 | | - 1.5 mm aluminium: top plate, bottom plate and manipulator-mounting plate (laser-cut) |
+| | |
 | | _Electronics:_ |
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
@@ -51,7 +51,7 @@ The chassis consists of a top, bottom and manipulator-mounting plate, for which 
 
 ## Manipulator
 
-The manipulator consists of several components that can be found within the list at the top of the [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) page. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
+The manipulator consists of several components that can be found within the list at the top of the [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) webpage. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
 
 ## Software Specifications
 
@@ -60,12 +60,12 @@ The latest stable release is used in this robotic system. This software comes pa
 
 The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
 
-### Slam
+### SLAM
 
 Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this we use SLAM (Simultaneous Localization and Mapping). This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
 The robot created an occupancy grid map as an image while estimating the robot's pose.
 
-To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, there have been several projects that have implemented SLAM Toolbox, so a ready-to-use set of parameters for this robot is relatively easy to find. For this system, we use the [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
+To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used {cite:t}`SlamTBX2021`. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using a set of parameters. In the case of the MIRTE Master, there have been several projects that have implemented SLAM Toolbox, so a ready-to-use set of parameters for this robot is relatively easy to find. For this system, we use the [MIRTE Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package from GitHub which provides ready-to-use configuration files and SLAM parameter settings.
 It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
 
 ### Navigation
@@ -75,6 +75,8 @@ It was assumed the robot would only navigate in unknown environments without pre
 ### Manipulation
 
 While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 ({cite:t}`Coleman2014MoveIt`) was used.
 
 ### Vision
+
+For vision, an RGBD 
