@@ -1,6 +1,6 @@
 \subsubsection{Perception 2D}
 
-For determening the type, and possibly the distance of objects, a YOLO26 object classification model was used. A dataset was trained by recording videos using the USB Camera included in the MIRTE Master hardware package, of which one in every fifteen frames got extracted to use for the training dataset. A picture of four frames in different environments is shown below.
+For determining the type, and possibly the distance of objects, a YOLO26 ('You Only Look Once-26') object classification model was used. A dataset was trained by recording videos using the USB Camera included in the MIRTE Master hardware package, of which one in every fifteen frames got extracted to use for the training dataset. A picture of four frames in different environments is shown below.
 
 \begin{figure}[!htbp]
 \centering
@@ -9,11 +9,11 @@ For determening the type, and possibly the distance of objects, a YOLO26 object 
 \label{fig_trainingdataset}
 \end{figure}
 
-\paragraph{Why was YOLO26 used}
+\paragraph{Why YOLO26 was used:}
 
 The YOLO object-detection family is well established, with YOLO26 being the most recent generation. YOLO26 was chosen because the robot has to detect and classify objects from a live camera on the MIRTE Master platform, which has limited processing power as it uses an OrangePi 3B which has limited computational capabilities. Object detection with limited processing power requires a lightweight model with fast inference times while still maintaining accuracy. YOLO26 is suitable for this because it was designed with deployment on low-power devices in mind. It changed the post-processing pipeline to NMS-free inference, simplified bounding-box predictions and supports deployment formats commonly used for low-power devices \citep{yolo26keyarchitecturalenhancements}. In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \citep{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognized objects \citep{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
 
-\paragraph{Training}
+\paragraph{Training:}
 
 Training was done manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 pictures were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. The relevant results of the training session are shown below.
 
@@ -27,14 +27,14 @@ Training was done manually using Label Studio. Initially, roughly 280 frames wer
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{files/2bb6c1939dd0887edb4c64204944f5a7.png}
-\caption[]{Plots of trainingresults per epoch. The curves show that the model converged during trading.}
+\caption[]{Plots of training results per epoch. The curves show that the model converged during trading.}
 \label{fig_trainingdatasetplots}
 \end{figure}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{files/f8ce65a5f1e1e34b97820b1f2a8191e4.png}
-\caption[]{Normalized confusion matrix: most classes are classified correctly, as indicated by the strong diagonal values. Some of objects were missed as background, a small amount of objects were mis-classified, and some objects were recognized while they should not.}
+\caption[]{Normalized confusion matrix: most classes are classified correctly, as indicated by the strong diagonal values. Some of objects were missed as background, a small amount of objects were misclassified, and some objects were recognized while they should not.}
 \label{fig_trainingdatasetplots}
 \end{figure}
 
