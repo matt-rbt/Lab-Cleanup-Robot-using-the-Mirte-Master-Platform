@@ -1,13 +1,20 @@
 \section{System Overview}
 
-The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
+The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
 
-The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture: \newline
-\textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. Figure~\ref{fig-task_bins} showcases this idea.
+The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture: {\textbackslash}
+
+\begin{enumerate}
+\item \textbf{Motion planning}
+\item \textbf{Perception}
+\item \textbf{Navigation}
+\newline
+Figure~\ref{fig-task_bins} showcases this idea.
+\end{enumerate}
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/task_bins-f3a34257be0dffe3d7d6803753c8250c.png}
+\includegraphics[width=0.7\linewidth]{files/task_bins-99d8666100230ca37c525fe8d0e609fa.png}
 \end{figure}
 
 The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
@@ -16,5 +23,5 @@ The system level strategy consists of how the robot behaves in each scenario tha
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/global_tree-499ae05c0a9945bd64fb66ba1c7ea826.png}
+\includegraphics[width=0.7\linewidth]{files/global_tree-3eeaf1550ba69cd8b794c05980a97f80.png}
 \end{figure}
