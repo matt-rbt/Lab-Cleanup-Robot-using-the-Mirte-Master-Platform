@@ -1,21 +1,8 @@
 # Theory
-Autonomous mobile manipulation requires the integration of navigation, mapping, perception, and localization into a unified system. In this work, these components are orchestrated using a behavior-based control framework.
+Autonomous mobile manipulation requires the integration of mapping, navigation, perception, and localization into a unified system. In this work, these components are orchestrated using a behavior-based control framework.
 
 ---
 
-## Navigation
-Navigation refers to the process of planning and executing collision-free motion from a start to a goal position. It is typically decomposed into:
-
-* **Global planning**: computing an optimal path on a map.
-* **Local planning**: generating feasible velocity commands.
-
-Modern navigation systems use costmaps and search-based planners such as A* or Dijkstra. In Nav2, navigation is modular, allowing different planners and controllers to be interchanged.
-Since Local planning can mostly be left to Nav2 for this section only some theory is discussed on how coverage path planning is done in this case.
-
-### Global Planning Methods
-Global Path planning includes two major steps. Namely Decomposition and Path planning
-
----
 ## Mapping
 
 Mapping is the process of constructing a representation of the environment. In unknown environments, this is often addressed using **Simultaneous Localization and Mapping (SLAM)**.
@@ -26,13 +13,27 @@ $$
 p(m \mid z_{1:t}, x_{1:t})
 $$
 
-where:
+Where:
 
 * $m$ is the map
 * $z_{1:t}$ are sensor measurements
 * $x_{1:t}$ are robot poses
 
 Different SLAM approaches (e.g., grid-based vs feature-based) trade off accuracy, computational cost, and robustness.
+
+---
+
+## Navigation
+Navigation refers to the process of planning and executing collision-free motion from a start to a goal position, typically after the map has been established using the previously discussed Mapping process. It is typically decomposed into:
+
+* **Global planning**: computing an optimal path on a map.
+* **Local planning**: generating feasible velocity commands.
+
+Modern navigation systems use costmaps and search-based planners such as A* or Dijkstra. In Nav2, navigation is modular, allowing different planners and controllers to be interchanged.
+Since Local planning can mostly be left to Nav2 for this section only some theory is discussed on how coverage path planning is done in this case.
+
+### Global Planning Methods
+Global Path planning includes two major steps. Namely Decomposition and Path planning
 
 ---
 
