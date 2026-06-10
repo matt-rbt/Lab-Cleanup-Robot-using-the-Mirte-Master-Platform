@@ -1,25 +1,25 @@
-\section{Materials}
+\subsection{Materials}
 \begin{paracol}
     {2}
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
 
-    \subsection{Hardware Specifications}
+    \subsubsection{Hardware Specifications}
 
     The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. On the web-page of this \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials} section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts. Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
 
-    \subsection{Chassis}
+    \subsubsection{Chassis}
     
     The chassis consists of a top, bottom and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing the panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, it is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. \newline
     
     The variant of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
     \syncallcounters
     \switchcolumn
-    \subsection{Manipulator}
+    \subsubsection{Manipulator}
     
     The manipulator consists of several components that can be found within the list at the top of the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials} webpage. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot.
 
@@ -28,7 +28,7 @@
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
 
-    \subsection{Software specifications}
+    \subsubsection{Software specifications}
 
     The MIRTE Master robotic platform has free open-source software available for any user to install. \newline
     The latest stable release is used in this robotic system. This software comes packaged inside a ROS application \citet{ROS2_2022}, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
@@ -39,7 +39,7 @@
     \newpage
     \begin{paracol}
         {2}
-    \subsubsection{SLAM}
+    \paragraph{SLAM}
 
     Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this, SLAM (Simultaneous Localization and Mapping) is used. This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
     The robot created an occupancy grid map as an image while estimating the robot's pose.
@@ -49,7 +49,7 @@
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
-    \subsubsection{Manipulation}
+    \paragraph{Manipulation}
 
     While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \newline
     The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 (\citet{Coleman2014MoveIt}) was used.
@@ -58,7 +58,7 @@
     \centerline{\rule{7.8cm}{0.4pt}}
     \syncallcounters
     
-    \subsubsection{Navigation}
+    \paragraph{Navigation}
     Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem (\citet{macenski2020marathon2}). Aside from path planning and real-time control, Nav2 also provides a \href{https://docs.nav2.org/configuration/packages/configuring-costmaps.html}{Costmap}.
 
 \end{paracol}
