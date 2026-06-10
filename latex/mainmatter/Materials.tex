@@ -7,7 +7,7 @@
 
     \subsection{Hardware Specifications}
 
-    The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials} section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts. Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
+    The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. On the web-page of this \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials} section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts. Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
@@ -45,10 +45,7 @@
     \begin{paracol}
         {2}
     \subsubsection{Navigation}
-
-    \begin{quote}
-        NAV2
-    \end{quote}
+    Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to Moveit 2, Nav2 is used as a solution to this problem \citet{macenski2020marathon2}. Aside from path planning and real-time control, Nav2 also provides a \href{https://docs.nav2.org/configuration/packages/configuring-costmaps.html}{Costmap}.
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
@@ -56,7 +53,7 @@
     \subsubsection{Manipulation}
 
     While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \newline
-    The manner in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task space control over the arm, MoveIt 2 (\citet{Coleman2014MoveIt}) was used.
+    The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 \citet{Coleman2014MoveIt} was used.
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
