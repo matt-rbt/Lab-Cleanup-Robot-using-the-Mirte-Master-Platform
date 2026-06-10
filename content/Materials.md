@@ -72,11 +72,11 @@ It was assumed the robot would only navigate in unknown environments without pre
 ### Manipulation
 
 While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 {cite:t}`Coleman2014MoveIt` was used.
+The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 ({cite:t}`Coleman2014MoveIt`) was used.
 
 ### Navigation
 
-Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem {cite:t}`macenski2020marathon2`. Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).  
+Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem ({cite:t}`macenski2020marathon2`). Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).  
 
 ### Vision
 
