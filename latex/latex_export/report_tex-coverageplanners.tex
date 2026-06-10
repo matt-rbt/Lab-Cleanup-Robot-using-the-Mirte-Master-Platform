@@ -35,7 +35,7 @@ This navigator plans in two steps:
 
 \subparagraph{Boustrophedon Cellular Decomposition}
 
-To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smalller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored, The results of Boustrophedon cellular Decomposition can be viewed in the cell below.
+To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in the cell below.
 
 \begin{verbatim}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -108,7 +108,7 @@ After the waypoints have been generated, they are then sampled and ordered. The 
 First the closest leaf node to the robot is found, this is the starting position. \newline
 The planner traces a path along the tree and selects the shortest one to the next leaf node. \newline
 It then appends these points to the path and sets this new leaf node as the current one and marks it as visited. \newline
-The algorithm repeats this process untill all leaf nodes have been explored successfully.
+The algorithm repeats this process until all leaf nodes have been explored successfully.
 
 \begin{verbatim}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
