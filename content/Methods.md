@@ -29,7 +29,7 @@ Due to low video output quality of the included USB Camera module including sign
 
   
 
-### Task-Level Metrics
+<!-- ### Task-Level Metrics
 
 >percentage of electronics, total completion time, failed attempts, distance traveled
 
@@ -37,4 +37,4 @@ Due to low video output quality of the included USB Camera module including sign
 
 ### Component-Level Metrics
 
->detection percision and recall, localization error, coverage percentage.
+>detection percision and recall, localization error, coverage percentage. -->
