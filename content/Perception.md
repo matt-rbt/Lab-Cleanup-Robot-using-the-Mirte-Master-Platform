@@ -6,7 +6,7 @@ Originally, objects where categorized into:
 1. Graspable vs non-graspable
 2. Electronics vs non-electronics
 
-However, due to the limitations of the hardware of the standard MIRTE Master package (low quality camera and low computing power) the scope got reduced to:
+However, due to the limitations of the hardware of the standard MIRTE Master package (relatively low-quality camera and limited computing power) the scope got reduced to:
 
 1. Graspable vs non-graspable
 2. Colourful vs greyscale 
