@@ -37,18 +37,18 @@ This navigator plans in two steps:
 
 To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in the cell below.
 
-%\begin{verbatim}
-%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-%NameError                                 Traceback (most recent call last)
-%Cell In[11], line 2
-%      1 # Update internal map
-% - - - -> 2 navigator = BousPath()
-%      3 navigator.update_map(map_img)
-%      4 
-%      5 # Perform Boustropethan Celular Decomposition
+\begin{verbatim}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+NameError                                 Traceback (most recent call last)
+Cell In[11], line 2
+      1 # Update internal map
+ - - - -> 2 navigator = BousPath()
+      3 navigator.update_map(map_img)
+      4 
+      5 # Perform Boustropethan Celular Decomposition
 
-%NameError: name 'BousPath' is not defined
-%\end{verbatim}
+NameError: name 'BousPath' is not defined
+\end{verbatim}
 
 \subparagraph{Boustrophedon Path Generation}
 
