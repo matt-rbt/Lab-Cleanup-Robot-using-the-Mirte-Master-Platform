@@ -2,19 +2,17 @@
 
 \subsection{Coverage Planners}
 
-We have compared 3 pathplanners:
+Three path planners have been compared:
 
 \begin{itemize}
 \item Boustrophedon Coverage
-\item Morphology based skeleton Coverage
-\item Spanning tree coverage
+\item Morphology-based Skeleton Coverage
+\item Spanning Tree coverage
 \end{itemize}
 
-The boustrophedon coverage planner package had compatibility issues with other packages used for navigation. This resulted in the boustrophedon not working on our MIRTE Master.
+The Boustrophedon coverage planner package had compatibility issues with other packages used for navigation, this resulted in Boustrophedon not working on the MIRTE Master.
 
-The morphology based skeleton coverage planner performed well in laboratory-like environments but worse in larger open spaces. This planner allowed the robot to manuever efficiently in between objects such as tables and chairs while still being able to get into tight places.  The morphology based skeleton coverage planner also resulted in the least amount of sharp turns which, due to the simple nature of the MIRTE Master odometry (wheel encoders only), helped the robot not loose track of where it was and thus keeping the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This resulted from the lower density of the planned path, which resulted in the robot sometimes missing the edges of larger free spaces that needs to be scanned for objects.
-
-\textit{insert image of skeleton path in realistic environment}
+The morphology-based skeleton coverage planner performed well in laboratory-like environments but worse in larger open spaces. This planner allowed the robot to maneuver efficiently between objects such as tables and chairs while still being able to get into tight places.  The morphology based skeleton coverage planner also resulted in the least amount of sharp turns which, due to the simple nature of the MIRTE Master odometry (wheel encoders only), helped the robot not to lose track of where it was and thus keeping the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This resulted from the lower density of the planned path, which resulted in the robot sometimes missing the edges of larger free spaces that needs to be scanned for objects.
 
 \begin{figure}[!htbp]
 \centering
@@ -23,9 +21,7 @@ The morphology based skeleton coverage planner performed well in laboratory-like
 \label{fig_skeletonpathresults}
 \end{figure}
 
-The spanning tree coverage planner performed well in large open spaces, but unlike the morphology based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments, resulting in seperate pathloops being stitched together, and possibly missing tighter spots in between the loops. Also, due to the nature of the coverage pattern, a lot of smaller radius turns are generated which resulted in the robot sometimes slowly accumulating drift in the odometry resulting in less accurate localisation and a less accurate map.
-
-\textit{insert image of spanning tree path in realistic environment}
+The spanning tree coverage planner performed well in large open spaces, but unlike the morphology based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments, resulting in separate path loops being stitched together, and possibly missing tighter spots between the loops. Also, due to the nature of the coverage pattern, a lot of smaller radius turns are generated which resulted in the robot sometimes slowly accumulating drift in the odometry, resulting in less accurate localisation and a less accurate map.
 
 \begin{figure}[!htbp]
 \centering

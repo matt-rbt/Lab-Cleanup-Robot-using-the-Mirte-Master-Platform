@@ -14,7 +14,7 @@
     \label{tasks}
     \end{figure}
 
-    The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
+    The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
     
     %\medskip
     %\centerline{\rule{7.8cm}{0.4pt}}
@@ -119,11 +119,10 @@
 
     \subsection{Navigation}
 
-    The navigation stack of this robot is responsible for three main tasks:
+    The navigation stack of this robot is responsible for two main tasks:
     \begin{itemize}
     \item Mapping
     \item Coverage
-    \item Object Approach
     \end{itemize}
     \syncallcounters
     \switchcolumn
@@ -143,8 +142,18 @@
 
     \paragraph{The Free Space Polygon:}
 
-    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
+    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours. An example of this can be seen in Figure \ref{fig:costmap} below.
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 13.43.50.png}
+        \caption{Costmap with boundary contours}
+        \label{fig:costmap}
+    \end{figure}
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \paragraph{Boustrophedon Coverage:}
 
     The first navigator that will be covered is a Boustrophedon based Coverage
@@ -153,10 +162,6 @@
         \item Decomposition
         \item Swath Generation
     \end{itemize}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
     \syncallcounters
     \paragraph{Boustrophedon Cellular Decomposition:}
 
@@ -164,11 +169,13 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/Bous Cel Dec.png}
+        \includegraphics[width=0.97\linewidth]{latex/figures/Bous Cel Dec.png}
         \caption{Boustrophedon Cellular Decomposition}
         \label{fig:bous}
     \end{figure}
-
+    \syncallcounters
+    \switchcolumn
+    
     \paragraph{Boustrophedon Path Generation:}
     After decomposition, each cell is populated with a boustrophedon path. Swaths
     are generated as straight lines parallel to the line used during decomposition.
@@ -177,13 +184,11 @@
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/generated.png}
+        \includegraphics[width=0.97\linewidth]{latex/figures/generated.png}
         \caption{Boustrophedon Path Generation}
         \label{fig:generation}
     \end{figure}
-
     \syncallcounters
-    \switchcolumn
 
     \paragraph{SkeletonPath:}
 
@@ -202,7 +207,10 @@
     planner fills the free-space contours, skeletonizes the free-space region,
     extracts skeleton pixels, and converts them into Cartesian waypoints. The
     generated waypoints are then stored.
-
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \paragraph{Path Planning:}
 
     After the waypoints have been generated, they are then sampled and ordered.
@@ -218,39 +226,53 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/leaf_nodes.png}
+        \includegraphics[width=0.99\linewidth]{latex/figures/leaf_nodes.png}
         \caption{Leaf Nodes}
         \label{fig:leaf}
     \end{figure}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
+
     \paragraph{Path Ordering:}
 
     First the closest leaf node to the robot is found, this is the starting
     position. \newline The planner traces a path along the tree and selects the
     shortest one to the next leaf node. \newline It then appends these points to
     the path and sets this new leaf node as the current one and marks it as
-    visited. \newline The algorithm repeats this process untill all leaf nodes have
+    visited. \newline The algorithm repeats this process until all leaf nodes have
     been explored successfully.
-
+    \syncallcounters
+    \switchcolumn
+    
     \subsection{Perception}
 
-    Perception is responsible for object detection, classification and spatial
-    localization. For this study we limited the object detection and localization
-    approaches to two. A \textbf{2D detection and depth projection} approach, and
-    3D segmentation with \textbf{point cloud clustering}. As for classification
-    methods, this study evaluates a classical cv approach, as well as a
-    classification model based approach.
-
-    Objects are categorized into:
+    Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
+    As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
+    
+    Originally, objects where categorized into:
+    
     \begin{enumerate}
-        \item Graspable vs non-graspable
-        \item Electronics vs non-electronics
+    \item Graspable vs non-graspable
+    \item Electronics vs non-electronics
     \end{enumerate}
+    
+    However, due to the limitations of the hardware of the standard MIRTE Master package (low quality camera and low computing power) the scope got reduced to:
+    
+    \begin{enumerate}
+    \item Graspable vs non-graspable
+    \item Colourful vs greyscale
+    \end{enumerate}
+    
+    \subsubsection{Point Cloud-Based Object Localization}
+    
+    To determine the exact location of graspable objects around the MIRTE Master, the data gathered and transmitted by the camera must be interpreted. One effective method for achieving this is through the use of point clouds. As the name suggests, point clouds are collections of points that represent a three-dimensional space. Depending on how they are generated, points may contain various types of information. However, the most important characteristic of a point is its position, represented by its \textit{x}, \textit{y}, and \textit{z} coordinates.
+    
+    These coordinates can be used to determine whether a point belongs to a planar surface, such as the floor, a wall, a tabletop, or a table leg. Plane detection is performed using the \textbf{Random Sample Consensus (RANSAC)} algorithm. RANSAC randomly selects a subset of points from the point cloud and fits a plane through them. It then evaluates which points in the cloud lie within a predefined distance of the estimated plane, thereby identifying inliers that belong to the same surface ([source](Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)).
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    Using this approach, point clouds can be efficiently filtered so that only the relevant parts remain, namely the clusters of points representing small objects on the ground. Subsequently, a clustering algorithm known as \textbf{DBSCAN} (\textit{Density-Based Spatial Clustering of Applications with Noise}) is applied. DBSCAN analyses the remaining points and groups them into clusters based on point density, while simultaneously identifying noise and outliers ([source](A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise)).
+    
+    Once the clusters have been identified, they are converted into bounding boxes. These bounding boxes provide estimates of an object's position, orientation, and dimensions. Finally, the resulting object poses (position and orientation) are published on a ROS 2 topic, allowing any other node in the system to access and use the localization data.
+    \syncallcounters
 
-    \begin{quote}
-        iets meer over classification.
-    \end{quote}
     \end{paracol}

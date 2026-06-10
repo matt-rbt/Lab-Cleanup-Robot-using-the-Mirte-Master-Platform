@@ -1,6 +1,6 @@
 # Navigation
 
-The navigation stack of this robot is responsible for three main tasks:
+The navigation stack of this robot is responsible for two main tasks:
 - Mapping
 - Coverage
 
