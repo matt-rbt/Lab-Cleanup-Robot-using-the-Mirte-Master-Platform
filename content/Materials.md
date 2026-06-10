@@ -40,14 +40,14 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - 2D-LiDAR: RPLiDAR C1 |
 | | - 2x Ultrasonic sensor: HC-SR04 |
 | **Cameras** | |
-| | - RGB-D camera: Orbbec3D Astra Mini S |
+| | - RGBD (depth) camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
 Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
 
 ## Chassis
 
-The chassis consists of a top, bottom and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing these panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, it is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variant of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
+The chassis consists of a top, bottom and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing the panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, it is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. The variant of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
 
 ## Manipulator
 
