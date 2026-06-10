@@ -123,7 +123,6 @@
     \begin{itemize}
     \item Mapping
     \item Coverage
-    \item Object Approach
     \end{itemize}
     \syncallcounters
     \switchcolumn
@@ -143,8 +142,18 @@
 
     \paragraph{The Free Space Polygon:}
 
-    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
+    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours. An example of this can be seen in Figure \ref{fig:costmap} below.
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 13.43.50.png}
+        \caption{Costmap with boundary contours}
+        \label{fig:costmap}
+    \end{figure}
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \paragraph{Boustrophedon Coverage:}
 
     The first navigator that will be covered is a Boustrophedon based Coverage
@@ -153,10 +162,6 @@
         \item Decomposition
         \item Swath Generation
     \end{itemize}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
     \syncallcounters
     \paragraph{Boustrophedon Cellular Decomposition:}
 
@@ -164,11 +169,13 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/Bous Cel Dec.png}
+        \includegraphics[width=0.97\linewidth]{latex/figures/Bous Cel Dec.png}
         \caption{Boustrophedon Cellular Decomposition}
         \label{fig:bous}
     \end{figure}
-
+    \syncallcounters
+    \switchcolumn
+    
     \paragraph{Boustrophedon Path Generation:}
     After decomposition, each cell is populated with a boustrophedon path. Swaths
     are generated as straight lines parallel to the line used during decomposition.
@@ -177,13 +184,11 @@
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/generated.png}
+        \includegraphics[width=0.97\linewidth]{latex/figures/generated.png}
         \caption{Boustrophedon Path Generation}
         \label{fig:generation}
     \end{figure}
-
     \syncallcounters
-    \switchcolumn
 
     \paragraph{SkeletonPath:}
 
@@ -202,7 +207,10 @@
     planner fills the free-space contours, skeletonizes the free-space region,
     extracts skeleton pixels, and converts them into Cartesian waypoints. The
     generated waypoints are then stored.
-
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \paragraph{Path Planning:}
 
     After the waypoints have been generated, they are then sampled and ordered.
@@ -218,14 +226,11 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.95\linewidth]{latex/figures/leaf_nodes.png}
+        \includegraphics[width=0.99\linewidth]{latex/figures/leaf_nodes.png}
         \caption{Leaf Nodes}
         \label{fig:leaf}
     \end{figure}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
+
     \paragraph{Path Ordering:}
 
     First the closest leaf node to the robot is found, this is the starting
@@ -234,7 +239,9 @@
     the path and sets this new leaf node as the current one and marks it as
     visited. \newline The algorithm repeats this process untill all leaf nodes have
     been explored successfully.
-
+    \syncallcounters
+    \switchcolumn
+    
     \subsection{Perception}
 
     Perception is responsible for object detection, classification and spatial
