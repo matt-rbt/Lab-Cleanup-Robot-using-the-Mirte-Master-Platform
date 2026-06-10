@@ -237,27 +237,42 @@
     position. \newline The planner traces a path along the tree and selects the
     shortest one to the next leaf node. \newline It then appends these points to
     the path and sets this new leaf node as the current one and marks it as
-    visited. \newline The algorithm repeats this process untill all leaf nodes have
+    visited. \newline The algorithm repeats this process until all leaf nodes have
     been explored successfully.
     \syncallcounters
     \switchcolumn
     
     \subsection{Perception}
 
-    Perception is responsible for object detection, classification and spatial
-    localization. For this study we limited the object detection and localization
-    approaches to two. A \textbf{2D detection and depth projection} approach, and
-    3D segmentation with \textbf{point cloud clustering}. As for classification
-    methods, this study evaluates a classical cv approach, as well as a
-    classification model based approach.
-
-    Objects are categorized into:
+    Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
+    As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
+    
+    Originally, objects where categorized into:
+    
     \begin{enumerate}
-        \item Graspable vs non-graspable
-        \item Electronics vs non-electronics
+    \item Graspable vs non-graspable
+    \item Electronics vs non-electronics
     \end{enumerate}
+    
+    However, due to the limitations of the hardware of the standard MIRTE Master package (low quality camera and low computing power) the scope got reduced to:
+    
+    \begin{enumerate}
+    \item Graspable vs non-graspable
+    \item Colourful vs greyscale
+    \end{enumerate}
+    
+    \subsubsection{Point Cloud-Based Object Localization}
+    
+    To determine the exact location of graspable objects around the MIRTE Master, the data gathered and transmitted by the camera must be interpreted. One effective method for achieving this is through the use of point clouds. As the name suggests, point clouds are collections of points that represent a three-dimensional space. Depending on how they are generated, points may contain various types of information. However, the most important characteristic of a point is its position, represented by its \textit{x}, \textit{y}, and \textit{z} coordinates.
+    
+    These coordinates can be used to determine whether a point belongs to a planar surface, such as the floor, a wall, a tabletop, or a table leg. Plane detection is performed using the \textbf{Random Sample Consensus (RANSAC)} algorithm. RANSAC randomly selects a subset of points from the point cloud and fits a plane through them. It then evaluates which points in the cloud lie within a predefined distance of the estimated plane, thereby identifying inliers that belong to the same surface ([source](Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)).
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    Using this approach, point clouds can be efficiently filtered so that only the relevant parts remain, namely the clusters of points representing small objects on the ground. Subsequently, a clustering algorithm known as \textbf{DBSCAN} (\textit{Density-Based Spatial Clustering of Applications with Noise}) is applied. DBSCAN analyses the remaining points and groups them into clusters based on point density, while simultaneously identifying noise and outliers ([source](A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise)).
+    
+    Once the clusters have been identified, they are converted into bounding boxes. These bounding boxes provide estimates of an object's position, orientation, and dimensions. Finally, the resulting object poses (position and orientation) are published on a ROS 2 topic, allowing any other node in the system to access and use the localization data.
+    \syncallcounters
 
-    \begin{quote}
-        iets meer over classification.
-    \end{quote}
     \end{paracol}
