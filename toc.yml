@@ -4,7 +4,7 @@ project:
     - file: content/Index.md
     - file: content/Introduction.md
     - file: content/Materials.md
-    # - file: content/SystemOverview.md
+    - file: content/SystemOverview.md
       children:
       - file: content/SystemStrategy.md
       - file: content/Navigation.md
