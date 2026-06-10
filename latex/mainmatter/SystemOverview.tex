@@ -2,15 +2,18 @@
 \begin{paracol}
     {2}
 
-    The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly. The task can be broken down as follows:
+   The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
 
-    The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture. \textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. Figure~\ref{fig-task_bins} showcases this idea.
+    The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture: \newline
+    \textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. \newline Figure \ref{tasks} showcases this idea.
     
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{figures/task_bins-2cd24017829c1f053a0f5974e45d76ea.png}
+    \caption{Three main Tasks}
+    \label{tasks}
     \end{figure}
-    
+
     The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
     
     \medskip
@@ -18,12 +21,16 @@
     
     \subsection{System Architecture}
     
-    The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig-global_tree} is also used here to describe and execute the cleaning strategy.
+    The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure \ref{fig:tree} is also used here to describe and execute the cleaning strategy.
+    \syncallcounters
     \switchcolumn
-    \begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figures/global_tree-2bf659e406234184b268bd363f526c70.png}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\linewidth]{figures/global_tree-2bf659e406234184b268bd363f526c70.png}
+        \caption{System Architecture}
+        \label{fig:tree}
     \end{figure}
+    \syncallcounters
     \end{paracol}
     \newpage
     \begin{paracol}
@@ -98,8 +105,14 @@
     \centerline{\rule{7.8cm}{0.4pt}}
 
     \subsubsection{Current Design}
-
-    The current design of the robot can be seen in ...
+    The complete model can be explored by using the interactive 3D interface via the following web-page: \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}.
+    %\todo{Screenshot van de robot}
+    %\begin{figure}
+    %    \centering
+    %    \includegraphics[width=0.5\linewidth]{}
+    %    \caption{Caption}
+    %    \label{fig:placeholder}
+    %\end{figure}
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
@@ -112,11 +125,12 @@
     \item Coverage
     \item Object Approach
     \end{itemize}
+    \syncallcounters
+    \switchcolumn
     \subsubsection{Mapping}
     
     Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialized mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'.
-    \syncallcounters
-    \switchcolumn
+
     Once the environment is mapped \{sufficiently\}, the robot is allowed to navigate the space and propagate its behavior further down the tree.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
@@ -124,8 +138,8 @@
 
     This section presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
 
-    In order to demonstrate the different navigators, \newline we use a map
-    provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ros2 package.
+    %In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used. \newline
+    % . . . shows the costmap generated by Nav2.
 
     \paragraph{The Free Space Polygon:}
 
@@ -139,15 +153,21 @@
         \item Decomposition
         \item Swath Generation
     \end{itemize}
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \syncallcounters
     \paragraph{Boustrophedon Cellular Decomposition:}
 
-    To effectively cover the entire map with boustrophedon (back and forth) swaths,
-    the map is first partitioned (decomposed) into smaller areas that can be
-    covered fully with these swaths. This is done by sweeping a straight line
-    across the map and creating new cells where the connectivity of this line
-    decreases. Cells are closed and a new one opens when this connectivity
-    increases again or the line is fully restored, The results of Boustrophedon
-    cellular Decomposition can be viewed in the cell below.
+    To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in the figure below.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\linewidth]{latex/figures/Bous Cel Dec.png}
+        \caption{Boustrophedon Cellular Decomposition}
+        \label{fig:bous}
+    \end{figure}
 
     \paragraph{Boustrophedon Path Generation:}
     After decomposition, each cell is populated with a boustrophedon path. Swaths
@@ -155,11 +175,16 @@
     The transitions, often called headlands, are then generated to create one
     continuous path inside the cell.
     
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
-    \includegraphics[width=0.95\linewidth]{figures/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\linewidth]{latex/figures/generated.png}
+        \caption{Boustrophedon Path Generation}
+        \label{fig:generation}
+    \end{figure}
+
+    \syncallcounters
+    \switchcolumn
+
     \paragraph{SkeletonPath:}
 
     The \texttt{SkeletonPath} planner is a topology-based coverage planner that
@@ -191,10 +216,16 @@
 
     Leaf nodes are then identified in the tree, (nodes with one connection).
 
-    \switchcolumn
-
-    \includegraphics[width=0.95\linewidth]{figures/4599d3c4df780082d726948f94d0cc2d.png}
-
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\linewidth]{latex/figures/leaf_nodes.png}
+        \caption{Leaf Nodes}
+        \label{fig:leaf}
+    \end{figure}
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \paragraph{Path Ordering:}
 
     First the closest leaf node to the robot is found, this is the starting
