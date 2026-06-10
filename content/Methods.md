@@ -18,8 +18,8 @@ This results in a total of 16 experimental configurations. However, some of thes
 
 ## Evaluation Metrics
 
-### Task level metrics
+### Task-Level Metrics
 >percentage of electronics, total completion time, failed attempts, distance traveled
 
-### Component level metrics
+### Component-Level Metrics
 >detection percision and recall, localization error, coverage percentage.

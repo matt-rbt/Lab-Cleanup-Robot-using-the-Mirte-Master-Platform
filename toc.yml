@@ -13,7 +13,6 @@ project:
         - file: content/CoveragePlanners.ipynb
       - file: content/Manipulation.md
       - file: content/Mechanical.ipynb
-      - file: content/Navigation.md
       - file: content/Perception.md
         children:
         - file: content/Perception2d.ipynb
