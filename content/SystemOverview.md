@@ -7,7 +7,7 @@ The main task of the robot can be broken down into sub-tasks, these then fit int
 2. **Perception**
 3. **Navigation**
 \
-{numref}`Figure {number} <fig-task_bins>` showcases this idea.
+{numref}`Figure {number} <fig-task_bins>` below showcases this idea.
 
 ```{figure} figures/task_bins.*
 :label: fig-task_bins
