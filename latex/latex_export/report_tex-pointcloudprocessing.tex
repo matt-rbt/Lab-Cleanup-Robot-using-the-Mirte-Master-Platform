@@ -1,0 +1,72 @@
+\subsubsection{Complete Point Cloud Processing Pipeline}
+
+This section shows the practices employed to assess the point cloud received from the camera topic /camera/depth/points. Even though the inner machinations of the specific functions used are out of scope of this project, their influence will be highlighted here to show their importance.
+
+For completion's sake, a point cloud has been included below to give an impression of what the input of the pipeline looks like as received from the point cloud topic.
+
+To do this, a sample point cloud has been saved from the gazebo simulation and will be the subject of the filtering pipeline using the Open3D python library:
+
+\begin{itemize}
+\item steps:
+
+\begin{itemize}
+\item Crop the point cloud to include only points below a given height.
+\item Copy a downsampled version of the pointcloud to speed up future calculations.
+\item Iteratively detect planes and remove corresponding points from both point clouds.
+From there, the downsampled point cloud will not be used anymore.
+\item Detect clusters from the remaining points.
+\item Create bounding boxes for these clusters.
+\item Reject boxes that overlap with the costmap.
+\end{itemize}
+\end{itemize}
+
+Any remaining bounding boxes are published as detected objects.
+
+The entire pipeline with steps' individual effects has been included below:
+
+First, the original point cloud is made using the depth image from the camera, as shown in Figure~\ref{og_pc}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/6dd0f062f98a2429fe5e51c51184115a.png}
+\caption[]{The point cloud as received from the camera topic including the eventual bounding boxes}
+\label{og_pc}
+\end{figure}
+
+Next, this point cloud is downsampled. Note that the resolution afterwards is still quite high. This is due to the fact that objects are very small, and if resolution is reduced dramatically, details of said objects will be lost, reducing bounding box accuracy. Below in Figure~\ref{downsampled} is an example.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/28ae4bbadd8b47bd8114c158f1a4e1f4.png}
+\caption[]{The downsampled point cloud}
+\label{downsampled}
+\end{figure}
+
+In the downsampled point cloud, planes will be detected using RANSAC plane segmentation \citep{Randomsampleconsensus}. With this, large planes such as walls and tabletops will be discarded from the point cloud, as can be seen in Figure~\ref{segmented}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/b964dca8652f6cd852d2ca5ea594d393.png}
+\caption[]{The plane-segmented point cloud}
+\label{segmented}
+\end{figure}
+
+Now, the remaining points are cross referenced with the costmap obtained during mapping. Any points that is on the costmap is excluded from the point cloud, resulting in the point cloud as depicted in Figure~\ref{ExclusivePointCloud}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/ec996becbf27624892eba97e818129b1.png}
+\caption[]{The point cloud containing only points belonging to free objects}
+\label{ExclusivePointCloud}
+\end{figure}
+
+Finally, the remaining points can be converted to clusters using \citep{DBSCAN}. This function enables the construction of bounding boxes for each cluster, which represents an object. Bounding boxes, however faint, can be made out in Figure~\ref{boundingBoxes} below.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/4e43d62e31d6da7dc571949016f25e01.png}
+\caption[]{Bounding boxes (in front of the robot) are drawn around the remaining clusters.}
+\label{boundingBoxes}
+\end{figure}
+
+Information about these bounding boxes is then published on a ros2 topic, to later be used to approach and pick up the corresponding objects.
