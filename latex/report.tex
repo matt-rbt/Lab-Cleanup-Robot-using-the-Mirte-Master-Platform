@@ -7,6 +7,9 @@
 \usepackage[acronym]{glossaries}
 \usepackage{paracol}
 \usepackage{todonotes}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \newcommand\note[1]{\textcolor{red}{#1}}
 \makeglossaries
 
@@ -134,6 +137,8 @@
 \include{mainmatter/Results}
 \include{mainmatter/Conclusion}
 
+\color{gray}
+
 \include{latex/latex_export/report_tex-introduction}
 %\include{latex/latex_export/report_tex-theory}
 \include{latex/latex_export/report_tex-systemoverview}
@@ -149,7 +154,201 @@
 \include{latex/latex_export/report_tex-materials}
 
 \section{Appendix}
+\subsection{Algorithms}
+% ┌─────────────────────────────────────────────────────────────┐
+% │ SECTION 1 — Coverage Path Planning (SkeletonPlanner)        │
+% └─────────────────────────────────────────────────────────────┘
+
+\begin{algorithm}
+\footnotesize
+\caption{Skeleton-Based Coverage Path Planning}
+\label{alg:skeleton}
+\KwIn{Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in \mathbb{R}^2$}
+\KwOut{Ordered list of waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$}
+
+\tcc{Map preprocessing}
+$B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold) \tcp*{binary free-space mask}
+$C \leftarrow$ extractContours($B$) \tcp*{OpenCV RETR\_TREE}
+$G_{poly} \leftarrow$ groupContoursByContainment($C$) \tcp*{outer + holes}
+
+\ForEach{polygon group $g \in G_{poly}$}{
+    $S \leftarrow$ medialAxis($B$) \tcp*{skimage skeletonize}
+    $W \leftarrow$ skeletonToWorldCoords($S$)\;
+    $G_{graph} \leftarrow$ buildKDTreeGraph($W$, radius $= r_{path}$)\;
+    bridgeDisconnectedComponents($G_{graph}$)\;
+
+    $L \leftarrow$ findLeafNodes($G_{graph}$) \tcp*{nodes with degree 1}
+    $v \leftarrow$ nearestLeaf($\mathbf{p}_0$, $L$)\;
+    $\mathcal{Q} \leftarrow [v]$, $\;V_{visited} \leftarrow \emptyset$\;
+
+    \While{$V_{visited} \neq L$}{
+        $V_{visited} \leftarrow V_{visited} \cup \{v\}$\;
+        $r \leftarrow$ nearestLeafByGraphDistance($v$, $L \setminus V_{visited}$, $G_{graph}$)\;
+        $\pi \leftarrow$ shortestPath($v$, $r$, $G_{graph}$) \tcp*{Dijkstra}
+        append $\pi$ to $\mathcal{Q}$\;
+        $v \leftarrow r$\;
+    }
+
+    $P_i \leftarrow [W[u]\;\forall\,u \in \mathcal{Q}]$\;
+    append $P_i$ to $\mathcal{P}$\;
+    $\mathbf{p}_0 \leftarrow P_i[\text{last}]$ \tcp*{chain segments}
+}
+sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$) \tcp*{clamp to costmap bounds}
+\Return $\mathcal{P}$
+\end{algorithm}
+
+% ┌─────────────────────────────────────────────────────────────┐
+% │ SECTION 6 — Spanning Tree Coverage Path Planning            │
+% └─────────────────────────────────────────────────────────────┘
+
+
+\begin{algorithm}[H]
+\footnotesize
+    \caption{Spanning-Tree Coverage Path Planning}
+    \label{alg:spanning_tree}
+    \KwIn{Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in \mathbb{R}^2$, scale factor $s = 0.06$}
+    \KwOut{Ordered list of waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$}
+    
+    \tcc{Map preprocessing}
+    $B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold) \tcp*{binary free-space mask}
+    $B_{down} \leftarrow$ resize($B$, scale $= s$, interpolation $=$ NEAREST) \tcp*{downsample}
+    
+    \tcc{Build spanning tree over free cells}
+    $G \leftarrow$ gridGraph($B_{down}$) \tcp*{4-connected grid graph}
+    \ForEach{edge $(u, v) \in G$}{
+        \If{$B_{down}[u] = 0$ \textbf{or} $B_{down}[v] = 0$}{
+            remove $(u, v)$ from $G$\;
+        }
+    }
+    $T \leftarrow \emptyset$\;
+    \ForEach{connected component $\mathcal{C} \in G$}{
+        $T \leftarrow T \cup$ DFS\_tree($\mathcal{C}$)\;
+    }
+    
+    \tcc{Edge subdivision — insert midpoint nodes}
+    \ForEach{edge $(u, v) \in T$}{
+        $m \leftarrow \frac{u + v}{2}$\;
+        replace $(u,v)$ with $(u,m)$ and $(m,v)$\;
+    }
+    
+    \tcc{Generate circumnavigation contours}
+    $P_{perim} \leftarrow \mathbf{0}^{H \times W}$ \tcp*{blank perimeter map}
+    $r \leftarrow \lfloor \frac{1}{4s} \rfloor$ \tcp*{rectangle half-size in pixels}
+    \ForEach{node $p \in T$}{
+        $p_{img} \leftarrow \frac{p + 0.5}{s}$ \tcp*{scale back to image coords}
+        drawFilledRect($P_{perim}$, centre $= p_{img}$, halfsize $= r$)\;
+    }
+    $\mathcal{C} \leftarrow$ findContours($P_{perim}$, RETR\_EXTERNAL)\;
+    
+    \tcc{Convert contours to world-frame waypoints and plan}
+    $\mathcal{P} \leftarrow [\;]$\;
+    \ForEach{contour $c \in \mathcal{C}$}{
+        $W \leftarrow$ pixelToWorld($c$)\;
+        \If{$|W| < 2$}{\textbf{continue}\;}
+        $idx \leftarrow \arg\min_{i} \| W[i] - \mathbf{p}_0 \|_2$ \tcp*{start from nearest point}
+        $P_i \leftarrow [W[idx], W[idx+1], \ldots, W[-1], W[0], \ldots, W[idx-1]]$\;
+        append $P_i$ to $\mathcal{P}$\;
+        $\mathbf{p}_0 \leftarrow P_i[\text{last}]$\;
+    }
+    sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$)\;
+    \Return $\mathcal{P}$
+\end{algorithm}
+
+% ┌─────────────────────────────────────────────────────────────┐
+% │ SECTION 2 — Coverage Execution with Pause/Resume            │
+% └─────────────────────────────────────────────────────────────┘
+
+\begin{algorithm}
+\small
+\caption{Coverage Task Execution with Pause/Resume}
+\label{alg:coverage_exec}
+\KwIn{Coverage segments $\mathcal{P}$, planner type $\tau$}
+\KwOut{Task result (success / cancelled / stopped)}
+
+$\mathcal{P} \leftarrow$ sortByLength($\mathcal{P}$, descending)\;
+$n \leftarrow |\mathcal{P}|$, $\;i \leftarrow 0$\;
+
+\While{$\mathcal{P} \neq \emptyset$}{
+    $P_i \leftarrow$ dequeue($\mathcal{P}$), $\;i \leftarrow i + 1$\;
+    nav2.goThroughPoses(toROSPath($P_i$))\;
+
+    \Repeat{nav2.isTaskComplete()}{
+        $f \leftarrow$ nav2.getFeedback()\;
+        publishFeedback($i$, $n$, $f$.remainingPoses)\;
+
+        \If{cancelRequested}{
+            nav2.cancelTask()\;
+            \Return CANCELLED\;
+        }
+        \If{stopRequested}{
+            nav2.cancelTask()\;
+            \Return STOPPED\;
+        }
+        \If{pauseRequested}{
+            nav2.cancelTask()\;
+            $P_{rem} \leftarrow$ computeRemainingSegment($P_i$, getRobotPos())\;
+            prepend $P_{rem}$ to $\mathcal{P}$ \tcp*{resume from current pose}
+            \Repeat{\textbf{not} pauseRequested}{spinOnce()}\;
+            nav2.goThroughPoses(toROSPath($P_{rem}$))\;
+        }
+    }
+    publishFeedback($i$, $n$, 0)\;
+}
+\Return SUCCESS
+\end{algorithm}
+
+
+% ┌─────────────────────────────────────────────────────────────┐
+% │ SECTION 3 — 3D Object Detection Pipeline                    │
+% └─────────────────────────────────────────────────────────────┘
+
+\begin{algorithm}
+\caption{Depth-Based Object Detection}
+\label{alg:object_detection}
+\KwIn{Point cloud $\mathcal{C}$ (camera frame), costmap $\mathcal{M}$, TF tree}
+\KwOut{Detected object array $\mathcal{O}$}
+
+$\mathcal{C} \leftarrow$ removeNaN($\mathcal{C}$)\;
+$\mathcal{C}_{LQ} \leftarrow \mathcal{C}$, $\;mask \leftarrow \mathbf{1}^{|\mathcal{C}|}$\;
+
+\tcc{Iterative RANSAC plane removal}
+\Repeat{$|\mathcal{C}_{LQ}| < 100$ \textbf{or} $|\text{inliers}| < 500$}{
+    $(\mathbf{n}, d) \leftarrow$ RANSAC\_segmentPlane($\mathcal{C}_{LQ}$,\;
+    $\quad\epsilon=0.003$,\; $n_{iter}=2000$)\;
+    $\mathcal{C}_{LQ} \leftarrow \mathcal{C}_{LQ} \setminus$ inliers\;
+    $mask \leftarrow mask \;\wedge\; (\text{dist}(\mathcal{C}, \Pi) > 0.008)$\;
+}
+$\mathcal{C}_{obj} \leftarrow \mathcal{C}[mask]$\;
+\tcc{Coordinate transform to map frame}
+$T_{cam \to base} \leftarrow$ TF.lookup(base\_link, camera\_frame)\;
+$T_{base \to map} \leftarrow$ TF.lookup(map, base\_link)\;
+$\mathcal{C}_{map} \leftarrow T_{base \to map} \cdot T_{cam \to base} \cdot \mathcal{C}_{obj}$\;
+
+\tcc{Costmap filtering}
+$\mathcal{C}_{map} \leftarrow \{\mathbf{p} \in \mathcal{C}_{map} : \mathcal{M}(\mathbf{p}) < \delta_{occ}\}$\;
+
+\tcc{Clustering and bounding box extraction}
+$L \leftarrow$ DBSCAN($\mathcal{C}_{map}$, $\varepsilon=0.03$, minPts$=20$)\;
+$\mathcal{O} \leftarrow [\;]$\;
+\ForEach{cluster $k \in L,\; k \neq -1$}{
+    $OBB_k \leftarrow$ getOrientedBoundingBox($\mathcal{C}_{map}[L{=}k]$)\;
+    \If{$\mathcal{M}(OBB_k.\text{center}) < \delta_{occ}$}{
+        $\psi \leftarrow$ arctan2($R_k[1,0]$, $R_k[0,0]$) \tcp*{yaw only}
+        append DetectedObject($OBB_k$.center, $OBB_k$.extent, $\psi$) to $\mathcal{O}$\;
+    }
+}
+\Return $\mathcal{O}$
+\end{algorithm}
+
 \include{mainmatter/Materials}
+
+\subsection{Figures}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.99\linewidth]{latex/figures/labcleantree.png}
+        \caption{Full Behavior Tree}
+        \label{fig:tree}
+    \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%  acronyms & glossary  %%%%%%%%%%%%%
@@ -158,5 +357,4 @@
 
 \clearpage
 \bibliography{main.bib}
-
 \end{document}
