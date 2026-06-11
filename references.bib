@@ -19,7 +19,7 @@
 
 % --------------------- Libraries and Software Packages ------------------------------
 
-% ROS2 
+% ROS2   
 @article{ROS2_2022,
   author   = {Steven Macenski  and Tully Foote  and Brian Gerkey  and Chris Lalancette  and William Woodall },
   title    = {Robot Operating System 2: Design, architecture, and uses in the wild},
@@ -50,7 +50,7 @@
               features, and performance with four case studies on land, air, sea, and even space.}
 }
 
-% SLAM Toolbox
+% SLAM Toolbox 
 @article{SlamTBX2021,
   doi       = {10.21105/joss.02783},
   url       = {https://doi.org/10.21105/joss.02783},
@@ -64,7 +64,19 @@
   journal   = {Journal of Open Source Software}
 }
 
-% Moveit 2
+% Cartographer
+@inproceedings{cartographer,
+author = {Kicman, Pawel and Silson, Peter and Tsourdos, Antonios and Savvaris, Al},
+year = {2011},
+month = {03},
+pages = {},
+title = {Cartographer - A Terrain Mapping and Landmark-based Localization System for Small Robots},
+isbn = {978-1-60086-944-0},
+journal = {AIAA Infotech at Aerospace Conference and Exhibit 2011},
+doi = {10.2514/6.2011-1513}
+}
+
+% Moveit 2 
 @article{Coleman2014MoveIt,
   title={Reducing the Barrier to Entry of Complex Robotic Software: a MoveIt! Case Study},
   author={Coleman, David and Sucan, Ioan A. and Chitta, Sachin and Correll, Nikolaus},
@@ -76,7 +88,7 @@
   doi={10.6092/JOSER_2014_05_01_p3}
 }
 
-% Nav2
+% Nav2 
 @inproceedings{macenski2020marathon2,
   title     = {The Marathon 2: A Navigation System},
   author    = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
@@ -84,6 +96,28 @@
   booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   url       = {https://github.com/ros-planning/navigation2},
   pdf       = {https://arxiv.org/abs/2003.00368}
+}
+
+# Followpath Controllers
+@article{macenski2023survey,
+  title={From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2},
+  author={Macenski, Steve and Moore, Thomas and Lu, Do Van and Merzlyakov, Alex and Ferguson, Mike},
+  journal={Robotics and Autonomous Systems},
+  volume={168},
+  pages={104493},
+  year={2023},
+  publisher={Elsevier},
+  doi={10.1016/j.robot.2023.104493}
+}
+
+# Comparison MPPi
+@misc{elbouhy2024ros2planning,
+  title={Comparative Analysis of Local Trajectory Planning Algorithms in ROS2},
+  author={Elbouhy, Seifalla Mohamed and Adamanov, Asan and Braun, Philipp Maximilian and Rose, Hendrik Wilhelm},
+  year={2024},
+  howpublished={Technical report / manuscript, Hamburg University of Technology},
+  institution={Hamburg University of Technology},
+  note={Unpublished manuscript}
 }
 
 % MPPI (Not necessarily a software package but the low level motion planner we use)
@@ -99,6 +133,27 @@
   pdf       = {https://arxiv.org/pdf/1509.01149}
 }
 
+# DWB
+@article{thrun1997dwa,
+  title={The dynamic window approach to collision avoidance},
+  author={Thrun, Sebastian and Fox, Dieter and Burgard, Wolfram},
+  journal={IEEE Robotics \& Automation Magazine},
+  volume={4},
+  number={1},
+  pages={23--33},
+  year={1997}
+}
+
+@article{macenski2023regulated,
+  title   = {Regulated Pure Pursuit for Robot Path Tracking},
+  author  = {Macenski, Steve and Singh, Shrijit and Martin, Francisco and Gin{\'e}s Clavero, Jonatan},
+  journal = {Autonomous Robots},
+  year    = {2023},
+  volume  = {47},
+  number  = {6},
+  pages   = {685--694},
+  doi     = {10.1007/s10514-023-10097-6}
+}
 
 % --------------------- Chosen Coverage Path Planners ------------------------------
 
@@ -123,7 +178,7 @@ journal = {SIAM Review},
 doi = {10.1137/S0036144599352836}
 }
 
-% Morphological Skeleton Coverage
+% Morphological Skeleton Coverage 
 @article{skeleton,
   author   = {Becoy, Alexander James  and Khomenko, Kseniia  and Peternel, Luka  and Rajan, Raj Thilak },
   title    = {Autonomous navigation of quadrupeds using coverage path planning with morphological skeleton maps},
@@ -135,7 +190,7 @@ doi = {10.1137/S0036144599352836}
   issn     = {2296-9144},
   abstract = {This article proposes a novel method of coverage path planning for the purpose of scanning an unstructured environment autonomously. The method uses the morphological skeleton of a prior 2D navigation map via SLAM to generate a sequence of points of interest (POIs). This sequence is then ordered to create an optimal path based on the robot’s current position. To control the high-level operation, a finite state machine (FSM) is used to switch between two modes: navigating toward a POI using Nav2 and scanning the local surroundings. We validate the method in a leveled, indoor, obstacle-free, non-convex environment, evaluating time efficiency and reachability over five trials. The map reader and path planner can quickly process maps of widths and heights ranging between [196,225] pixels and [185,231] pixels in 2.52 ms and 1.7 ms, respectively. Their computation time increases with 22.0 ns/pixel and 8.17 μs/pixel, respectively. The robot managed to reach 86.5% of all waypoints across the five runs. The proposed method suffers from drift occurring in the 2D navigation map.}
 }
-@misc{skeleton2,
+@misc{skeleton2, 
   title         = {A Skeleton-Based Topological Planner for Exploration in Complex Unknown Environments},
   author        = {Haochen Niu and Xingwu Ji and Lantao Zhang and Fei Wen and Rendong Ying and Peilin Liu},
   year          = {2025},
@@ -146,7 +201,7 @@ doi = {10.1137/S0036144599352836}
 }
 
 % Spanning Tree Coverage
-@inproceedings{SpanningTree2001,
+@inproceedings{SpanningTree2001, 
   author    = {Gabriely, Y. and Rimon, E.},
   booktitle = {Proceedings 2001 ICRA. IEEE International Conference on Robotics and Automation (Cat. No.01CH37164)},
   title     = {Spanning-tree based coverage of continuous areas by a mobile robot},
@@ -174,7 +229,7 @@ doi = {10.1137/S0036144599352836}
 % -------------------- Misc ----------------------
 
 % Empirical comparison between SLAM Toolbox and Cartographer
-@Article{electronics14244822,
+@Article{slamvscart,
   AUTHOR = {İnce, İbrahim and Yiltas-Kaplan, Derya and Keleş, Fatih},
   TITLE = {From Simulation to Reality: Comparative Performance Analysis of SLAM Toolbox and Cartographer in ROS 2},
   JOURNAL = {Electronics},
@@ -186,21 +241,6 @@ doi = {10.1137/S0036144599352836}
   ISSN = {2079-9292},
   ABSTRACT = {This paper presents a comparative analysis of SLAM Toolbox and Cartographer mapping performance in both simulated and real-world environments using ROS 2. The aim of the study is to evaluate the effectiveness, accuracy, and resource utilization of each Simultaneous Localization and Mapping (SLAM) tool under identical conditions. The experiments were conducted using the Humble Hawksbill distribution of ROS 2, with mapping tasks performed in indoor environments via Gazebo simulation and physical robot tests. Results show that SLAM Toolbox demonstrated slightly more consistent map generation in environments that included human movement and small object relocations. It achieved an Absolute Trajectory Error (ATE) of 0.13 m, compared to 0.21 m for Cartographer under identical test conditions. However, Toolbox required approximately 70% CPU usage, 293 MB RAM, and a startup time of 5.2 s, reflecting higher computational demand and configuration complexity. In contrast, Cartographer exhibited slower map generation and slightly higher RAM usage (299 MB) in simulation, while requiring higher CPU load (80%) and showing greater sensitivity to parameter tuning, which contributed to less accurate localization in noise-free simulations. This study highlights the advantages and limitations of both SLAM technologies and provides practical guidance for selecting appropriate SLAM solutions in robotic mapping and autonomous navigation tasks, particularly for systems deployed on resource-constrained platforms.},
   DOI = {10.3390/electronics14244822}
-}
-
-% Comparison between SLAM types
-@Article{rs17071214,
-  AUTHOR = {Ran, Yingying and Xu, Xiaobin and Tan, Zhiying and Luo, Minzhou},
-  TITLE = {A Review of 2D Lidar SLAM Research},
-  JOURNAL = {Remote Sensing},
-  VOLUME = {17},
-  YEAR = {2025},
-  NUMBER = {7},
-  ARTICLE-NUMBER = {1214},
-  URL = {https://www.mdpi.com/2072-4292/17/7/1214},
-  ISSN = {2072-4292},
-  ABSTRACT = {Two-dimensional (2D) simultaneous localization and mapping (SLAM) is a key technology for intelligent indoor robots. By using a map generated via SLAM, the robot can navigate and perform specific tasks. This paper reviews the progress of 2D Lidar SLAM algorithms based on four principles: filter-based SLAM, matching-based SLAM, graph optimization-based SLAM, and deep learning-based SLAM, highlighting their advantages, disadvantages, and applicability. Additionally, two key research topics in 2D Lidar SLAM are presented: solutions for dynamic objects during mapping and the fusion of 2D Lidar and vision data. Finally, the development trends of 2D SLAM are discussed.},
-  DOI = {10.3390/rs17071214}
 }
 
 % Characterization, calibration and empirical comparison between Cartographer, Gmapping, HECTOR-SLAM, KARTO-SLAM, and RTAB-Map SLAM algorithm
