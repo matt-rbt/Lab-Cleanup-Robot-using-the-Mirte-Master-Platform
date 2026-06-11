@@ -157,7 +157,7 @@ Then using this binary costmap, the contours Figure~\ref{fig-map_contours} are e
 
 \paragraph{Morphology-Based Skeleton Path Planner}
 
-The first implemented method, based on the work of (\citet{skeleton}), (\citet{skeleton2}), derives a coverage path from the morphological skeleton of the free space. See the algorithm below.
+The first implemented method, based on the work of \citep{skeleton}, \citep{skeleton2}, derives a coverage path from the morphological skeleton of the free space. See the algorithm below.
 
 \textbf{Input:} Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in ℝ^2$\newline
 \textbf{Output:} Ordered waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$
@@ -242,7 +242,7 @@ IntSlider(value=0, description='Waypoint', layout=Layout(width='800px'), max=186
 
 \paragraph{Grid Based Spanning Tree Planner}
 
-Secondly a grid based spanning tree algorithm is used to plan a full coverage path over the map. This planner is based on
+Secondly a grid based spanning tree algorithm is used to plan a full coverage path over the map. This planner is based on the work of \citep{SpanningTree2001}
 
 \textbf{Input:} Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in ℝ^2$, scale $s = 0.06$\newline
 \textbf{Output:} Ordered waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$
