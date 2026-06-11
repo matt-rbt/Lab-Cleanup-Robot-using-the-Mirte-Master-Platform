@@ -30,10 +30,39 @@ The spanning tree coverage planner performed well in large open spaces, but unli
 \label{fig_spanningtreeresults}
 \end{figure}
 
-\subsection{Object detection}
+\subsection{Object Localization And Classification}
+
+For object detection worked on a localization method and a classification method. Our object localizator relies on bounding boxes that are retrieved from pointclouds made by the depthcamera's depth images. Our object detector was able to find objects sized within \textit{1cm} to 6cm. A bounding box drawn around a found object in the pointcloud is shown in the figure below.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/085a884d2cdaa1dd86d3ca93977c4b6a.jpeg}
+\caption[]{Figure of bounding box drawn around found object.}
+\label{fig_boundingbox}
+\end{figure}
+
+The custom-made YOLO26 object detection model worked as intended, being able to classify the localized objects correctly. In the figure shown below a frame from the RGB sensor of the depth camera is shown below.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/085a884d2cdaa1dd86d3ca93977c4b6a.jpeg}
+\caption[]{Figure of bounding box drawn around found object by the YOLO26 model.}
+\label{fig_boundingboxYOLO26}
+\end{figure}
 
 \subsection{Manipulation}
 
 \subsubsection{Movement accuracy}
 
+The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was around 15\textit{cm}. After the code was reworked, the actuator was controlled by actual joint values instead of approximations. This reduced the error significantly, resulting in a movement error of only 1\textit{mm}.
+
 \subsubsection{gripping performance}
+
+The gripping performance of the original robot was slightly increased by adding rubberized patches to gripping surfaces to te gripper. This has helped gripping the smooth, plastic testing objects significantly when the gripper approached the objects at a sub-optimal approach angle.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/085a884d2cdaa1dd86d3ca93977c4b6a.jpeg}
+\caption[]{Figure showing rubberized gripping surfaces.}
+\label{fig_boundingboxYOLO26}
+\end{figure}
