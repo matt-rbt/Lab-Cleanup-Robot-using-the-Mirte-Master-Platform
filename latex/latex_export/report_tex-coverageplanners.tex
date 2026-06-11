@@ -1,128 +1,349 @@
-\subsubsection{Coverage}
+\subsubsection{Coverage Planners}
 
-This subsection presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
-
-In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used.
+This section presents the algorithms employed for the discovery of portable objects. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
+To demonstrate the different navigators, a costmap of the Pulse Breakout room is used. This map was obtained during testing of the charting methods.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{figures/original_costmap.*}
+\includegraphics[width=0.7\linewidth]{files/4e327a46c56cce7ecf8e4bac4493d12b.png}
+\caption[]{Initial costmap of the Pulse Breakout room used to evaluate the coverage planners.}
+\label{fig-original_costmap}
 \end{figure}
 
-\begin{verbatim}
-/home/florian/.local/lib/python3.10/site -packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
-  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
-\end{verbatim}
-
-\paragraph{The Free Space Polygon}
-
-Each defined navigator must update its internal map and plan a path over this map as a result.
-
-A function \texttt{update\_map()} first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
-
-\includegraphics[width=0.7\linewidth]{files/56767a8af6767c1c1f2f0859e7195a2c.png}
-
-\paragraph{Boustrophedon Coverage}
-
-The first navigator that will be covered is a Boustrophedon-based coverage planner. \newline
-This navigator plans in two steps:
-
-\begin{itemize}
-\item Decomposition
-\item Swath Generation
-\end{itemize}
-
-\subparagraph{Boustrophedon Cellular Decomposition}
-
-To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in the cell below.
+Nav2 is used for low level motion planning and execution aswell as realtime control and costmap generation.
 
 \begin{verbatim}
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-NameError                                 Traceback (most recent call last)
-Cell In[11], line 2
-      1 # Update internal map
- - - - -> 2 navigator = BousPath()
-      3 navigator.update_map(map_img)
-      4 
-      5 # Perform Boustropethan Celular Decomposition
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets
+from IPython.display import display
 
-NameError: name 'BousPath' is not defined
+def interactive_path_slider(
+    image_path,
+    csv_path,
+    title="Path Viewer",
+    color=(0, 255, 255),
+    thickness=1,
+):
+    """
+    Visualize a path stored in CSV over an image.
+
+    Parameters
+    - - - - - - - - - -
+    image_path : str
+        Occupancy map image.
+
+    csv_path : str
+        CSV with columns:
+            x,y
+            74,19
+            75,20
+            ...
+    """
+
+    plt.ion()
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Load image
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    map_img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+
+    if map_img is None:
+        raise ValueError(f"Could not load image: {image_path}")
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Load path
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    path_pixels = np.loadtxt(
+        csv_path,
+        delimiter=",",
+        skiprows=1,
+        dtype=np.int32,
+    )
+
+    if path_pixels.ndim == 1:
+        path_pixels = path_pixels.reshape(1, 2)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Draw path
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    vis = cv2.cvtColor(map_img, cv2.COLOR_GRAY2RGB)
+
+    cv2.polylines(
+        vis,
+        [path_pixels],
+        isClosed=False,
+        color=color,
+        thickness=thickness,
+    )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Create figure
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    ax.imshow(vis)
+    ax.set_title(title)
+    ax.axis("off")
+
+    robot_dot, = ax.plot(
+        path_pixels[0, 0],
+        path_pixels[0, 1],
+        "o",
+        color="yellow",
+        markersize=10,
+    )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Slider
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    slider = widgets.IntSlider(
+        value=0,
+        min=0,
+        max=len(path_pixels) - 1,
+        step=1,
+        description="Waypoint",
+        continuous_update=True,
+        layout=widgets.Layout(width="800px"),
+    )
+
+    def update(change):
+
+        idx = change["new"]
+
+        x = path_pixels[idx, 0]
+        y = path_pixels[idx, 1]
+
+        robot_dot.set_data([x], [y])
+
+        fig.canvas.draw_idle()
+
+    slider.observe(update, names="value")
+
+    display(slider)
+    plt.show()
 \end{verbatim}
 
-\subparagraph{Boustrophedon Path Generation}
+\paragraph{Preprocessing}
 
-After decomposition, each cell is populated with a boustrophedon path. Swaths are generated as straight lines parallel to the line used during decomposition. The transitions, often called headlands, are then generated to create one continuous path inside the cell.
+Before the map can be used to plan a path, a common preprocessing algorithm can be abstracted.
+Coverage path planners generally use either a binary map of the free space,
+(free=1, occupied=0) or the polygons constructed from the boundaries of the free space.
 
-\begin{verbatim}
-Number of cells: 16
-generating full trajectory
-\end{verbatim}
+The input to the algorithm can be any 2D image displaying the free and occupied pixels.
+In this case the input will be the costmap directly. First the costmap is thresholded to create a Figure~\ref{fig-original_costmap}, which is the first output.
 
-\includegraphics[width=0.7\linewidth]{files/2d7b2cbc1b8dc1aa7aa5a49495009de2.png}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/b83c88202d9871b18d688d507e6a1129.png}
+\caption[]{Binary costmap generated by thresholding the Nav2 costmap into free and occupied space.}
+\label{fig-binary_costmap}
+\end{figure}
 
-\paragraph{SkeletonPath}
+Then using this binary costmap, the contours Figure~\ref{fig-map_contours} are extracted.
 
-The \texttt{SkeletonPath} planner is a topology-based coverage planner that generates navigation paths using the morphological skeleton of the environment. Unlike the \texttt{BousPath} planner, which decomposes the free space into sweepable cells, the skeleton planner reduces the free space to a graph-like centerline representation. This representation preserves the connectivity of the environment while simplifying path planning. The implementation is inspired by recent work in morphology-based exploration and autonomous navigation.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/00508ff105beec1bbea05d5060b1e0f9.png}
+\caption[]{Contours extracted from the binary costmap representing the boundaries of free space.}
+\label{fig-map_contours}
+\end{figure}
+
+\paragraph{Morphology-Based Skeleton Path Planner}
+
+The first implemented method, based on the work of \citep{skeleton}, \citep{skeleton2}, derives a coverage path from the morphological skeleton of the free space. See the algorithm below.
+
+\textbf{Input:} Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in ℝ^2$\newline
+\textbf{Output:} Ordered waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$
 
 
 \bigskip
 \centerline{\rule{13cm}{0.4pt}}
 \bigskip
 
-\subparagraph{Planner Initialization}
+\begin{enumerate}
+\item $B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold)
+\item Extract contours from $B$, group by containment into polygon groups $G_{poly}$
+\item \textbf{For each} polygon group $g \in G_{poly}$:
 
-The planner can be initialized similarly to the other navigators:
+\begin{enumerate}
+\item $S \leftarrow$ medialAxis($B$) ~~~~\textit{(skimage skeletonize)}
+\item $W \leftarrow$ skeletonToWorldCoords($S$)
+\item $G_{graph} \leftarrow$ buildKDTreeGraph($W$, radius $= r_{path}$)
+\item bridgeDisconnectedComponents($G_{graph}$)
+\item $L \leftarrow$ findLeafNodes($G_{graph}$) ~~~~\textit{(nodes with degree 1)}
+\item $v \leftarrow$ nearestLeaf($\mathbf{p}_0$, $L$)
+\item $\mathcal{Q} \leftarrow [v]$, $\quad V_{visited} \leftarrow ∅$
+\item \textbf{While} $V_{visited} \neq L$:
 
-\subparagraph{Reading and Skeletonizing the Map}
+\begin{enumerate}
+\item $V_{visited} \leftarrow V_{visited} ∪ \{v\}$
+\item $r \leftarrow$ nearestLeafByGraphDistance($v$, $L ∖ V_{visited}$, $G_{graph}$)
+\item $\pi \leftarrow$ shortestPath($v$, $r$, $G_{graph}$)
+\item append $\pi$ to $\mathcal{Q}$
+\item $v \leftarrow r$
+\end{enumerate}
 
-The skeleton planner generates a morphological skeleton.
 
-Internally, the planner fills the free-space contours, skeletonizes the free-space region, extracts skeleton pixels,
-and converts them into Cartesian waypoints. The generated waypoints are then stored.
+\item $P_i \leftarrow [W[u] \;\forall\, u \in \mathcal{Q}]$
+\item append $P_i$ to $\mathcal{P}$, set $\mathbf{p}_0 \leftarrow P_i[last]$
+\end{enumerate}
+
+
+\item sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$)
+\item \textbf{Return} $\mathcal{P}$
+\end{enumerate}
+
+
+\bigskip
+\centerline{\rule{13cm}{0.4pt}}
+\bigskip
+
+The free space is extracted using the methods discussed in the previous section. The polygons are used and converted to a binary map as to not produce too many branches for the robot to navigate through. This map is then skeletonized to extract waypoints, see \texttt{Figure \{number\} \textless fig-skeleton\_free\textgreater }.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/0497c73abdc7b1d5cf514d0510d36ca9.png}
+\caption[]{Morphological skeleton extracted from the free-space representation of the environment.}
+\label{fig-skeleton_free}
+\end{figure}
+
+Once the waypoints are obtained, a graph is constructed and leaf nodes are extracted. In the graph leaf nodes are defined by there single connection to the rest of the skeleton, these are seen as endpoints of the path.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/e8e30db0dfadabbcf5bc6be64b02e066.png}
+\caption[]{Leaf nodes identified on the skeleton graph. These nodes represent endpoints used during path generation.}
+\label{fig-skeleton_leaves}
+\end{figure}
+
+Finally, starting from the closest leaf node to the robot, the full path is planned by recursively tracing the graph from the current leaf node to the nearest unvisited leaf node. Use the slider below to visualize the full path
 
 \begin{verbatim}
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-NameError                                 Traceback (most recent call last)
-Cell In[3], line 1
- - - - -> 1 navigator.read()
-      3 skeleton_img = cv2.addWeighted(
-      4     navigator.contour_img,
-      5     0.8,
-   (...)
-      8     0,
-      9 )
-     11 # Convert grayscale map to RGB so we can draw colored points
+%matplotlib widget
 
-NameError: name 'navigator' is not defined
+interactive_path_slider('figures/navigator_results/Initial_Costmap.png', 
+                        'figures/navigator_results/skeleton_path.csv', 
+                        "Skeleton Path Viewer",
+                        (255, 0, 0), 1)
 \end{verbatim}
-
-\subparagraph{Path Planning}
-
-After the waypoints have been generated, they are then sampled and ordered. The algorithm does this by first constructing a graph representation of the skeleton tree. The waypoints then become graph nodes. Edges are generated between the nodes with a certain distance threshold. To efficiently identify neighboring points, a k-d tree is used for spatial indexing. Starting from the closest waypoint to the robot, the algorithm recursively explores nearby nodes and connects them within the graph. Leaf nodes (nodes with a single connection) are then identified in the tree.
-
-\includegraphics[width=0.7\linewidth]{files/4599d3c4df780082d726948f94d0cc2d.png}
-
-\subparagraph{Path Ordering}
-
-Firstly, the closest leaf node to the robot is found, this is the starting position. \newline
-The planner traces a path along the tree and selects the shortest one to the next leaf node. \newline
-It then appends these points to the path and sets this new leaf node as the current one and marks it as visited. \newline
-The algorithm repeats this process until all leaf nodes have been explored successfully.
 
 \begin{verbatim}
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-NameError                                 Traceback (most recent call last)
-Cell In[5], line 5
-      1 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      2 # Generate planner path
-      3 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      4 
- - - - -> 5 navigator.start = [0, 0]
-      6 navigator.plan_path()
-      7 
-      8 path_points = navigator.path
-
-NameError: name 'navigator' is not defined
+IntSlider(value=0, description='Waypoint', layout=Layout(width='800px'), max=1862)
 \end{verbatim}
 
-\#\#SPANNING TREE MOET NOG GEBEUREN\#\#
+\includegraphics[width=0.7\linewidth]{files/167cb10a77a94eaa8cff02ddbf9eecfe.png}
+
+\paragraph{Grid Based Spanning Tree Planner}
+
+Secondly a grid based spanning tree algorithm is used to plan a full coverage path over the map. This planner is based on the work of \citep{SpanningTree2001}
+
+\textbf{Input:} Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in ℝ^2$, scale $s = 0.06$\newline
+\textbf{Output:} Ordered waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$
+
+
+\bigskip
+\centerline{\rule{13cm}{0.4pt}}
+\bigskip
+
+\begin{enumerate}
+\item $B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold)
+\item $B_{down} \leftarrow$ resize($B$, scale $= s$, interpolation $=$ NEAREST)
+\item $G \leftarrow$ gridGraph($B_{down}$) ~~~~\textit{(4-connected)}
+\item Remove all edges $(u, v)$ where $B_{down}[u] = 0$ or $B_{down}[v] = 0$
+\item $T \leftarrow ∅$
+\item \textbf{For each} connected component $\mathcal{C} \in G$:
+
+\begin{enumerate}
+\item $T \leftarrow T ∪$ DFS\_tree($\mathcal{C}$)
+\end{enumerate}
+
+
+\item \textbf{For each} edge $(u, v) \in T$: ~~~~\textit{(edge subdivision)}
+
+\begin{enumerate}
+\item $m \leftarrow \frac{u + v}{2}$
+\item replace $(u, v)$ with edges $(u, m)$ and $(m, v)$
+\end{enumerate}
+
+
+\item $P_{perim} \leftarrow \mathbf{0}^{H \times W}$, $\quad r \leftarrow \lfloor \frac{1}{4s} \rfloor$
+\item \textbf{For each} node $p \in T$:
+
+\begin{enumerate}
+\item $p_{img} \leftarrow \frac{p + 0.5}{s}$
+\item drawFilledRect($P_{perim}$, centre $= p_{img}$, halfsize $= r$)
+\end{enumerate}
+
+
+\item $\mathcal{C} \leftarrow$ findContours($P_{perim}$, RETR\_EXTERNAL)
+\item \textbf{For each} contour $c \in \mathcal{C}$:
+
+\begin{enumerate}
+\item $W \leftarrow$ pixelToWorld($c$)
+\item \textbf{If} $|W| < 2$: skip
+\item $idx \leftarrow \arg\min_i \|W[i] - \mathbf{p}_0\|_2$
+\item $P_i \leftarrow [W[idx], \ldots, W[ -1], W[0], \ldots, W[idx -1]]$
+\item append $P_i$ to $\mathcal{P}$, set $\mathbf{p}_0 \leftarrow P_i[last]$
+\end{enumerate}
+
+
+\item sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$)
+\item \textbf{Return} $\mathcal{P}$
+\end{enumerate}
+
+
+\bigskip
+\centerline{\rule{13cm}{0.4pt}}
+\bigskip
+
+As opposed to the Skeleton planner, this planner makes use of the binary costmap directly. Using this binary costmap, it is further discretized to a grid which is the fraction of the resolution of the original costmap.
+\texttt{Figure \{number\} \textless fig-spanning\_grid\textgreater }.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/e52ef7a18be6de16816e8de02870820d.png}
+\caption[]{Downsampled free-space grid used to construct the spanning tree graph.}
+\label{fig-spanning_grid}
+\end{figure}
+
+A degree first search (DFS) is conducted over the free cells, from which sparse waypoints are created.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/9bd57ec272547ef8da4e9ef4f69fa75f.png}
+\caption[]{Depth-first search spanning tree generated over the free-space grid.}
+\label{fig-spanning_dfs}
+\end{figure}
+
+A black image, of the same resolution as the original costmap is then created and white squares, with half the cell width, are placed in the center of each cell and in between each cell. Waypoints are created from the contours of this tree. These waypoints represent a circumnavigation around the DFS tree.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/4f28dd8203c91543e03c7c3658dc2887.png}
+\caption[]{Coverage waypoints generated by tracing the contour around the spanning tree structure.}
+\label{fig-spanning_waypoints}
+\end{figure}
+
+A segment from this circumnavigation is then removed from the path
+
+\begin{verbatim}
+%matplotlib widget
+
+interactive_path_slider('figures/navigator_results/Initial_Costmap.png', 
+                        'figures/navigator_results/spanning_tree_path.csv', 
+                        "Spanning Tree Path Viewer",
+                        (255, 0, 0), 1)
+\end{verbatim}
+
+\begin{verbatim}
+IntSlider(value=0, description='Waypoint', layout=Layout(width='800px'), max=109)
+\end{verbatim}
+
+\includegraphics[width=0.7\linewidth]{files/599d95078e5c8bdacfd731bcceaeb3fe.png}
