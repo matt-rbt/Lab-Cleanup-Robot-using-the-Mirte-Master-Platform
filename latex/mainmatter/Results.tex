@@ -14,7 +14,7 @@
     
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 14.52.27.png}
+    \includegraphics[width=0.99\linewidth]{latex/figures/SkeletonMapRviz.png}
     \caption{Picture of skeleton path in laboratory environment}
     \label{fig_skeletonpathresults}
     \end{figure}
@@ -24,12 +24,36 @@
     
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 14.52.27.png}
+    \includegraphics[width=0.99\linewidth]{latex/figures/SpanningTreeResult.jpeg}
     \caption{Picture of spanning tree path in laboratory environment}
     \label{fig_spanningtreeresults}
     \end{figure}
 
-    \subsection{Detection Methods}
-    \color{red}[Foto bounding box in point cloud] \color{black}
-    \subsection{Complete System}
-\end{paracol}
+    \subsection{Object Localization and Classification}
+     For object detection worked on a localization method and a classification method. Our object localizator relies on bounding boxes that are retrieved from pointclouds made by the depthcamera's depth images. Our object detector was able to find objects sized within *1cm* to 6cm. A bounding box drawn around a found object in the pointcloud is shown in the figure below. The custom-made YOLO26 object detection model worked as intended, being able to  classify the localized objects correctly. In the figure shown below a frame from the RGB sensor of the depth camera is shown in the bottom right corner.
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\linewidth]{latex/figures/SpanningTreeResult.jpeg}
+    \caption{Figure of bounding box drawn around found objects and YOLO26 working simultaneously.}
+    \label{fig_boundingboxresults}
+    \end{figure}
+    
+    \subsection{Manipulation}
+    \paragraph{Movement accuracy}
+    The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was around 15\textit{cm}. After the code was reworked, the actuator was controlled by actual joint values instead of approximations. This reduced the error significantly, resulting in a movement error of only 1\textit{mm}.
+
+    \paragraph{Gripping performance}
+    The gripping performance of the original robot was slightly increased by adding rubberized patches to gripping surfaces to the gripper. This has helped gripping the smooth, plastic testing objects significantly when the gripper approached the objects at a sub-optimal approach angle.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\linewidth]{latex/figures/RubberizedGrippingSurfaces.jpeg}
+    \caption{Figure showing rubberized gripping surfaces.}
+    \label{fig_rubberizedgrippingsurfaces}
+    \end{figure}
+    \switchcolumn
+    \end{paracol}
+
