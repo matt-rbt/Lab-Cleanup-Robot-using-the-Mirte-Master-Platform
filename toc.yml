@@ -19,8 +19,10 @@ project:
     - file: content/Methods.md
     - file: content/Results.ipynb
     - file: content/Conclusion.md
+    - file: content/Discussion.md
     - title: Appendix
       children:
-        - file: content/Cheatsheet.md
-        - file: errorlog.md
-        - file: README.md
+      - file: content/ListOfChanges.md
+      - file: content/Cheatsheet.md
+      - file: errorlog.md
+      - file: README.md

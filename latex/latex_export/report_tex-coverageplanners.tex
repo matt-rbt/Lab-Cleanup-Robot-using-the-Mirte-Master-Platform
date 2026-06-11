@@ -2,7 +2,7 @@
 
 This subsection presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
 
-In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used. {\textbackslash}
+In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used.
 
 \begin{figure}[!htbp]
 \centering
@@ -18,7 +18,7 @@ In order to demonstrate the different navigators, a map provided by the \href{ht
 
 Each defined navigator must update its internal map and plan a path over this map as a result.
 
-A function ``\texttt{update\_map()}'' first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
+A function \texttt{update\_map()} first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
 
 \includegraphics[width=0.7\linewidth]{files/56767a8af6767c1c1f2f0859e7195a2c.png}
 
@@ -124,3 +124,5 @@ Cell In[5], line 5
 
 NameError: name 'navigator' is not defined
 \end{verbatim}
+
+\#\#SPANNING TREE MOET NOG GEBEUREN\#\#
