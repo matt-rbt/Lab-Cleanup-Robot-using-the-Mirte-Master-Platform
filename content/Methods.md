@@ -2,7 +2,7 @@
 
 This study follows a factorial experimental design, analyzing the interplay between perception, coverage, and system-level decision-making.
 
-Two independent variables are defined:
+Three independent variables are defined:
 
 - **Detection Method:**
   - Point cloud clustering
