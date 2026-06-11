@@ -14,8 +14,8 @@
 
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{figures/task_bins-2cd24017829c1f053a0f5974e45d76ea.png}
-    \caption{Three main Tasks of the Robot}
+    \includegraphics[width=1.02\linewidth]{latex/figures/Lab_Cleanup-Task Bins-4.drawio.png}
+    \caption{Three main tasks of the Robot}
     \label{tasks}
     \end{figure}
 
@@ -31,8 +31,8 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.99\linewidth]{latex/figures/labcleantree_simple.png}
-        \caption{Behavior Tree}
+        \includegraphics[width=1.01\linewidth]{latex/figures/labclean_tree.drawio-simple tree.drawio (1).png}
+        \caption{Behaviour Tree}
         \label{fig:tree}
     \end{figure}
     \syncallcounters
@@ -41,7 +41,7 @@
     \begin{paracol}
         {2}
     \subsection{Mechanical}
-    
+    The CAD-model of this rendition of the MIRTE Master can be found using this link: \href{https://cad.onshape.com/documents/ee158bec245e3fe46f63c9ce/w/a0c8c76ba94ff339073118d4/e/a16fbc4a88cf67fd9fba6368?renderMode=0&uiState=6a2aaef65092a9418fe6a8f1}{CAD-Model}.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
 
@@ -67,10 +67,10 @@
     \subsubsection{Hardware Components}
 
     The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
-    
-    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed some changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
     \syncallcounters
     \switchcolumn
+    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed some changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
+
     \subsubsection{Design Goals for the Modified Robot}
 
     The goal of the hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
@@ -267,39 +267,42 @@
     In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \citep{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognised objects \citep{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
 
     \paragraph{Training:}
-    Training was done manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 pictures were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. The relevant results of the training session are shown on the next page.
+    Training was done manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 pictures were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. The relevant results of the training session are shown within the figure below.
     
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.01.41.png}
-    \caption[]{Picture of tests performed during training.}
+    \caption[]{Figure of tests performed during training}
     \label{fig_trainingdatasetresults}
     \end{figure}
-
+    %\smallskip
+    \centerline{\rule{7.8cm}{0.4pt}}
+    The curves in the figure below show that the model converged during trading. This means that the model actually learns while training instead of making random or unstable decisions.
     \syncallcounters
     
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.07.png}
-    \caption[]{Plots of training results per epoch. The curves show that the model converged during trading.}
+    \includegraphics[width=1.01\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.07.png}
+    \caption[]{Plots of training results per epoch}
     \label{fig_trainingdatasetplots}
     \end{figure}
 
     \syncallcounters
     \switchcolumn
-    
+    The normalized confusion matrix shows how well classes are recognized by the model. As shown in the figure shown below, most classes are classified correctly, as indicated by the strong diagonal values. However, light-grey objects were among the least correctly identified objects, this is a result of exposure and lighting changing enough to where the model will classify them as background. Some of objects were missed as background, a small amount of objects were misclassified, and some objects like dark-grey and white where confused with light-grey.
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.55.png}
-    \caption[]{Normalised confusion matrix: most classes are classified correctly, as indicated by the strong diagonal values. Some of objects were missed as background, a small amount of objects were misclassified, and some objects were recognised while they should not.}
+    \includegraphics[width=1.01\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.55.png}
+    \caption[]{Normalised confusion matrix}
     \label{fig_trainingdatasetplots}
     \end{figure}
     \syncallcounters
-    
+    \centerline{\rule{7.8cm}{0.4pt}}
+    A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precision (how many objects where correctly predicted) and recall (how many objects where correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3-0.35.
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.05.07.png}
-    \caption[]{BoxF1 curve: shows detection performance for each confidence level per object type. A good starting confidence threshold would be 0.3-0.35.}
+    \includegraphics[width=1.02\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.05.07.png}
+    \caption[]{BoxF1 curve}
     \label{fig_trainingdatasetplots}
     \end{figure}
     

@@ -1,6 +1,6 @@
-\subsection{Mechanical}
+\subsection*{Mechanical}
 
-\subsubsection{Original MIRTE Master Platform}
+\subsubsection*{Original MIRTE Master Platform}
 
 The project is based on the MIRTE Master V2. The platform consists of a mobile base propelled by four individually driven mecanum wheels and a robotic arm, allowing the robot to navigate through an environment and interact with objects.
 
@@ -18,13 +18,13 @@ The electronics of the original platform are based on an Orange Pi 3B and a Rasp
 
 The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of of the arm for object scanning and manipulation.
 
-\subsubsection{Hardware Components}
+\subsubsection*{Hardware Components}
 
 The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
 
 These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
 
-\subsubsection{Design Goals for the Modified Robot}
+\subsubsection*{Design Goals for the Modified Robot}
 
 The goal of the hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
 
@@ -40,7 +40,7 @@ The main design goals were:
 \item Modify the gripper so it can pick up waste objects more reliably.
 \end{itemize}
 
-\subsubsection{Chassis Modifications}
+\subsubsection*{Chassis Modifications}
 
 The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For this use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
 
@@ -48,7 +48,7 @@ The chassis consists of six side panels and a top and a bottom plate. In the ori
 
 Two separate waste bins were added to the robot. These bins allow the robot to collect, store and separate objects after picking them up.
 
-\subsubsection{Gripper Modifications}
+\subsubsection*{Gripper Modifications}
 
 The gripper is an important part of the laboratory-cleanup robot because it directly interacts with the objects that need to be collected. The original MIRTE Master gripper is useful as a general robotic gripper, but the cleanup task requires it to handle different small objects reliably.
 
@@ -56,7 +56,7 @@ The original gripper geometry is suitable for holding small and large objects, h
 
 During the initial testing phase of the RGBD camera, it was found that the mounting location for it was too low to the ground for it to be able to confidently display any accurate results regarding the distance towards objects. While this was the intended way for the camera to be implemented, for this project it was a better plan to mount this RGBD camera onto the end of the arm, right above the gripper. This gives it elevation which makes it able to look slightly more downward and therefore it could more accurately display distances. This also makes the need for the secondary RGB camera mounted onto the gripper insignificant, as the RGBD camera can also be used for object detection.
 
-\subsubsection{Summary of Hardware Changes}
+\subsubsection*{Summary of Hardware Changes}
 
 \bigskip\noindent
 \begin{tabular}{p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}p{\dimexpr 0.333\linewidth-2\tabcolsep}}
@@ -73,6 +73,6 @@ Gripper & Original MIRTE gripper & Improved gripping surface \\
 
 \bigskip
 
-\subsubsection{Current Design}
+\subsubsection*{Current Design}
 
 The complete model can be explored by using the interactive 3D interface below (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}).
