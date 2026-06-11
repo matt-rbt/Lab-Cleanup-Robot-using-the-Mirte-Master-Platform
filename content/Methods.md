@@ -20,7 +20,7 @@ This results in a total of 8 configurations to be tested and compared.
 
 ## From Simulation to Real-World Application
 
-For the transition from simulation to real-world testing, the codebase needed to be changed. The launch files were changed so that Gazebo was no longer used and `use_sim_time` parameters were set to `false`. To reduce the risk of collisions, the inflation radius and the robot radius in the Nav2 parameters were increased. Another change was the migration of processing tasks from the OrangePi 3B to a laptop connected to the MIRTE. Finally, all the sensors were tested and it was concluded that the depth camera was not positioned correctly and thus its position changed from the front of the robot to the gripper, allowing its position and viewing angle to be adjusted.
+For the transition from simulation towards real-world testing, the codebase needed to be changed. The launch files were changed so that Gazebo was no longer used and `use_sim_time` parameters were set to `false`. To reduce the risk of collisions, the inflation radius and the robot radius in the Nav2 parameters were increased. Another change was the migration of processing tasks from the OrangePi 3B to a laptop connected to the MIRTE. Finally, all the sensors were tested and it was concluded that the depth camera was not positioned correctly and thus its position changed from the front of the robot to the gripper, allowing its position and viewing angle to be adjusted.
 
 ##  Choice of Testing Environment
 
