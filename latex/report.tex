@@ -125,9 +125,19 @@
 % Override via template variable
   \setcounter{tocdepth}{2}
 
-\clearpage
+\section*{Preface}
+This report marks the end of our Bachelor's degree at TU Delft. Over the past few months, our team has engaged in designing an autonomous mobile laboratory-cleaning robot with a waste-separation mechanism. This has been achieved by integrating a 4-DOF manipulator, an RGBD camera and a software stack based on ROS2.
+
+We were drawn to this project because of the potential for creative freedom it seemed to offer, given that the main goal wasn't set in stone. This provided us with a hands-on learning experience that combines the theoretical and physical sides of robotics. Having a tangible robotic prototype as an end result was, as expected, a good motivator to keep on working diligently on the project.
+
+We would like to express our sincere gratitude towards our project supervisors, Martijn Wisse and Martin Klomp for their technical insights and feedback regarding the project. In addition, we would like to thank Arend-Jan van Hilten for helping us occasionally, despite not actually being involved in the project in any way.
+
+\vspace{1cm}
+\begingroup
+\renewcommand{\clearpage}{} 
+\renewcommand{\cleardoublepage}{}
 \tableofcontents
-\clearpage
+\endgroup
 
 \pagenumbering{\showPageNumbers}
 
@@ -137,6 +147,7 @@
 \include{mainmatter/Methods}
 \include{mainmatter/Results}
 \include{mainmatter/Conclusion}
+\include{}
 
 \color{gray}
 

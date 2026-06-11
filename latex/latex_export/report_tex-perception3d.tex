@@ -28,3 +28,21 @@ HTML("""
 Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \citep{Randomsampleconsensus}. With this method, point clouds can easily and quickly be filtered such that only the important parts, namely the clusters of points representing small objects on the ground, remain.
 
 Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong \citep{DBSCAN}. Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its dimensions.
+
+Below, figures Figure~\ref{og_pc} and Figure~\ref{bounding_boxes} show the input to output the constructed point cloud pipeline.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/6dd0f062f98a2429fe5e51c51184115a.png}
+\caption[]{The point cloud as received from the camera topic}
+\label{og_pc}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/4e43d62e31d6da7dc571949016f25e01.png}
+\caption[]{The resulting bounding boxes}
+\label{bounding_boxes}
+\end{figure}
+
+Any objects that are in the costmap are excluded, resulting in only these bounding boxes remaining.
