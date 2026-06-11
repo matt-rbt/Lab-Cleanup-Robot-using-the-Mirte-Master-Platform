@@ -23,12 +23,11 @@
     
     %\medskip
     %\centerline{\rule{7.8cm}{0.4pt}}
-    \syncallcounters
-    \switchcolumn
     \subsection{System Architecture}
     
     The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig:tree} is also used here to describe and execute the cleaning strategy.
-
+    \syncallcounters
+    \switchcolumn
     \begin{figure}[H]
         \centering
         \includegraphics[width=1.01\linewidth]{latex/figures/labclean_tree.drawio-simple tree.drawio (1).png}

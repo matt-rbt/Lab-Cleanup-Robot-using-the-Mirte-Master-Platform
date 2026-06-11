@@ -1,4 +1,4 @@
-\section*{System Overview}
+\section{System Overview}
 
 The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
 
@@ -14,14 +14,14 @@ Figure~\ref{fig-task_bins} below showcases this idea.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/task_bins-1f4a7ac1d4f7b20e8eae814e8d4375c9.png}
+\includegraphics[width=0.7\linewidth]{files/task_bins-49c2da7110eb5d5565d94c5df0ca4ac7.png}
 \end{figure}
 
 The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
 
-The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig-global_tree} is also used here to describe and execute the cleaning strategy.
+The system level strategy dictates how the robot behaves in a given situation. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave. This system level architecture, as shown in Figure~\ref{fig-global_tree}, is also used here to describe and execute the actual cleaning strategy.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/global_tree-b919c72b52394b7ddbc351f63f822586.png}
+\includegraphics[width=0.7\linewidth]{files/global_tree-06f1e18ed0724312a99630a94c5ee327.png}
 \end{figure}

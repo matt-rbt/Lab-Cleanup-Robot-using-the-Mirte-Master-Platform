@@ -16,6 +16,7 @@ project:
         children:
         - file: content/Perception2d.ipynb
         - file: content/Perception3d.ipynb
+        - file: content/PerceptionFusion.ipynb
     - file: content/Methods.md
     - file: content/Results.ipynb
     - file: content/Conclusion.md
