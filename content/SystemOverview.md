@@ -22,3 +22,5 @@ The system level strategy dictates how the robot behaves in a given situation. T
 :label: fig-global_tree
 :alt: Global Behavior tree of the entire system
 ```
+
+The behavior tree provides a hierarchical approach for coordinating navigation, perception and cleaning actions, cascades through the modules. It also can easily be visualised, simplifying debugging significantly. As can be seen from the tree, the robot will initially drive around. When it detects an object, it will approach, pick it up and place it in the correct basket.
