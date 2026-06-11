@@ -202,6 +202,42 @@
 
     The skeleton planner generates a morphological skeleton. Internally, the planner fills the free-space contours, skeletonizes the free-space region, extracts skeleton pixels,
     and converts them into Cartesian waypoints. The generated waypoints are then stored.
+    \begin{algorithm}
+        \caption{Skeleton-Based Coverage Path Planning}
+        \label{alg:skeleton}
+        \KwIn{Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in \mathbb{R}^2$}
+        \KwOut{Ordered list of waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$}
+
+        \tcc{Map preprocessing}
+        $B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold) \tcp*{binary free-space mask}
+        $C \leftarrow$ extractContours($B$) \tcp*{OpenCV RETR\_TREE}
+        $G_{poly} \leftarrow$ groupContoursByContainment($C$) \tcp*{outer + holes}
+
+        \ForEach{polygon group $g \in G_{poly}$}{
+            $S \leftarrow$ medialAxis($B$) \tcp*{skimage skeletonize}
+            $W \leftarrow$ skeletonToWorldCoords($S$)\;
+            $G_{graph} \leftarrow$ buildKDTreeGraph($W$, radius $= r_{path}$)\;
+            bridgeDisconnectedComponents($G_{graph}$)\;
+
+            $L \leftarrow$ findLeafNodes($G_{graph}$) \tcp*{nodes with degree 1}
+            $v \leftarrow$ nearestLeaf($\mathbf{p}_0$, $L$)\;
+            $\mathcal{Q} \leftarrow [v]$, $\;V_{visited} \leftarrow \emptyset$\;
+
+            \While{$V_{visited} \neq L$}{
+                $V_{visited} \leftarrow V_{visited} \cup \{v\}$\;
+                $r \leftarrow$ nearestLeafByGraphDistance($v$, $L \setminus V_{visited}$, $G_{graph}$)\;
+                $\pi \leftarrow$ shortestPath($v$, $r$, $G_{graph}$) \tcp*{Dijkstra}
+                append $\pi$ to $\mathcal{Q}$\;
+                $v \leftarrow r$\;
+            }
+
+            $P_i \leftarrow [W[u]\;\forall\,u \in \mathcal{Q}]$\;
+            append $P_i$ to $\mathcal{P}$\;
+            $\mathbf{p}_0 \leftarrow P_i[\text{last}]$ \tcp*{chain segments}
+        }
+        sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$) \tcp*{clamp to costmap bounds}
+        \Return $\mathcal{P}$
+    \end{algorithm}
     \end{paracol}
     \newpage
     \begin{paracol}

@@ -1,0 +1,367 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram name="ROS2 Topic Diagram" id="0">
+    <mxGraphModel dx="679" dy="396" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="leg0" value="LEGEND" style="text;html=1;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="30" y="30" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" value="ROS2 Node" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="30" y="60" width="130" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" value="Topic" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="30" y="105" width="130" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" value="Service" style="rounded=1;whiteSpace=wrap;fillColor=#FFE6CC;strokeColor=#D6B656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="30" y="150" width="130" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" value="Action" style="rounded=1;whiteSpace=wrap;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="30" y="195" width="130" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" value="Hardware/Ext" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="30" y="240" width="130" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" value="── publish" style="text;html=1;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="30" y="285" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7" value="- - service call" style="text;html=1;fontSize=9;strokeColor=#D6B656;fontColor=#D6B656;" parent="1" vertex="1">
+          <mxGeometry x="30" y="305" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg8" value="- - action call" style="text;html=1;fontSize=9;strokeColor=#9673A6;fontColor=#9673A6;" parent="1" vertex="1">
+          <mxGeometry x="30" y="325" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_lidar" value="RPLidar" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_depth" value="Orbbec Astra (depth camera)" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_rgb" value="Gripper Camera (RGB)" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="185" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_mirte" value="Mirte Master (base+arm hw)" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="250" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_battery" value="Battery Monitor" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="315" width="150" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="hw_leds" value="NeoPixel LED Strip" style="rounded=1;whiteSpace=wrap;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="375" width="150" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="t_scan" value="/scan" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="60" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_depth" value="/camera/depth/points" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="110" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_caminfo" value="/camera/depth/camera_info" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="155" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_rgb" value="/camera/color/image_raw" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="200" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_odom" value="/odom" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="245" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_cmdvel" value="/cmd_vel" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="290" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_joint" value="/joint_states" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="335" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_battery" value="/io/power/power_watcher" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="380" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_map" value="/map" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="435" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_costmap" value="/global_costmap/costmap" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="480" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_loccost" value="/local_costmap/costmap" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="525" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_tf" value="/tf  /tf_static" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="570" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_explst" value="/explore/status" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="615" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_cloud_det" value="/perception/depth/detected_objects" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="670" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_bbox" value="/object_bounding_boxes" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="715" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_annot" value="/gripper_camera/image_annotated" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="760" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_pc_raw" value="/obtained_pointcloud" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="815" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_pc_sculpt" value="/sculpted_pointcloud" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="860" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_pc_down" value="/downsampled_pointcloud" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="905" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_pc_plane" value="/plane_segmented_pointcloud" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="950" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_pc_excl" value="/exclusive_pointcloud" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="995" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_cancel" value="/dashboard/cancel" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="1050" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_start" value="/dashboard/start" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="1095" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="t_led_mk" value="/labclean_led_markers" style="rounded=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="420" y="1140" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s_led" value="/io/leds/leds/set_color" style="rounded=1;whiteSpace=wrap;fillColor=#FFE6CC;strokeColor=#D6B656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="60" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s_covstat" value="/labclean_navigator/set_state" style="rounded=1;whiteSpace=wrap;fillColor=#FFE6CC;strokeColor=#D6B656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="110" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s_getobj" value="/perception/planar/get_detected_objects" style="rounded=1;whiteSpace=wrap;fillColor=#FFE6CC;strokeColor=#D6B656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="160" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="a_coverage" value="/labclean_navigator/coverage" style="rounded=1;whiteSpace=wrap;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="230" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="a_move2pos" value="/move_to_position" style="rounded=1;whiteSpace=wrap;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="280" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="a_nav2pose" value="/navigate_to_pose" style="rounded=1;whiteSpace=wrap;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="330" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="a_gthrough" value="/navigate_through_poses" style="rounded=1;whiteSpace=wrap;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="680" y="380" width="230" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_slam" value="SLAM Toolbox" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1210" y="16" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_nav2" value="Nav2 Stack (planner+controller)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="120" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_explore" value="explore_lite" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="185" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_twist" value="twist_mux" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="245" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_moveit" value="MoveIt2" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="305" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_hw" value="ros2_control (arm+base hw)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="365" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_moveit_srv" value="MoveIt Action Server (mirte_lc_moveit_cpp)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="430" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_locator" value="object_locator (mirte_lc_vision)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="500" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_yolo" value="yolo_detector (mirte_lc_vision)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="565" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_covsrv" value="labclean_action_server (mirte_lc_nav2)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="630" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nd_bt" value="labclean_tree (mirte_lc_labclean)" style="rounded=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="802" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="he1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_lidar" target="t_scan" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_depth" target="t_depth" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_depth" target="t_caminfo" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_rgb" target="t_rgb" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_mirte" target="t_odom" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_mirte" target="t_joint" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="hw_battery" target="t_battery" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_cmdvel" target="hw_mirte" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="nd_bt" target="s_led" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="he10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="s_led" target="hw_leds" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_scan" target="nd_slam" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_tf" target="nd_slam" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_slam" target="t_map" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_slam" target="t_tf" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_map" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_scan" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_odom" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_tf" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_nav2" target="t_costmap" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_nav2" target="t_loccost" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_nav2" target="t_cmdvel" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_costmap" target="nd_explore" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_map" target="nd_explore" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_explore" target="t_explst" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_explore" target="t_cmdvel" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_twist" target="t_cmdvel" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_hw" target="t_joint" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_joint" target="nd_moveit" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_depth" target="nd_locator" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_costmap" target="nd_locator" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_tf" target="nd_locator" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_cloud_det" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_bbox" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_pc_raw" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_pc_sculpt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_pc_down" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_pc_plane" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_locator" target="t_pc_excl" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_rgb" target="nd_yolo" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_yolo" target="t_annot" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_costmap" target="nd_covsrv" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_tf" target="nd_covsrv" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_explst" target="nd_bt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_cloud_det" target="nd_bt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_battery" target="nd_bt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_cancel" target="nd_bt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="t_start" target="nd_bt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" parent="1" source="nd_bt" target="t_led_mk" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="se1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="nd_bt" target="s_covstat" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="se2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="s_covstat" target="nd_covsrv" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="se3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="nd_bt" target="s_getobj" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="se4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#D6B656;" parent="1" source="s_getobj" target="nd_yolo" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_bt" target="a_coverage" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="a_coverage" target="nd_covsrv" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_bt" target="a_move2pos" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="a_move2pos" target="nd_moveit_srv" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_moveit_srv" target="a_nav2pose" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_bt" target="a_nav2pose" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="a_nav2pose" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_covsrv" target="a_gthrough" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="a_gthrough" target="nd_nav2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#9673A6;" parent="1" source="nd_moveit_srv" target="nd_moveit" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
