@@ -1,8 +1,8 @@
 \subsubsection{Coverage}
 
-This section presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
+This subsection presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
 
-In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used. {\textbackslash}
+In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used.
 
 \begin{figure}[!htbp]
 \centering
@@ -18,13 +18,13 @@ In order to demonstrate the different navigators, a map provided by the \href{ht
 
 Each defined navigator must update its internal map and plan a path over this map as a result.
 
-A function ``\texttt{update\_map()}'' first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
+A function \texttt{update\_map()} first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours.
 
 \includegraphics[width=0.7\linewidth]{files/56767a8af6767c1c1f2f0859e7195a2c.png}
 
 \paragraph{Boustrophedon Coverage}
 
-The first navigator that will be covered is a Boustrophedon based coverage planner. \newline
+The first navigator that will be covered is a Boustrophedon-based coverage planner. \newline
 This navigator plans in two steps:
 
 \begin{itemize}
@@ -98,13 +98,13 @@ NameError: name 'navigator' is not defined
 
 \subparagraph{Path Planning}
 
-After the waypoints have been generated, they are then sampled and ordered. The algorithm does this by first constructing a graph representation of the skeleton tree. The waypoints then become graph nodes. Edges are generated between the nodes with a certain distance threshold. To efficiently identify neighboring points, a k-d tree is used for spatial indexing. Starting from the closest waypoint to the robot, the algorithm recursively explores nearby nodes and connects them within the graph. Leaf nodes are then identified in the tree, (nodes with one connection).
+After the waypoints have been generated, they are then sampled and ordered. The algorithm does this by first constructing a graph representation of the skeleton tree. The waypoints then become graph nodes. Edges are generated between the nodes with a certain distance threshold. To efficiently identify neighboring points, a k-d tree is used for spatial indexing. Starting from the closest waypoint to the robot, the algorithm recursively explores nearby nodes and connects them within the graph. Leaf nodes (nodes with a single connection) are then identified in the tree.
 
 \includegraphics[width=0.7\linewidth]{files/4599d3c4df780082d726948f94d0cc2d.png}
 
 \subparagraph{Path Ordering}
 
-First the closest leaf node to the robot is found, this is the starting position. \newline
+Firstly, the closest leaf node to the robot is found, this is the starting position. \newline
 The planner traces a path along the tree and selects the shortest one to the next leaf node. \newline
 It then appends these points to the path and sets this new leaf node as the current one and marks it as visited. \newline
 The algorithm repeats this process until all leaf nodes have been explored successfully.
@@ -124,3 +124,5 @@ Cell In[5], line 5
 
 NameError: name 'navigator' is not defined
 \end{verbatim}
+
+\#\#SPANNING TREE MOET NOG GEBEUREN\#\#

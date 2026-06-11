@@ -26,7 +26,7 @@ These components provide a useful base platform for a mobile manipulation task. 
 
 \subsubsection{Design Goals for the Modified Robot}
 
-The goal of our hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
+The goal of the hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
 
 The main design goals were:
 
@@ -42,9 +42,9 @@ The main design goals were:
 
 \subsubsection{Chassis Modifications}
 
-The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For our use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
+The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For this use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
 
-The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LED's on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more and will not shatter. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
+The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LEDs on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change to the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more without shattering. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
 
 Two separate waste bins were added to the robot. These bins allow the robot to collect, store and separate objects after picking them up.
 
@@ -52,7 +52,7 @@ Two separate waste bins were added to the robot. These bins allow the robot to c
 
 The gripper is an important part of the laboratory-cleanup robot because it directly interacts with the objects that need to be collected. The original MIRTE Master gripper is useful as a general robotic gripper, but the cleanup task requires it to handle different small objects reliably.
 
-The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper so good gripping performance is a must. For improving the grip on objects the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
+The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper, so good gripping performance is a must-have. For improving the grip on objects, the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
 
 During the initial testing phase of the RGBD camera, it was found that the mounting location for it was too low to the ground for it to be able to confidently display any accurate results regarding the distance towards objects. While this was the intended way for the camera to be implemented, for this project it was a better plan to mount this RGBD camera onto the end of the arm, right above the gripper. This gives it elevation which makes it able to look slightly more downward and therefore it could more accurately display distances. This also makes the need for the secondary RGB camera mounted onto the gripper insignificant, as the RGBD camera can also be used for object detection.
 
@@ -75,4 +75,26 @@ Gripper & Original MIRTE gripper & Improved gripping surface \\
 
 \subsubsection{Current Design}
 
-The complete model can be explored by using the interactive 3D interface below (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical})
+The complete model can be explored by using the interactive 3D interface below (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}).
+
+\begin{verbatim}
+from IPython.display import HTML
+
+HTML("""
+<script type="module" src="https://unpkg.com/@google/model -viewer/dist/model -viewer.min.js"></script>
+
+<model -viewer
+    src="https://matt -rbt.github.io/Lab -Cleanup -Robot -using -the -Mirte -Master -Platform/models/MM -final -compressed.glb"
+    camera -controls
+    auto -rotate
+    exposure = 0.4
+    style="width: 640px; height: 640px; background: #d1d9e6;">
+</model -viewer>
+""")
+
+# IMPORTANT:
+# The model path is an absolute GitHub Pages URL on purpose.
+# A relative path like "./models/floor_with_cubes.glb" works locally in VS Code,
+# but fails on the deployed MyST site because the page is served from /coverageplanners/.
+# Do not change this to a relative path unless you also test the deployed site.
+\end{verbatim}

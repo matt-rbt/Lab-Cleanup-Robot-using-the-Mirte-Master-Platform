@@ -1,0 +1,128 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram name="UML Navigation and Perception" id="0">
+    <mxGraphModel dx="1631" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bn" value="BasicNavigator" style="swimlane;startSize=26;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="80" y="80" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bn_b" value="── methods ──&lt;br/&gt;goToPose(pose)&lt;br/&gt;goThroughPoses(poses)&lt;br/&gt;cancelTask()&lt;br/&gt;isTaskComplete() : bool&lt;br/&gt;getFeedback()&lt;br/&gt;getResult()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="bn" vertex="1">
+          <mxGeometry y="26" width="280" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="sn" value="SystematicNavigator" style="swimlane;startSize=26;fillColor=#E1D5E7;strokeColor=#9673A6;fontStyle=3;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="80" y="360" width="280" height="358" as="geometry" />
+        </mxCell>
+        <mxCell id="sn_b" value="── attributes ──&lt;br/&gt;navigator_type: str&lt;br/&gt;paths: list&lt;br/&gt;threshold: float&lt;br/&gt;path_resolution: float&lt;br/&gt;costmap: PyCostmap2D&lt;br/&gt;polymap: list&lt;br/&gt;graph: nx.Graph&lt;br/&gt;── methods ──&lt;br/&gt;plan(map_msg, start)&lt;br/&gt;update_map(map_msg)&lt;br/&gt;sanitize_paths()&lt;br/&gt;generate_path(start)  [abstract]&lt;br/&gt;set_waypoints(wp) : Graph&lt;br/&gt;find_leaf_nodes(g) : list&lt;br/&gt;find_nearest_node(g,pos,nodes) : int&lt;br/&gt;pixel_to_world_poly(pts) : list&lt;br/&gt;world_to_pixel_poly(pts) : list&lt;br/&gt;publish_polygon(c)&lt;br/&gt;publish_path()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="sn" vertex="1">
+          <mxGeometry y="26" width="280" height="332" as="geometry" />
+        </mxCell>
+        <mxCell id="e_bn_sn" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#9673A6;" parent="1" source="sn" target="bn" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="skp" value="SkeletonPath" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="300" y="810" width="260" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="skp_b" value="── attributes ──&lt;br/&gt;name = &#39;SkeletonPlanner&#39;&lt;br/&gt;leaf_nodes: list&lt;br/&gt;── methods ──&lt;br/&gt;read()&lt;br/&gt;generate_path(start)&lt;br/&gt;plan_path(start,graph,wp) : ndarray&lt;br/&gt;find_nearest_leaf_node_along_path(n,leaves,g) : int" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="skp" vertex="1">
+          <mxGeometry y="26" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sn_sk" value="extends" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6C8EBF;" parent="1" source="skp" target="sn" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="stp" value="SpanningTreePath" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="600" y="810" width="260" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="stp_b" value="── attributes ──&lt;br/&gt;name = &#39;SpanningTreePlanner&#39;&lt;br/&gt;scale: float = 0.06&lt;br/&gt;── methods ──&lt;br/&gt;sample_map() : ndarray&lt;br/&gt;spanning_tree(grid)&lt;br/&gt;generate_waypoint_contours()&lt;br/&gt;generate_path(start)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="stp" vertex="1">
+          <mxGeometry y="26" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sn_st" value="extends" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6C8EBF;" parent="1" source="stp" target="sn" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="990" />
+              <mxPoint x="220" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cvtp" value="CVTPath" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="900" y="810" width="260" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="cvtp_b" value="── attributes ──&lt;br/&gt;name = &#39;CVTPlanner&#39;&lt;br/&gt;n_seeds: int = 30&lt;br/&gt;n_iterations: int = 20&lt;br/&gt;── methods ──&lt;br/&gt;lloyd_iteration(seeds,pixels) : ndarray&lt;br/&gt;tsp_nearest_neighbor(pts,start) : ndarray&lt;br/&gt;generate_path(start)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="cvtp" vertex="1">
+          <mxGeometry y="26" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sn_cvt" value="extends" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6C8EBF;" parent="1" source="cvtp" target="sn" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="1020" />
+              <mxPoint x="220" y="1020" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="slp" value="StraightLinePath" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="520" y="1070" width="220" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="slp_b" value="── attributes ──&lt;br/&gt;name = &#39;StraightLinePlanner&#39;&lt;br/&gt;length: float = 2.0&lt;br/&gt;── methods ──&lt;br/&gt;generate_path()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="slp" vertex="1">
+          <mxGeometry y="26" width="220" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sn_sl" value="extends" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6C8EBF;" parent="1" source="slp" target="sn" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lcas" value="LabCleanActionServer (Node)" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="430" y="200" width="280" height="262" as="geometry" />
+        </mxCell>
+        <mxCell id="lcas_b" value="── attributes ──&lt;br/&gt;pause_requested: bool&lt;br/&gt;stop_requested: bool&lt;br/&gt;remaining_poses: int&lt;br/&gt;planner: SystematicNavigator&lt;br/&gt;goal_paths: list&lt;br/&gt;── methods ──&lt;br/&gt;execute_callback(goal_handle)&lt;br/&gt;status_callback(req, resp)&lt;br/&gt;goal_callback(req) : GoalResponse&lt;br/&gt;cancel_callback(gh) : CancelResponse&lt;br/&gt;save_path()&lt;br/&gt;get_robot_position() : ndarray&lt;br/&gt;lookup_planner(name) : class" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="lcas" vertex="1">
+          <mxGeometry y="26" width="280" height="236" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lcas_sn" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="lcas" target="sn" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pd" value="PLANNERS: dict" style="rounded=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="790" y="370" width="180" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lcas_pd" value="registry" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#555;dashed=1;" parent="1" source="lcas" target="pd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ol2" value="ObjectLocator2 (Node)" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="80" width="280" height="246" as="geometry" />
+        </mxCell>
+        <mxCell id="ol2_b" value="── attributes ──&lt;br/&gt;points: ndarray&lt;br/&gt;maxDim: float = 0.3&lt;br/&gt;msg_queue: deque(maxlen=1)&lt;br/&gt;map: PyCostmap2D&lt;br/&gt;── methods ──&lt;br/&gt;finish_startup()&lt;br/&gt;process_queued_messages()&lt;br/&gt;process_point_cloud(msg)&lt;br/&gt;is_occupied(x,y,thresh) : bool&lt;br/&gt;pointcloud_callback(msg)&lt;br/&gt;costmap_callback(msg)&lt;br/&gt;point_cloud(pts,frame) : PointCloud2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="ol2" vertex="1">
+          <mxGeometry y="26" width="280" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="yc" value="Yolo26Cam" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1330" y="580" width="260" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="yc_b" value="── attributes ──&lt;br/&gt;device: str&lt;br/&gt;model: YOLO&lt;br/&gt;conf: float = 0.3&lt;br/&gt;imgsz: int = 640&lt;br/&gt;target_classes: list&lt;br/&gt;── methods ──&lt;br/&gt;predict_frame(frame) : list[dict]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="yc" vertex="1">
+          <mxGeometry y="26" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="yn" value="Yolo26RosNode (Node)" style="swimlane;startSize=26;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1330" y="840" width="260" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="yn_b" value="── attributes ──&lt;br/&gt;bridge: CvBridge&lt;br/&gt;latest_frame: ndarray | None&lt;br/&gt;detector: Yolo26Cam&lt;br/&gt;── methods ──&lt;br/&gt;image_callback(msg)&lt;br/&gt;detection_callback(req,resp)&lt;br/&gt;destroy_node()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="yn" vertex="1">
+          <mxGeometry y="26" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e_yn_yc" value="has-a" style="edgeStyle=orthogonalEdgeStyle;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#555;" parent="1" source="yn" target="yc" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbscan" value="DBSCAN (sklearn)" style="rounded=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1400" y="80" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ol_db" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="ol2" target="dbscan" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o3d" value="open3d PointCloud / OBB" style="rounded=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1400" y="160" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ol_o3d" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="ol2" target="o3d" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pcm" value="PyCostmap2D (nav2_simple_commander)" style="rounded=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1400" y="240" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ol_pcm" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="ol2" target="pcm" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sn_pcm" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="sn" target="pcm" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

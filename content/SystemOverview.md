@@ -2,7 +2,7 @@
 
 The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
 
-The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture: \
+The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture:
 1. **Motion planning**
 2. **Perception**
 3. **Navigation**
@@ -16,7 +16,7 @@ The main task of the robot can be broken down into sub-tasks, these then fit int
 
 The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
 
-The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in {numref}`Figure {number} <fig-global_tree>` is also used here to describe and execute the cleaning strategy.
+The system level strategy dictates how the robot behaves in a given situation. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave. This system level architecture, as shown in {numref}`Figure {number} <fig-global_tree>`, is also used here to describe and execute the actual cleaning strategy.
 
 ```{figure} figures/global_tree.*
 :label: fig-global_tree

@@ -2,19 +2,24 @@
 \begin{paracol}
     {2}
 
-   The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
+   The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
 
-    The main task of the robot can be broken down into sub-tasks which then fit into specific niches of the entire system architecture: \newline
-    \textbf{Motion planning}, \textbf{perception} and \textbf{navigation}. \newline Figure \ref{tasks} showcases this idea.
-    
+    The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture:
+    \begin{enumerate}
+    \item \textbf{Motion planning}
+    \item \textbf{Perception}
+    \item \textbf{Navigation}
+    \end{enumerate}
+    Figure \ref{tasks} showcases this idea.
+
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{figures/task_bins-2cd24017829c1f053a0f5974e45d76ea.png}
-    \caption{Three main Tasks}
+    \includegraphics[width=1.02\linewidth]{latex/figures/Lab_Cleanup-Task Bins-4.drawio.png}
+    \caption{Three main tasks of the Robot}
     \label{tasks}
     \end{figure}
 
-    The scope of this project includes how different perception (classification) and navigation (mapping and patrolling) approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
+    The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
     
     %\medskip
     %\centerline{\rule{7.8cm}{0.4pt}}
@@ -22,12 +27,12 @@
     \switchcolumn
     \subsection{System Architecture}
     
-    The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure \ref{fig:tree} is also used here to describe and execute the cleaning strategy.
+    The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig:tree} is also used here to describe and execute the cleaning strategy.
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.99\linewidth]{figures/global_tree-2bf659e406234184b268bd363f526c70.png}
-        \caption{System Architecture}
+        \includegraphics[width=1.01\linewidth]{latex/figures/labclean_tree.drawio-simple tree.drawio (1).png}
+        \caption{Behaviour Tree}
         \label{fig:tree}
     \end{figure}
     \syncallcounters
@@ -36,7 +41,7 @@
     \begin{paracol}
         {2}
     \subsection{Mechanical}
-    
+    The CAD-model of this rendition of the MIRTE Master can be found using this link: \href{https://cad.onshape.com/documents/ee158bec245e3fe46f63c9ce/w/a0c8c76ba94ff339073118d4/e/a16fbc4a88cf67fd9fba6368?renderMode=0&uiState=6a2aaef65092a9418fe6a8f1}{CAD-Model}.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
 
@@ -62,13 +67,13 @@
     \subsubsection{Hardware Components}
 
     The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
-    
-    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
     \syncallcounters
     \switchcolumn
+    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed some changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
+
     \subsubsection{Design Goals for the Modified Robot}
 
-    The goal of our hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
+    The goal of the hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
     
     The main design goals were:
     \begin{itemize}
@@ -83,9 +88,9 @@
 
     \subsubsection{Chassis Modifications}
     
-    The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For our use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
+    The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For this use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
     
-    The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LED's on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more and will not shatter. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
+    The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LEDs on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change to the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more without shattering. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
     
     Two separate waste bins were added to the robot. These bins allow the robot to collect, store and separate objects after picking them up.
     \syncallcounters
@@ -96,8 +101,8 @@
     \subsubsection{Gripper Modifications}
     
     The gripper is an important part of the laboratory-cleanup robot because it directly interacts with the objects that need to be collected. The original MIRTE Master gripper is useful as a general robotic gripper, but the cleanup task requires it to handle different small objects reliably.
-    
-    The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper so good gripping performance is a must. For improving the grip on objects the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
+
+    The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper, so good gripping performance is a must-have. For improving the grip on objects, the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
     
     During the initial testing phase of the RGBD camera, it was found that the mounting location for it was too low to the ground for it to be able to confidently display any accurate results regarding the distance towards objects. While this was the intended way for the camera to be implemented, for this project it was a better plan to mount this RGBD camera onto the end of the arm, right above the gripper. This gives it elevation which makes it able to look slightly more downward and therefore it could more accurately display distances. This also makes the need for the secondary RGB camera mounted onto the gripper insignificant, as the RGBD camera can also be used for object detection.
     
@@ -105,7 +110,7 @@
     \centerline{\rule{7.8cm}{0.4pt}}
 
     \subsubsection{Current Design}
-    The complete model can be explored by using the interactive 3D interface via the following web-page: \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}.
+    The finalised design is available for viewing \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{here}.
     %\todo{Screenshot van de robot}
     %\begin{figure}
     %    \centering
@@ -119,30 +124,33 @@
 
     \subsection{Navigation}
 
-    The navigation stack of this robot is responsible for three main tasks:
+    The navigation stack of this robot is responsible for two main tasks:
     \begin{itemize}
     \item Mapping
     \item Coverage
     \end{itemize}
-    \syncallcounters
-    \switchcolumn
-    \subsubsection{Mapping}
-    
-    Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialized mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'.
-
-    Once the environment is mapped \{sufficiently\}, the robot is allowed to navigate the space and propagate its behavior further down the tree.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
+    \subsubsection{Mapping}
+    
+    Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialised mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'.
+    
+    Once the environment is mapped sufficiently, the robot is allowed to navigate the space and propagate its behavior further down the tree.
+
+    \syncallcounters
+    \switchcolumn
     \subsubsection{Coverage Planning Algorithms}
 
-    This section presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
+    This subsection presents the coverage planning algorithms employed in this study. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
 
     %In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used. \newline
     % . . . shows the costmap generated by Nav2.
 
     \paragraph{The Free Space Polygon:}
 
-    Each defined navigator must update its internal map and as a result plan a path over this map. A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours. An example of this can be seen in Figure \ref{fig:costmap} below.
+    Each defined navigator must update its internal map and plan a path over this map as a result.
+    
+    A function first takes the costmap and, given a threshold, sets the free space to 0 and occupied space to 1. It then detects the boundaries of the free space and saves these as contours. An example of this can be seen in Figure \ref{fig:costmap} below.
 
     \begin{figure}[H]
         \centering
@@ -150,14 +158,12 @@
         \caption{Costmap with boundary contours}
         \label{fig:costmap}
     \end{figure}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
+
+\begin{comment}
+    \color{red}
     \paragraph{Boustrophedon Coverage:}
 
-    The first navigator that will be covered is a Boustrophedon based Coverage
-    planner. This navigator plans in two steps:
+    The first navigator that will be covered is a Boustrophedon-based Coverage planner. This navigator plans in two steps:
     \begin{itemize}
         \item Decomposition
         \item Swath Generation
@@ -165,7 +171,7 @@
     \syncallcounters
     \paragraph{Boustrophedon Cellular Decomposition:}
 
-    To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in the figure below.
+    To effectively cover the entire map with boustrophedon (back and forth) swaths, the map is first partitioned (decomposed) into smaller areas that can be covered fully with these swaths. This is done by sweeping a straight line across the map and creating new cells where the connectivity of this line decreases. Cells are closed and a new one opens when this connectivity increases again or the line is fully restored. The results of Boustrophedon cellular Decomposition can be viewed in Figure \ref{fig:bous}.
 
     \begin{figure}[H]
         \centering
@@ -175,12 +181,9 @@
     \end{figure}
     \syncallcounters
     \switchcolumn
-    
+
     \paragraph{Boustrophedon Path Generation:}
-    After decomposition, each cell is populated with a boustrophedon path. Swaths
-    are generated as straight lines parallel to the line used during decomposition.
-    The transitions, often called headlands, are then generated to create one
-    continuous path inside the cell.
+    After decomposition, each cell is populated with a boustrophedon path. Swaths are generated as straight lines parallel to the line used during decomposition. The transitions, often called headlands, are then generated to create one continuous path inside the cell.
     
     \begin{figure}[H]
         \centering
@@ -189,40 +192,25 @@
         \label{fig:generation}
     \end{figure}
     \syncallcounters
-
+    \color{black}
+\end{comment}
     \paragraph{SkeletonPath:}
 
-    The \texttt{SkeletonPath} planner is a topology-based coverage planner that
-    generates navigation paths using the morphological skeleton of the environment.
+    The \texttt{SkeletonPath} planner is a topology-based coverage planner that generates navigation paths using the morphological skeleton of the environment. Unlike the \texttt{BousPath} planner, which decomposes the free space into sweepable cells, the skeleton planner reduces the free space to a graph-like centerline representation. This representation preserves the connectivity of the environment while simplifying path planning. The implementation is inspired by recent work in morphology-based exploration and autonomous navigation.
 
-    Unlike the \texttt{BousPath} planner, which decomposes the free space into
-    sweepable cells, the skeleton planner reduces the free space to a graph-like
-    centerline representation. This representation preserves the connectivity of
-    the environment while simplifying path planning. The implementation is inspired
-    by recent work in morphology-based exploration and autonomous navigation.
+    \paragraph{Reading and Skeletonising the Map:}
 
-    \paragraph{Reading and Skeletonizing the Map:}
-
-    The skeleton planner generates a morphological skeleton. Internally, the
-    planner fills the free-space contours, skeletonizes the free-space region,
-    extracts skeleton pixels, and converts them into Cartesian waypoints. The
-    generated waypoints are then stored.
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
+    The skeleton planner generates a morphological skeleton. Internally, the planner fills the free-space contours, skeletonises the free-space region, extracts skeleton pixels,
+    and converts them into Cartesian waypoints. The generated waypoints are then stored.
+\end{paracol}
+\newpage
+\begin{paracol}
+    {2}
     \paragraph{Path Planning:}
 
-    After the waypoints have been generated, they are then sampled and ordered.
-    \newline The algorithm does this by first constructing a graph representation
-    of the skeleton tree. \newline The waypoints then become graph nodes. Edges are
-    generated between the nodes with a certain distance threshold.
-
-    To efficiently identify neighboring points, a k-d tree is used for spatial
-    indexing. \newline Starting from the closest waypoint to the robot, the
-    algorithm recursively explores nearby nodes and connects them within the graph.
-
-    Leaf nodes are then identified in the tree, (nodes with one connection).
+    After the waypoints have been generated, they are then sampled and ordered. The algorithm does this by first constructing a graph representation of the skeleton tree. The waypoints then become graph nodes. Edges are generated between the nodes with a certain distance threshold.
+    
+    To efficiently identify neighboring points, a k-d tree is used for spatial indexing. Starting from the closest waypoint to the robot, the algorithm recursively explores nearby nodes and connects them within the graph. Leaf nodes (nodes with a single connection) are then identified in the tree.
 
     \begin{figure}[H]
         \centering
@@ -230,34 +218,104 @@
         \caption{Leaf Nodes}
         \label{fig:leaf}
     \end{figure}
-
+    \syncallcounters
     \paragraph{Path Ordering:}
 
-    First the closest leaf node to the robot is found, this is the starting
-    position. \newline The planner traces a path along the tree and selects the
-    shortest one to the next leaf node. \newline It then appends these points to
-    the path and sets this new leaf node as the current one and marks it as
-    visited. \newline The algorithm repeats this process untill all leaf nodes have
-    been explored successfully.
+    Firstly, the closest leaf node to the robot is found, this is the starting position. \newline
+    The planner traces a path along the tree and selects the shortest one to the next leaf node. \newline
+    It then appends these points to the path and sets this new leaf node as the current one and marks it as visited. \newline
+    The algorithm repeats this process until all leaf nodes have been explored successfully.
     \syncallcounters
-    \switchcolumn
-    
     \subsection{Perception}
 
-    Perception is responsible for object detection, classification and spatial
-    localization. For this study we limited the object detection and localization
-    approaches to two. A \textbf{2D detection and depth projection} approach, and
-    3D segmentation with \textbf{point cloud clustering}. As for classification
-    methods, this study evaluates a classical cv approach, as well as a
-    classification model based approach.
-
-    Objects are categorized into:
+    Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
+    As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
+    \switchcolumn
+    Originally, objects where categorised into:
     \begin{enumerate}
-        \item Graspable vs non-graspable
-        \item Electronics vs non-electronics
+    \item Graspable vs non-graspable
+    \item Electronics vs non-electronics
     \end{enumerate}
+    However, due to the limitations of the hardware of the standard MIRTE Master package (relatively low-quality camera and limited computing power) the scope got reduced to:
+    \begin{enumerate}
+    \item Graspable vs non-graspable
+    \item Colourful vs greyscale
+    \end{enumerate}
+    \subsubsection{Perception 2D}
+    For determining the type, and possibly the distance of objects, a YOLO26 ('You Only Look Once-26') object classification model was used. A dataset was trained by recording videos using the USB Camera included in the MIRTE Master hardware package, of which one in every fifteen frames got extracted to use for the training dataset. A picture of four frames in different environments is shown below.
 
-    \begin{quote}
-        iets meer over classification.
-    \end{quote}
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 11.59.18.png}
+    \caption[]{Picture of four individual frames}
+    \label{fig_trainingdataset}
+    \end{figure}
+    
+    \syncallcounters
+\begin{comment}
+    Using this approach, point clouds can be efficiently filtered so that only the relevant parts remain, namely the clusters of points representing small objects on the ground. Subsequently, a clustering algorithm known as \textbf{DBSCAN} (\textit{Density-Based Spatial Clustering of Applications with Noise}) is applied. DBSCAN analyses the remaining points and groups them into clusters based on point density, while simultaneously identifying noise and outliers ([source](A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise)).
+    
+    Once the clusters have been identified, they are converted into bounding boxes. These bounding boxes provide estimates of an object's position, orientation, and dimensions. Finally, the resulting object poses (position and orientation) are published on a ROS 2 topic, allowing any other node in the system to access and use the localisation data.
+\end{comment}
+
+    \paragraph{Why YOLO26 was used:}
+    The YOLO object-detection family is well established, with YOLO26 being the most recent generation. YOLO26 was chosen because the robot has to detect and classify objects from a live camera on the MIRTE Master platform, which has limited processing power as it uses an OrangePi 3B which has limited computational capabilities. Object detection with limited processing power requires a lightweight model with fast inference times while still maintaining accuracy. YOLO26 is suitable for this because it was designed with deployment on low-power devices in mind. It changed the post-processing pipeline to NMS-free inference, simplified bounding-box predictions and supports deployment formats commonly used for low-power devices \citep{yolo26keyarchitecturalenhancements}.
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \citep{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognised objects \citep{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
+
+    \paragraph{Training:}
+    Training was done manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 pictures were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. The relevant results of the training session are shown within the figure below.
+    
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.01.41.png}
+    \caption[]{Figure of tests performed during training}
+    \label{fig_trainingdatasetresults}
+    \end{figure}
+    %\smallskip
+    \centerline{\rule{7.8cm}{0.4pt}}
+    The curves in the figure below show that the model converged during trading. This means that the model actually learns while training instead of making random or unstable decisions.
+    \syncallcounters
+    
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=1.01\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.07.png}
+    \caption[]{Plots of training results per epoch}
+    \label{fig_trainingdatasetplots}
+    \end{figure}
+
+    \syncallcounters
+    \switchcolumn
+    The normalized confusion matrix shows how well classes are recognized by the model. As shown in the figure shown below, most classes are classified correctly, as indicated by the strong diagonal values. However, light-grey objects were among the least correctly identified objects, this is a result of exposure and lighting changing enough to where the model will classify them as background. Some of objects were missed as background, a small amount of objects were misclassified, and some objects like dark-grey and white where confused with light-grey.
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=1.01\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.03.55.png}
+    \caption[]{Normalised confusion matrix}
+    \label{fig_trainingdatasetplots}
+    \end{figure}
+    \syncallcounters
+    \centerline{\rule{7.8cm}{0.4pt}}
+    A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precision (how many objects where correctly predicted) and recall (how many objects where correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3-0.35.
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=1.02\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.05.07.png}
+    \caption[]{BoxF1 curve}
+    \label{fig_trainingdatasetplots}
+    \end{figure}
+    
+    \end{paracol}
+    \newpage
+    \subsubsection{Perception 3D}
+    \begin{paracol}
+        {2}
+    \paragraph{Point Cloud-based Object localisation:}
+
+    To determine the exact location of graspable objects around the MIRTE Master, the data gathered and sent by the camera will have to be interpreted in some way. One way to do so is using point clouds. These are, as the name suggests, clouds of points representing a 3-dimensional space. Points in these clouds can possess a variety of information, depending on their creator. However, the most important characteristic is a point's position, represented by \textit{x-}, \textit{y-}, and \textit{z-}coordinate values. This can be used to determine whether the point is part of a plane, e.g. the floor or a wall, but also desktops or table legs.
+
+    Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \color{red}(Cite: Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)\color{black}. With this method, point clouds can easily and quickly be filtered such that only the important parts - the clusters of points representing small objects on the ground - remain.
+
+    Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong \color{red}(cite A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise)\color{black}. Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its size. Finally, the poses (position \& orientation) of the localised objects are published to a ROS 2 topic, to be read by another node.
     \end{paracol}

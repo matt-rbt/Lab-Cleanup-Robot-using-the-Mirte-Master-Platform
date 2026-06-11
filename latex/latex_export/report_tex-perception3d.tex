@@ -1,8 +1,8 @@
 \subsubsection{Perception 3D}
 
-\paragraph{Point Cloud-based Object localisation}
+\paragraph{Point Cloud-based Object localisation:}
 
-To determine the exact location of graspable objects around the MIRTE Master, the data gathered and sent by the camera will have to be interpreted in some way. One way to do so is using point clouds. These are, as the name suggests, clouds of points representing a 3-dimensional space. Points in these clouds can possess a variety of information, depending on their creator. However, the most important characteristic is a point's position, represented by x-, y- and z-coordinate values. This can be used to determine whether the point is part of a plane, e.g. the floor or a wall, but also desktops or table legs.
+To determine the exact location of graspable objects around the MIRTE Master, the data gathered and transmitted by the camera must be interpreted. One effective method for achieving this is through the use of point clouds. As the name suggests, point clouds are collections of points that represent a three-dimensional space. These points may contain a variety of information, but the most important characteristic of a point during this project is its position, represented by its \textit{x}, \textit{y}, and \textit{z} coordinates.
 
 \begin{verbatim}
 from IPython.display import HTML
@@ -25,6 +25,24 @@ HTML("""
 # Do not change this to a relative path unless you also test the deployed site.
 \end{verbatim}
 
-Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane (Cite: Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography). With this method, point clouds can easily and quickly be filtered such that only the important parts - the clusters of points representing small objects on the ground - remain.
+Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \citep{Randomsampleconsensus}. With this method, point clouds can easily and quickly be filtered such that only the important parts, namely the clusters of points representing small objects on the ground, remain.
 
-Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong (cite A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise). Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its size. Finally, the poses (position \& orientation) of the localised objects are published to a ROS 2 topic, to be read by another node.
+Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong \citep{DBSCAN}. Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its dimensions.
+
+Below, figures Figure~\ref{og_pc} and Figure~\ref{bounding_boxes} show the input to output the constructed point cloud pipeline.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/6dd0f062f98a2429fe5e51c51184115a.png}
+\caption[]{The point cloud as received from the camera topic}
+\label{og_pc}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{files/4e43d62e31d6da7dc571949016f25e01.png}
+\caption[]{The resulting bounding boxes}
+\label{bounding_boxes}
+\end{figure}
+
+Any objects that are in the costmap are excluded, resulting in only these bounding boxes remaining.
