@@ -2,7 +2,7 @@
 
 The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
 
-The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture: \
+The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture:
 1. **Motion planning**
 2. **Perception**
 3. **Navigation**

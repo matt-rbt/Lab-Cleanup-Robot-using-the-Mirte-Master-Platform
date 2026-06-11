@@ -31,8 +31,8 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.99\linewidth]{figures/global_tree-2bf659e406234184b268bd363f526c70.png}
-        \caption{System Architecture}
+        \includegraphics[width=0.99\linewidth]{latex/figures/labcleantree_simple.png}
+        \caption{Behavior Tree}
         \label{fig:tree}
     \end{figure}
     \syncallcounters
@@ -110,7 +110,7 @@
     \centerline{\rule{7.8cm}{0.4pt}}
 
     \subsubsection{Current Design}
-    The complete model can be explored by using the interactive 3D interface via the following web-page: \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}.
+    The finalised design is available for viewing \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{here}.
     %\todo{Screenshot van de robot}
     %\begin{figure}
     %    \centering
@@ -133,7 +133,7 @@
     \switchcolumn
     \subsubsection{Mapping}
     
-    Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialized mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'.
+    Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialised mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'.
     
     Once the environment is mapped sufficiently, the robot is allowed to navigate the space and propagate its behavior further down the tree.
 
@@ -162,6 +162,7 @@
     \newpage
     \begin{paracol}
         {2}
+        \color{red}
     \paragraph{Boustrophedon Coverage:}
 
     The first navigator that will be covered is a Boustrophedon-based Coverage planner. This navigator plans in two steps:
@@ -182,7 +183,7 @@
     \end{figure}
     \syncallcounters
     \switchcolumn
-    
+
     \paragraph{Boustrophedon Path Generation:}
     After decomposition, each cell is populated with a boustrophedon path. Swaths are generated as straight lines parallel to the line used during decomposition. The transitions, often called headlands, are then generated to create one continuous path inside the cell.
     
@@ -193,7 +194,7 @@
         \label{fig:generation}
     \end{figure}
     \syncallcounters
-
+    \color{black}
     \paragraph{SkeletonPath:}
 
     The \texttt{SkeletonPath} planner is a topology-based coverage planner that generates navigation paths using the morphological skeleton of the environment. Unlike the \texttt{BousPath} planner, which decomposes the free space into sweepable cells, the skeleton planner reduces the free space to a graph-like centerline representation. This representation preserves the connectivity of the environment while simplifying path planning. The implementation is inspired by recent work in morphology-based exploration and autonomous navigation.
@@ -202,42 +203,7 @@
 
     The skeleton planner generates a morphological skeleton. Internally, the planner fills the free-space contours, skeletonizes the free-space region, extracts skeleton pixels,
     and converts them into Cartesian waypoints. The generated waypoints are then stored.
-    \begin{algorithm}
-        \caption{Skeleton-Based Coverage Path Planning}
-        \label{alg:skeleton}
-        \KwIn{Occupancy grid $\mathcal{M}$, robot start position $\mathbf{p}_0 \in \mathbb{R}^2$}
-        \KwOut{Ordered list of waypoint segments $\mathcal{P} = [P_1, P_2, \ldots, P_k]$}
 
-        \tcc{Map preprocessing}
-        $B \leftarrow$ threshold($\mathcal{M}$, lethal\_threshold) \tcp*{binary free-space mask}
-        $C \leftarrow$ extractContours($B$) \tcp*{OpenCV RETR\_TREE}
-        $G_{poly} \leftarrow$ groupContoursByContainment($C$) \tcp*{outer + holes}
-
-        \ForEach{polygon group $g \in G_{poly}$}{
-            $S \leftarrow$ medialAxis($B$) \tcp*{skimage skeletonize}
-            $W \leftarrow$ skeletonToWorldCoords($S$)\;
-            $G_{graph} \leftarrow$ buildKDTreeGraph($W$, radius $= r_{path}$)\;
-            bridgeDisconnectedComponents($G_{graph}$)\;
-
-            $L \leftarrow$ findLeafNodes($G_{graph}$) \tcp*{nodes with degree 1}
-            $v \leftarrow$ nearestLeaf($\mathbf{p}_0$, $L$)\;
-            $\mathcal{Q} \leftarrow [v]$, $\;V_{visited} \leftarrow \emptyset$\;
-
-            \While{$V_{visited} \neq L$}{
-                $V_{visited} \leftarrow V_{visited} \cup \{v\}$\;
-                $r \leftarrow$ nearestLeafByGraphDistance($v$, $L \setminus V_{visited}$, $G_{graph}$)\;
-                $\pi \leftarrow$ shortestPath($v$, $r$, $G_{graph}$) \tcp*{Dijkstra}
-                append $\pi$ to $\mathcal{Q}$\;
-                $v \leftarrow r$\;
-            }
-
-            $P_i \leftarrow [W[u]\;\forall\,u \in \mathcal{Q}]$\;
-            append $P_i$ to $\mathcal{P}$\;
-            $\mathbf{p}_0 \leftarrow P_i[\text{last}]$ \tcp*{chain segments}
-        }
-        sanitiseWaypoints($\mathcal{P}$, $\mathcal{M}$) \tcp*{clamp to costmap bounds}
-        \Return $\mathcal{P}$
-    \end{algorithm}
     \end{paracol}
     \newpage
     \begin{paracol}
@@ -269,7 +235,7 @@
     Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
     As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
     
-    Originally, objects where categorized into:
+    Originally, objects where categorised into:
     \begin{enumerate}
     \item Graspable vs non-graspable
     \item Electronics vs non-electronics
@@ -283,7 +249,7 @@
     
     To determine the exact location of graspable objects around the MIRTE Master, the data gathered and transmitted by the camera must be interpreted. One effective method for achieving this is through the use of point clouds. As the name suggests, point clouds are collections of points that represent a three-dimensional space. Depending on how they are generated, points may contain various types of information. However, the most important characteristic of a point is its position, represented by its \textit{x-}, \textit{y-}, and \textit{z-}coordinates.
     
-    These coordinates can be used to determine whether a point belongs to a planar surface, such as the floor, a wall, a tabletop, or a table leg. Plane detection is performed using the \textbf{Random Sample Consensus (RANSAC)} algorithm. RANSAC randomly selects a subset of points from the point cloud and fits a plane through them. It then evaluates which points in the cloud lie within a predefined distance of the estimated plane, thereby identifying inliers that belong to the same surface ([source](Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)). \color{red}[Nog ff de sources fixen hierboven en hieronder bitte] \color{black}
+    These coordinates can be used to determine whether a point belongs to a planar surface, such as the floor, a wall, a tabletop, or a table leg. Plane detection is performed using the \textbf{Random Sample Consensus (RANSAC)} algorithm. RANSAC randomly selects a subset of points from the point cloud and fits a plane through them. It then evaluates which points in the cloud lie within a predefined distance of the estimated plane, thereby identifying inliers that belong to the same surface ([source](Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)). \color{red}Nog ff de sources fixen hierboven en hieronder bitte \color{black}
     \end{paracol}
     \newpage
     \begin{paracol}
@@ -307,7 +273,7 @@
     \paragraph{Why YOLO26 was used:}
     The YOLO object-detection family is well established, with YOLO26 being the most recent generation. YOLO26 was chosen because the robot has to detect and classify objects from a live camera on the MIRTE Master platform, which has limited processing power as it uses an OrangePi 3B which has limited computational capabilities. Object detection with limited processing power requires a lightweight model with fast inference times while still maintaining accuracy. YOLO26 is suitable for this because it was designed with deployment on low-power devices in mind. It changed the post-processing pipeline to NMS-free inference, simplified bounding-box predictions and supports deployment formats commonly used for low-power devices \citep{yolo26keyarchitecturalenhancements}.
 
-    In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \citep{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognized objects \citep{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
+    In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \citep{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognised objects \citep{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
 
     \paragraph{Training:}
 
@@ -338,7 +304,7 @@
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{files/f8ce65a5f1e1e34b97820b1f2a8191e4.png}
-    \caption[]{Normalized confusion matrix: most classes are classified correctly, as indicated by the strong diagonal values. Some of objects were missed as background, a small amount of objects were misclassified, and some objects were recognized while they should not.}
+    \caption[]{Normalised confusion matrix: most classes are classified correctly, as indicated by the strong diagonal values. Some of objects were missed as background, a small amount of objects were misclassified, and some objects were recognised while they should not.}
     \label{fig_trainingdatasetplots}
     \end{figure}
     
