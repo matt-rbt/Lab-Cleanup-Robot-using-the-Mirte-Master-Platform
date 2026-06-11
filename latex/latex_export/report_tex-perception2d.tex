@@ -33,7 +33,7 @@ The curves in the figure below show that the model converged during trading. Thi
 \label{fig_trainingresults}
 \end{figure}
 
-The normalized confusion matrix shows how well classes are recognized by the model. As shown in the figure shown below, most classes are classified correctly, as indicated by the strong diagonal values. However, light grey objects were among the least correctly identified objects, this is a result of exposure and lighting changing enough to where the model will classify them as background. Some of objects were missed as background, a small amount of objects were misclassified, and some objects like dark grey and white where confused with light grey.
+The normalised confusion matrix shows how well classes are recognized by the model. As shown in the figure shown below, most classes are classified correctly, as indicated by the strong diagonal values. However, light-grey objects were among the least correctly identified objects, this is a result of exposure and lighting changing enough to where the model will classify them as background. Some of objects were missed as background, a small amount of objects were misclassified, and some objects like dark grey and white where confused with light-grey.
 
 \begin{figure}[!htbp]
 \centering
@@ -42,7 +42,7 @@ The normalized confusion matrix shows how well classes are recognized by the mod
 \label{fig_confusionmatrixnormalized}
 \end{figure}
 
-A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precission (how many objects where correctly predicted) and recall (how many objects where correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3-0.35.
+A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precision (how many objects where correctly predicted) and recall (how many objects where correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3-0.35.
 
 \begin{figure}[!htbp]
 \centering
