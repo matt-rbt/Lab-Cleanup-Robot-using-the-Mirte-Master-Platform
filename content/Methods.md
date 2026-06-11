@@ -1,6 +1,6 @@
 # Methodology
 
-This study follows a factorial experimental design, analyzing the interplay between perception, coverage, and system-level decision-making.
+<!-- This study follows a factorial experimental design, analyzing the interplay between perception, coverage, and system-level decision-making.
 
 Three independent variables are defined:
 
@@ -16,7 +16,9 @@ Three independent variables are defined:
   - Systematic coverage
   - Clean as-you-go
 
-This results in a total of 8 configurations to be tested and compared.
+This results in a total of 8 configurations to be tested and compared. -->
+
+This section describes the transition from the simulation-based implementation to real-world testing on the MIRTE Master platform and the practical requirements to do so.
 
 ## From Simulation to Real-World Application
 

@@ -5,7 +5,7 @@ In laboratories, items of many kinds may fall onto the floor. While implementati
 
 % Het einde bevat nog geen resultaten, die moeten er wel nog in zodra we die hebben!! Vgm is het ook niet de bedoeling om afkortingen (SLAM) erin te hebben staan, not sure
 
-# Introduction
+## Introduction
 In laboratory environments, maintaining a good level of cleanliness is often a challenge. While in modern domestic situations, an autonomous floor-cleaning robot is regularly used nowadays, in laboratory environments this is often not yet the case. This is why a laboratory-cleaning robot is a suitable application for testing the capabilities of the MIRTE Master platform. In a laboratory, what actually falls onto the floor usually consists of graspable objects, while in domestic spaces these types of robots are generally made to remove dust and hair instead. Hence, a robot for laboratory-cleaning purposes should be able to grab objects instead of dust or hair. But as one may not always want to throw away all objects found in a laboratory setting, one would also want to separate trash from other fallen objects, such as electronics. Hence, the goal for this project was to develop an autonomous laboratory-cleaning robot that can detect, separate and dispose of two different types of objects, all based on the MIRTE Master robotic platform.
 
 This report outlines the roadmap and methodology required to make such a robot. \ 
@@ -17,6 +17,7 @@ Section 6 ([Conclusion](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-M
 
 ## Related Works
 
+Previous work has shown that combining 3D perception with grasp-planning can allow robotic platforms to be able to efficiently manipulate objects in its environment [@STUCKLER20131106]. This is relevant for our robot because we will be combining navigation, object detection, and manipulation for our lab-cleaning robot. Instead of general domestic service tasks, our robot will be combining this aspects for use in a laboratory cleanup scenario based on the MIRTE Master platform.
 
 ## Contribution
-+++
+This work serves as a practical application of the MIRTE Master platform used for testing the capabilities of MIRTE Master platform itself. By integrating perception, navigation, and object manipulation in a real-world setup, the project provides insight into the platform’s practical strengths and limitations.
