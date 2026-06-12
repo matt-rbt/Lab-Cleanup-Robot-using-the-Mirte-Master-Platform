@@ -25,40 +25,38 @@
 
     There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical}{Mechanical} overview page.
     
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
-    \subsubsection{Software specifications}
-
-    The MIRTE Master robotic platform has free open-source software available for any user to install. \newline
-    The latest stable release is used in this robotic system. This software comes packaged inside a ROS application \citet{ROS2_2022}, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
-    
-    The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
-    
     \end{paracol}
     \newpage
     \begin{paracol}
         {2}
-    \paragraph{SLAM}
+    \syncallcounters
+    \subsubsection{Software specifications}
 
+    The MIRTE Master robotic platform has free open-source software available for any user to install. \newline
+    The latest stable release is used in this robotic system. This software comes packaged inside a ROS application \cite{ROS2_2022}, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
+    
+    The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
+    
+
+    \paragraph{SLAM}
     Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this, SLAM (Simultaneous Localization and Mapping) is used. This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
     The robot created an occupancy grid map as an image while estimating the robot's pose.
-    
-    To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used \citet{SlamTBX2021}. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using the set of parameters it provides. In the case of the MIRTE Master, there are several projects that have implemented SLAM Toolbox, so finding a ready-to-use set of SLAM parameters for this robot is relatively simple. The \href{https://github.com/MartijnWisse/mirte\_navigation}{Mirte Navigation} ROS package is used for configuration files and SLAM parameter settings.
+    The two most widely adopted SLAM frameworks in the ROS ecosystem are Cartographer \cite{cartographer} and SLAM Toolbox \cite{SlamTBX2021}. For the MIRTE Master platform, SLAM Toolbox was selected due to its superior mapping accuracy and localization performance when reliable odometry is available \cite{slamvcart}. Since the MIRTE Master is dedicated to running the core robotics software stack and is not burdened by other computationally intensive workloads, the higher computational requirements of SLAM Toolbox do not pose a significant limitation. Consequently, prioritizing mapping accuracy over computational efficiency makes SLAM Toolbox the most suitable choice for this application.
+    To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using the set of parameters it provides. In the case of the MIRTE Master, there are several projects that have implemented SLAM Toolbox, so finding a ready-to-use set of SLAM parameters for this robot is relatively simple. The \href{https://github.com/MartijnWisse/mirte\_navigation}{Mirte Navigation} ROS package is used as a starting point for configuration files and SLAM parameter settings.
     It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
-    
-    \medskip
+    \syncallcounters
+    \switchcolumn
     \centerline{\rule{7.8cm}{0.4pt}}
     \paragraph{Manipulation}
 
     While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \newline
-    The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 (\citet{Coleman2014MoveIt}) was used.
+    The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 (\cite{Coleman2014MoveIt}) was used.
     
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
     \syncallcounters
     
     \paragraph{Navigation}
-    Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem (\citet{macenski2020marathon2}). Aside from path planning and real-time control, Nav2 also provides a \href{https://docs.nav2.org/configuration/packages/configuring-costmaps.html}{Costmap}.
+    Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem (\cite{macenski2020marathon2}). Aside from path planning and real-time control, Nav2 also provides a \href{https://docs.nav2.org/configuration/packages/configuring-costmaps.html}{Costmap}.
 
 \end{paracol}

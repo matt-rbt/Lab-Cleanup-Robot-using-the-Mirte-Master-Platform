@@ -2,40 +2,11 @@
 \begin{paracol}
     {2}
 
-    This study follows factorial experimental design, analyzing the interplay between perception, coverage and system-level decision making.
-    Two independent variables are defined:
-    \begin{itemize}
-    \item \textbf{Detection method:}
-    
-    \begin{itemize}
-    \item Point cloud clustering
-    \item 2D depth projection
-    \end{itemize}
-    
-    
-    \item \textbf{Coverage strategy:}
-    
-    \begin{itemize}
-    \item Morphology-based skeleton coverage
-    \item Spanning tree coverage
-    \end{itemize}
-    
-    
-    \item \textbf{System-level decision-making:}
-    
-    \begin{itemize}
-    \item Systematic coverage
-    \item Clean as-you-go
-    \end{itemize}
-    \end{itemize}
-
-    This results in a total of 8 configurations to be tested and compared.
-    
+    This section describes the transition from the simulation-based implementation to real-world testing on the MIRTE Master platform and the practical requirements to do so.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
-    
     \subsection{From Simulation to Real-World Application}
-    For the transition from simulation to real-world testing, the codebase needed to be changed. The launch files were changed so that Gazebo was no longer used and \texttt{use\_sim\_time} parameters were set to `false`. To reduce the risk of collisions, the inflation radius and the robot radius in the Nav2 parameters were increased. Another change was the migration of processing tasks from the OrangePi 3B to a laptop connected to the MIRTE. Finally, all the sensors were tested and it was concluded that the depth camera was not positioned correctly and thus its position changed from the front of the robot to the gripper, allowing its position and viewing angle to be adjusted.
+    For the transition from simulation towards real-world testing, the codebase needed to be changed. The launch files were changed so that Gazebo was no longer used and \texttt{use\_sim\_time} parameters were set to \texttt{false}. To reduce the risk of collisions, the inflation radius and the robot radius in the Nav2 parameters were increased. Another change was the migration of processing tasks from the OrangePi 3B to a laptop connected to the MIRTE. Finally, all the sensors were tested and it was concluded that the depth camera was not positioned correctly and thus its position changed from the front of the robot to the gripper, allowing its position and viewing angle to be adjusted.
 
     \syncallcounters
     \switchcolumn
@@ -47,5 +18,5 @@
     \centerline{\rule{7.8cm}{0.4pt}}
     \subsection{Choice of testing objects}
     
-    Due to low video output quality of the included USB camera module, including significant motion blur and difficulties with exposure under different lighting conditions, the success rate of recognition and classification of the electronics was too low. Additionally, most electronics waste had too low of a profile to be recognised by the depth camera. As a result, it was chosen to 3D-print coloured shapes with a textured outer wall for grip. A custom dataset was created for the object classification model to improve object detection performance.   
+    Due to low video output quality of the included USB camera module, including significant motion blur and difficulties with exposure under different lighting conditions, the success rate of recognition and classification of the electronics was too low. Additionally, most electronics waste had too low of a profile to be recognised by the depth camera. As a result, it was chosen to 3D-print coloured shapes with a textured outer wall for grip. A custom dataset was created for the object classification model to improve object detection performance. 
 \end{paracol}
