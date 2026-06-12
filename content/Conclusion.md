@@ -1,5 +1,9 @@
 # Conclusion
 
-This project realized an autonomously path-planning, navigating, waste-detecting and waste-processing robot based on the MIRTE Master platform. This was done by using a LiDAR, RGBD camera, robotic arm with four degrees of freedom, all run using a ROS2 software stack.
+This work has demonstrated that the different coverage planners each have their strenghts and weaknesses: The morphology-based skeleton coverage planner excelled in cluttered environments with tight spaces, but the resulting path did not provide complete coverage of the free space in larger rooms. conversely, the spanning tree coverage planner achieved better coverage at the expense a large number of sharp turns, reducing localisation accuracy.
 
-Firstly, the experiments demonstrated that the MIRTE Master platform is a decent foundation for building a custom robotic prototype such as the one made in this project. 
+The developed perception pipeline successfully localised and classified small objects, demonstrating that this combination is an effective solution for object recognition for the MIRTE Master.
+
+The modifications to the manipulator have increased its accuracy nearly two orders of magnitude, as the system no longer relies on approximate joint values. This together with the improved gripper surface made it so objects are grabbable even at odd angles.
+
+Overall, this work has successfully demonstrated the MIRTE Master can accomodate all components necessary to realise a laboratory-cleaning robot, and is therefore a viable platform for performing this task.
