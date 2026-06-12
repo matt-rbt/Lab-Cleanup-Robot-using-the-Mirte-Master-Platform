@@ -1,17 +1,17 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
   <diagram name="UML Navigation and Perception" id="0">
-    <mxGraphModel dx="1901" dy="1135" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1631" dy="951" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="bn" value="BasicNavigator" style="swimlane;startSize=26;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=11;" parent="1" vertex="1">
-          <mxGeometry x="170" y="1434" width="280" height="150" as="geometry" />
+          <mxGeometry x="80" y="80" width="280" height="150" as="geometry" />
         </mxCell>
         <mxCell id="bn_b" value="── methods ──&lt;br/&gt;goToPose(pose)&lt;br/&gt;goThroughPoses(poses)&lt;br/&gt;cancelTask()&lt;br/&gt;isTaskComplete() : bool&lt;br/&gt;getFeedback()&lt;br/&gt;getResult()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="bn" vertex="1">
           <mxGeometry y="26" width="280" height="124" as="geometry" />
         </mxCell>
         <mxCell id="sn" value="SystematicNavigator" style="swimlane;startSize=26;fillColor=#E1D5E7;strokeColor=#9673A6;fontStyle=3;fontSize=11;" parent="1" vertex="1">
-          <mxGeometry x="290" y="1026" width="280" height="358" as="geometry" />
+          <mxGeometry x="80" y="360" width="280" height="358" as="geometry" />
         </mxCell>
         <mxCell id="sn_b" value="── attributes ──&lt;br/&gt;navigator_type: str&lt;br/&gt;paths: list&lt;br/&gt;threshold: float&lt;br/&gt;path_resolution: float&lt;br/&gt;costmap: PyCostmap2D&lt;br/&gt;polymap: list&lt;br/&gt;graph: nx.Graph&lt;br/&gt;── methods ──&lt;br/&gt;plan(map_msg, start)&lt;br/&gt;update_map(map_msg)&lt;br/&gt;sanitize_paths()&lt;br/&gt;generate_path(start)  [abstract]&lt;br/&gt;set_waypoints(wp) : Graph&lt;br/&gt;find_leaf_nodes(g) : list&lt;br/&gt;find_nearest_node(g,pos,nodes) : int&lt;br/&gt;pixel_to_world_poly(pts) : list&lt;br/&gt;world_to_pixel_poly(pts) : list&lt;br/&gt;publish_polygon(c)&lt;br/&gt;publish_path()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=10;" parent="sn" vertex="1">
           <mxGeometry y="26" width="280" height="332" as="geometry" />
@@ -114,7 +114,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="pcm" value="PyCostmap2D (nav2_simple_commander)" style="rounded=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;" parent="1" vertex="1">
-          <mxGeometry x="490" y="1434" width="200" height="50" as="geometry" />
+          <mxGeometry x="1400" y="240" width="200" height="50" as="geometry" />
         </mxCell>
         <mxCell id="e_ol_pcm" value="uses" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;strokeColor=#999;dashed=1;" parent="1" source="ol2" target="pcm" edge="1">
           <mxGeometry relative="1" as="geometry" />

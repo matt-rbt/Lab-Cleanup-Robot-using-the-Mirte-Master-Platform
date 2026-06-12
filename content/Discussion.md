@@ -6,7 +6,7 @@ We were caught in the middle of a platform migration to a new design. This migra
 ## Gazebo
 Gazebo was a great tool to test our software stack, or parts of it, quickly and in an isolated manner. However, learning to work with Gazebo not only had a steep learning curve, it also required a lot of additional effort to set up a realistic environment: making custom worlds using Blender with objects that could be interacted with.
 
-When transfering the code base from the simulation environment to the real world, many problems occurred. Firstly, the code had to be adjusted: the 'use_sim_time' had to be left unused and secondly: we found out that the sensors of the robot gave way less accurate and reliable feedback.
+When transferring the code base from the simulation environment to the real world, many problems occurred. Firstly, the code had to be adjusted: the 'use_sim_time' had to be left unused and secondly: we found out that the sensors of the robot gave way less accurate and reliable feedback.
 
 ## The MIRTE Master Platform
 The MIRTE Master proved to be a viable starting platform for a cleaning robot. A lot of things were (almost) pre-configured: MoveIt was largely done, Nav2 for MIRTE was there, Gazebo already existed, configuration files for the robot were by and large integrated and operational and all the calibration and control functioned.

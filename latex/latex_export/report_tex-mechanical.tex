@@ -75,26 +75,4 @@ Gripper & Original MIRTE gripper & Improved gripping surface \\
 
 \subsubsection{Current Design}
 
-The complete model can be explored by using the interactive 3D interface below (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}).
-
-\begin{verbatim}
-from IPython.display import HTML
-
-HTML("""
-<script type="module" src="https://unpkg.com/@google/model -viewer/dist/model -viewer.min.js"></script>
-
-<model -viewer
-    src="https://matt -rbt.github.io/Lab -Cleanup -Robot -using -the -Mirte -Master -Platform/models/MM -final -compressed.glb"
-    camera -controls
-    auto -rotate
-    exposure = 0.4
-    style="width: 640px; height: 640px; background: #d1d9e6;">
-</model -viewer>
-""")
-
-# IMPORTANT:
-# The model path is an absolute GitHub Pages URL on purpose.
-# A relative path like "./models/floor_with_cubes.glb" works locally in VS Code,
-# but fails on the deployed MyST site because the page is served from /coverageplanners/.
-# Do not change this to a relative path unless you also test the deployed site.
-\end{verbatim}
+The complete model can be explored by using the interactive 3D interface below (\href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical}). You may find the CAD-files \href{https://cad.onshape.com/documents/ee158bec245e3fe46f63c9ce/w/a0c8c76ba94ff339073118d4/e/a16fbc4a88cf67fd9fba6368?renderMode=0\&uiState=6a2aaef65092a9418fe6a8f1}{here}.

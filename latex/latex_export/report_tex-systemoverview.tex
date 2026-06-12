@@ -14,7 +14,7 @@ Figure~\ref{fig-task_bins} below showcases this idea.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/task_bins-40b78ff0b16104708c00ebf7300781be.png}
+\includegraphics[width=0.7\linewidth]{files/task_bins-0205d77804026a763f12be1a63351353.png}
 \end{figure}
 
 The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
@@ -23,5 +23,7 @@ The system level strategy dictates how the robot behaves in a given situation. T
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.7\linewidth]{files/global_tree-a3aea5411c8e20b9b10b70c7580948cd.png}
+\includegraphics[width=0.7\linewidth]{files/global_tree-28ede2c829658a84267d740c6db9287c.png}
 \end{figure}
+
+The behavior tree provides a hierarchical approach for coordinating navigation, perception and cleaning actions, cascades through the modules. It also can easily be visualised, simplifying debugging significantly. As can be seen from the tree, the robot will initially drive around. When it detects an object, it will approach, pick it up and place it in the correct basket.

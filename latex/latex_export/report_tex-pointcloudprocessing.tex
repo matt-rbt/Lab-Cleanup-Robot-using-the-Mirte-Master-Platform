@@ -4,27 +4,6 @@ This section shows the practices employed to assess the point cloud received fro
 
 For completion's sake, a point cloud has been included below to give an impression of what the input of the pipeline looks like as received from the point cloud topic.
 
-\begin{verbatim}
-from IPython.display import HTML
-
-HTML("""
-<script type="module" src="https://unpkg.com/@google/model -viewer/dist/model -viewer.min.js"></script>
-
-<model -viewer
-    src="https://matt -rbt.github.io/Lab -Cleanup -Robot -using -the -Mirte -Master -Platform/models/pointcloud -compressed.glb"
-    camera -controls
-    auto -rotate
-    style="width: 640px; height: 640px; background: #d1d9e6;">
-</model -viewer>
-""")
-
-# IMPORTANT:
-# The model path is an absolute GitHub Pages URL on purpose.
-# A relative path like "./models/floor_with_cubes.glb" works locally in VS Code,
-# but fails on the deployed MyST site because the page is served from /coverageplanners/.
-# Do not change this to a relative path unless you also test the deployed site.
-\end{verbatim}
-
 To do this, a sample point cloud has been saved from the gazebo simulation and will be the subject of the filtering pipeline using the Open3D python library:
 
 \begin{itemize}
@@ -45,16 +24,16 @@ Any remaining bounding boxes are published as detected objects.
 
 The entire pipeline with steps' individual effects has been included below:
 
-First, the original point cloud is made using the depth image from the camera, as shown in Figure Figure~\ref{og_pc}
+First, the original point cloud is made using the depth image from the camera, as shown in Figure~\ref{og_pc}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{files/6dd0f062f98a2429fe5e51c51184115a.png}
-\caption[]{The point cloud as received from the camera topic}
+\caption[]{The point cloud as received from the camera topic including the eventual bounding boxes}
 \label{og_pc}
 \end{figure}
 
-Next, this point cloud is downsampled. Note that the resolution afterwards is still quite high. This is due to the fact that objects are very small, and if resolution is reduced dramatically, details of said objects will be lost, reducing bounding box accuracy. Below in Figure Figure~\ref{downsampled} is an example.
+Next, this point cloud is downsampled. Note that the resolution afterwards is still quite high. This is due to the fact that objects are very small, and if resolution is reduced dramatically, details of said objects will be lost, reducing bounding box accuracy. Below in Figure~\ref{downsampled} is an example.
 
 \begin{figure}[!htbp]
 \centering
@@ -63,7 +42,7 @@ Next, this point cloud is downsampled. Note that the resolution afterwards is st
 \label{downsampled}
 \end{figure}
 
-In the downsampled point cloud, planes will be detected using RANSAC plane segmentation \citep{Randomsampleconsensus}. With this, large planes such as walls and tabletops will be discarded from the point cloud, as can be seen in Figure Figure~\ref{segmented}.
+In the downsampled point cloud, planes will be detected using RANSAC plane segmentation \citep{Randomsampleconsensus}. With this, large planes such as walls and tabletops will be discarded from the point cloud, as can be seen in Figure~\ref{segmented}.
 
 \begin{figure}[!htbp]
 \centering
@@ -72,7 +51,7 @@ In the downsampled point cloud, planes will be detected using RANSAC plane segme
 \label{segmented}
 \end{figure}
 
-Now, the remaining points are cross referenced with the costmap obtained during mapping. Any points that is on the costmap is excluded from the point cloud, resulting in the point cloud as depicted in Figure Figure~\ref{ExclusivePointCloud}
+Now, the remaining points are cross referenced with the costmap obtained during mapping. Any points that is on the costmap is excluded from the point cloud, resulting in the point cloud as depicted in Figure~\ref{ExclusivePointCloud}
 
 \begin{figure}[!htbp]
 \centering
@@ -81,7 +60,7 @@ Now, the remaining points are cross referenced with the costmap obtained during 
 \label{ExclusivePointCloud}
 \end{figure}
 
-Finally, the remaining points can be converted to clusters using \citep{DBSCAN}. This function enables the construction of bounding boxes for each cluster, which represents an object. Bounding boxes, however faint, can be made out in Figure Figure~\ref{boundingBoxes} below.
+Finally, the remaining points can be converted to clusters using \citep{DBSCAN}. This function enables the construction of bounding boxes for each cluster, which represents an object. Bounding boxes, however faint, can be made out in Figure~\ref{boundingBoxes} below.
 
 \begin{figure}[!htbp]
 \centering

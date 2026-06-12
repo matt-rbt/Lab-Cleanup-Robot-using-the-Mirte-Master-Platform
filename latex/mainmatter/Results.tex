@@ -1,35 +1,63 @@
 \section{Results}
 \begin{paracol}
     {2}
+    This section covers the observed characteristics of the implemented coverage planners, perception methods and solutions regarding manipulation. 
+    \medskip
+    \centerline{\rule{7.8cm}{0.4pt}}
     \subsection{Coverage Planners}
-    Three path planners have been compared:
+    Two path planners have been compared:
     \begin{itemize}
-    \item Boustrophedon Coverage
     \item Morphology-based Skeleton Coverage
     \item Spanning Tree coverage
     \end{itemize}
-    The Boustrophedon coverage planner package had compatibility issues with other packages used for navigation, this resulted in Boustrophedon not working on the MIRTE Master.
     
-    The morphology-based skeleton coverage planner performed well in laboratory-like environments but worse in larger open spaces. This planner allowed the robot to maneuver efficiently between objects such as tables and chairs while still being able to get into tight places.  The morphology based skeleton coverage planner also resulted in the least amount of sharp turns which, due to the simple nature of the MIRTE Master odometry (wheel encoders only), helped the robot not to lose track of where it was and thus keeping the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This resulted from the lower density of the planned path, which resulted in the robot sometimes missing the edges of larger free spaces that needs to be scanned for objects.
+    The morphology-based skeleton coverage planner performed well in laboratory-like environments but worse in larger open spaces. This planner allowed the robot to maneuver efficiently between objects such as tables and chairs while still being able to get into tight places. 
+    
+    The morphology-based skeleton coverage planner also resulted in the least amount of sharp turns which, due to the simple nature of the MIRTE Master odometry (wheel encoders only), helped the robot not to lose track of where it was and thus keeping the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This resulted from the lower density of the planned path, which resulted in the robot sometimes missing the edges of larger free spaces that needs to be scanned for objects.
     
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 14.52.27.png}
-    \caption{Picture of skeleton path in laboratory environment}
-    \label{fig_skeletonpathresults}
+    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-12 at 11.49.17.png}
+    \caption{Skeleton path in laboratory environment}
+    \label{fig_skeletonpathresult}
     \end{figure}
     \syncallcounters
-    \switchcolumn    
-    The spanning tree coverage planner performed well in large open spaces, but unlike the morphology based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments, resulting in separate path loops being stitched together, and possibly missing tighter spots between the loops. Also, due to the nature of the coverage pattern, a lot of smaller radius turns are generated which resulted in the robot sometimes slowly accumulating drift in the odometry, resulting in less accurate localisation and a less accurate map.
+    \switchcolumn
+    
+    The spanning tree coverage planner performed well in large open spaces, but unlike the morphology based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments (see Figure \ref{fig_spanningtreeresults}), resulting in separate path loops being stitched together and possibly missing tighter spots between the loops. Also, due to the nature of the coverage pattern, a lot of smaller radius turns are generated which resulted in the robot sometimes slowly accumulating drift in the odometry, resulting in less accurate localisation and a less accurate map.
     
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-10 at 14.52.27.png}
-    \caption{Picture of spanning tree path in laboratory environment}
+    \includegraphics[width=0.99\linewidth]{latex/figures/SpanningTreeResult.jpeg}
+    \caption{Spanning tree path in laboratory environment}
     \label{fig_spanningtreeresults}
     \end{figure}
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \subsection{Object Localization and Classification}
+     For object detection, a localization and classification method was developed. Objects are represented by bounding boxes that are constructed by means of point clouds, which they themselves are made with the RGBD camera's depth images. This particular object detector was able to detect objects sized 1\textit{cm} to 6\textit{cm}. Figure \ref{fig_boundingboxesandyolo} below shows a point cloud and the corresponding bounding boxes constructed within. The custom-made YOLO26 object detection model worked as intended, being able to classify the localized objects correctly and consistently. Figure \ref{fig_boundingboxesandyolo} also shows this behaviour in action.
+        \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{latex/figures/BoundingBoxYolo.png}
+    \caption{Bounding box drawn around found objects (center) and YOLO26 working simultaneously (bottom right)}
+    \label{fig_boundingboxesandyolo}
+    \end{figure}
+    \syncallcounters
+    \switchcolumn
+    \subsection{Manipulation}
+    \paragraph{Movement accuracy}
+    The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was approximately 15\textit{cm}. After reworking the code, the actuator was controlled by a function that did not rely on joint approximation. This reduced the error significantly, resulting in a movement error of just a couple millimetres.
 
-    \subsection{Detection Methods}
-    \color{red}[Foto bounding box in point cloud] \color{black}
-    \subsection{Complete System}
-\end{paracol}
+    \paragraph{Gripping performance}
+    The gripping performance of the original robot was slightly increased by adding rubberized patches to gripping surfaces to the gripper. This has helped gripping the smooth, plastic testing objects when the gripper approached the objects at a sub-optimal angle of approach.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\linewidth]{latex/figures/RubberizedGrippingSurfaces.jpeg}
+    \caption{Rubberized gripping surfaces.}
+    \label{fig_rubberizedgrippingsurfaces}
+    \end{figure}
+    \switchcolumn
+    \end{paracol}
+
