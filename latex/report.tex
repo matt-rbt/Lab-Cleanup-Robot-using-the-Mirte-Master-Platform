@@ -22,7 +22,8 @@
     sorting=none,
     natbib=true
 ]{biblatex}
-
+\globalcounter{figure}
+\globalcounter{table}
 \addbibresource{main.bib}
 
 \newcommand\note[1]{\textcolor{red}{#1}}
@@ -120,6 +121,9 @@
 \author{
 \textsc{
 \small{Authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Berg}%
+\\
+
+\small{Delft University of Technology}
 }}
 
 \begin{document}
@@ -128,7 +132,7 @@
 \vfill
 
 \begin{abstract}
-\textit{In laboratories, items of many kinds may fall onto the floor. While implementations to clean such floors - like robotic vacuum cleaners - already exist, they don't work with trash-separation mechanics and end up disposing of all waste into the same bin. Yet, in laboratories, one may want specific types of dropped items to be returned and reused, such as electronic components. This project aims to use the open-source MIRTE Master robotic platform to combine both cleaning and reusing, by implementing a sorting system. This project presents an automated trash-detecting and sorting robot, using a 4-DOF robotic arm with gripping end-effector for grabbing, a 2-sided bin for sorting, an RGB-D camera for object-detection, MoveIt! 2 for manipulation and Nav2 combined with SLAM for navigation, built on top of the MIRTE Master platform. During this research, methods for path planning and object detection have been tested, compared and implemented with the goal of making the robot as accurate as possible while maintaining operational velocity.}
+\textit{In laboratories, items of many kinds may fall onto the floor. While implementations to clean such floors - like robotic vacuum cleaners - already exist, they do not work with trash-separation mechanics and end up disposing of all waste into the same bin. Yet, in laboratories, one may want specific types of dropped items to be returned and reused, such as electronic components. This project aims to use the open-source MIRTE Master robotic platform to combine both cleaning and reusing, by implementing a sorting system. This project presents an automated trash-detecting and sorting robot, using a 4-DOF robotic arm with gripping end-effector for grabbing, a 2-sided bin for sorting, an RGB-D camera for object-detection, MoveIt! 2 for manipulation and Nav2 combined with SLAM for navigation, built on top of the MIRTE Master platform. During this research, methods for path planning and object detection have been tested, compared and implemented with the goal of making the robot as accurate as possible while maintaining operational velocity.}
 \end{abstract}
 
 \clearpage
@@ -144,7 +148,7 @@ This report marks the end of our Bachelor's degree at TU Delft. Over the past fe
 brainstorming, improving sentence structure, refining argumentation, debugging, ideating, and checking the clarity of written
 sections.
 
-We would like to express our sincere gratitude towards our project supervisors, Martijn Wisse and Martin Klomp for their technical insights and feedback regarding the project. In addition, we would like to thank Arend-Jan van Hilten for helping us occasionally, despite not actually being involved in the project directly in any way.
+We would like to express our sincere gratitude towards our project supervisors, Martijn Wisse and Martin Klomp for their technical insights and feedback regarding the project. In addition, we would like to thank Arend-Jan van Hilten for helping us occasionally, despite not actually being involved in the project directly.
 
 \centerline{\rule{15.95cm}{0.4pt}}
 
@@ -167,7 +171,32 @@ We would like to express our sincere gratitude towards our project supervisors, 
 \include{mainmatter/Methods}
 \include{mainmatter/Results}
 \include{mainmatter/Conclusion}
-\include{latex/latex_export/report_tex-discussion}
+
+\section{Discussion}
+
+\subsection{Delays}
+
+We were caught in the middle of a platform migration to a new design. This migration happened at the time that a MSc course started which used up all of the MIRTE Master robots. This meant that, for us, no robot was available from the start of our project. We also had no clarity about when a unit would be received and if more components needed to be ordered. Furthermore not all components in the MIRTE Master could be ordered given the BEP budget. This meant there was an unanticipated waiting period that extended far into the project timeline, during which testing and integration was supposed to have happened. In the end, the components were received in week 13 of the 16-week long project timeline. While the software team was able to frontload the majority of software development using Gazebo simulations, this still meant that the team only had three weeks to find out all the quirks of the MIRTE Master, troubleshoot them and simultaneously integrate the software which severely limited our ability to perform real-world quantitative and qualitative experiments.
+
+\subsection{Gazebo}
+
+Gazebo was a great tool for testing the software quickly and in an isolated manner. It also provided a way to run the programs without needing a real robot. However, learning to work with the simulator not only had a steep learning curve, it also required a lot of additional effort to set up a realistic environment: making custom worlds using Blender with objects that could be interacted with. It also required a further setup to be compatible with the existing MIRTE framework.
+
+When transitioning from a simulated environment to the real world, a lot of issues arose. Firstly, every ROS node dependent on up-to-date transforms and other timestamped messages now needed to be reconfigured not to use the simulated clock (which starts at zero when initialized). Secondly, the team discovered that the robot sensors produce significantly less accurate, up-to-date, and reliable feedback than the ones configured for the simulated MIRTE.
+
+\subsection{The MIRTE Master Platform}
+
+The MIRTE Master proved to be a viable starting platform for prototyping a lab-floor cleaning robot. A lot of aspects came pre-configured: MoveIt configuration was largely set up, Nav2 parameters for MIRTE existed, a selection of configuration files for the robot were by and large integrated, operational and all the calibration and control functioned.
+
+However, it seemed to us that some parts of the design did not seem to be thoroughly tested prior to integration within the MIRTE Master platform. The most significant friction occurred with the components used for perception. Firstly, the RGBD camera was mounted in the front, near the bottom of the MIRTE Master which resulted in the depth camera not being able to create a usable depth image for the pointcloud. This issue was discovered by using the OrbbecViewer tool and testing for different mounting positions. From our testing, we concluded that the depth camera should never have been mounted low to the ground. Secondly, the included USB camera module was excluded from our final design because of poor performance: the camera was too blurry for use while moving and the frame rate dropped severely in different lighting and background conditions due to its automatic exposure control.
+
+The final major issue was time-synchronization between the MIRTE Master and other machines. It was discovered quite quickly that the MIRTE Master's OrangePi 3B was not up to the task of running the software stack on its own, so a lot of the processing (lab cleanup stack and point cloud creation) was outsourced to a laptop. For this to work correctly, time needed to be synchronized between the two machines. The MIRTE Master does not possess an accurate clock and when a laptop is directly connected to the MIRTE Master, no internet connection is available. This resulted in attempts to manually sync the clocks between devices, which did not have a high success-rate. Later, a \href{https://chrony-project.org/}{Chrony} was implemented as a more permanent solution which automatically synced the clock between devices within tolerances. This almost eliminated clock synchronization issues, but some errors still persisted.
+
+\subsection{Future Work}
+
+Using the software packages created as a part of this work, future research can be done to evaluate the performance of the robot by testing the different coverage planners in isolation and in combination with the rest of the system. Additionally, other coverage planners, such as Voronoi-based \cite{voronoi} and boustrophedon \cite{Choset1997} coverage planners, can be implemented and tested. It can also be interesting to observe the influence of different environments on the performance of the system. One could also research if porting the MIRTE Master software stack to a more suitable SBC is possible.
+
+%\include{latex/latex_export/report_tex-discussion}
 
 \color{gray}
 
