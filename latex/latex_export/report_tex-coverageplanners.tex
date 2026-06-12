@@ -86,7 +86,7 @@ The first implemented method, based on the work of \citep{skeleton}, \citep{skel
 \centerline{\rule{13cm}{0.4pt}}
 \bigskip
 
-The free space is extracted using the methods discussed in the previous section. The polygons are used and converted to a binary map as to not produce too many branches for the robot to navigate through. This map is then skeletonized to extract waypoints, see Figure~\ref{fig-skeleton_free}.
+\color{red}The free space is extracted using the methods discussed in the previous section. The polygons are used and converted to a binary map as to not produce too many branches for the robot to navigate through. This map is then skeletonized to extract waypoints, see Figure~\ref{fig-skeleton_free}. \color{darkgray}
 
 \begin{figure}[!htbp]
 \centering
@@ -203,7 +203,7 @@ A black image, of the same resolution as the original costmap is then created an
 \label{fig-spanning_waypoints}
 \end{figure}
 
-A segment from this circumnavigation is then removed from the path
+A segment from this circumnavigation is then removed from the path.
 
 \begin{verbatim}
 IntSlider(value=0, description='Waypoint', layout=Layout(width='800px'), max=109)

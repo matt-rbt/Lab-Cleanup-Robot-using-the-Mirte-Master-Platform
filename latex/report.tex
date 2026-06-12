@@ -12,6 +12,18 @@
 \usepackage{amssymb}
 \usepackage{comment}
 \usepackage{setspace}
+% \usepackage{cite}
+% \usepackage[numbers,square,sort&compress]{natbib}
+\usepackage{csquotes}
+
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=none,
+    natbib=true
+]{biblatex}
+
+\addbibresource{main.bib}
 
 \newcommand\note[1]{\textcolor{red}{#1}}
 \makeglossaries
@@ -378,5 +390,7 @@ $\mathcal{O} \leftarrow [\;]$\;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
-\bibliography{main.bib}
+%% \bibliographystyle{IEEEtranN}
+% \bibliography{main}
+\printbibliography[heading=bibintoc,title={References}]
 \end{document}
