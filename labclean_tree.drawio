@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9" pages="2">
   <diagram name="LabClean Behaviour Tree" id="0">
-    <mxGraphModel dx="5728" dy="2431" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4506" dy="1702" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -412,8 +412,47 @@
         <mxCell id="br3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#009900;dashed=1;fontColor=#000000;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.308;entryY=0.07;entryDx=0;entryDy=0;entryPerimeter=0;jumpStyle=arc;" parent="1" source="bb7" target="n24" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="L2ZKtoDB4aFZwHnKjuxx-1" value="Flash Orange" style="ellipse;whiteSpace=wrap;fillColor=#808080;strokeColor=#555555;fontColor=#000000;fontSize=10;" vertex="1" parent="1">
+        <mxCell id="L2ZKtoDB4aFZwHnKjuxx-1" value="Flash Orange" style="ellipse;whiteSpace=wrap;fillColor=#808080;strokeColor=#555555;fontColor=#000000;fontSize=10;" parent="1" vertex="1">
           <mxGeometry x="640" y="1120" width="120" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-1" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-780" y="1450" width="600" height="436" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry y="-60" width="600" height="496" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-3" value="Parallel" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;fillColor=#FFD700;strokeColor=#B8860B;fontStyle=1;fontSize=11;fontColor=#000000;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="95" y="26" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-4" value="Behavior" style="ellipse;whiteSpace=wrap;fillColor=#808080;strokeColor=#555555;fontColor=#000000;fontSize=10;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="125" y="274" width="110" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-5" value="Selector" style="rounded=1;whiteSpace=wrap;fillColor=#00CED1;strokeColor=#008B8B;fontStyle=1;fontSize=11;fontColor=#000000;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="110" y="111" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-6" value="Sequence" style="rounded=1;whiteSpace=wrap;fillColor=#FF8C00;strokeColor=#8B4500;fontStyle=1;fontSize=11;fontColor=#000000;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="65" y="193" width="230" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-7" value="Eternal Guard" style="ellipse;whiteSpace=wrap;fillColor=#F8F8FF;strokeColor=#999999;fontSize=10;fontColor=#000000;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="115" y="356" width="130" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-8" value="Executes children simultaneously" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="360" y="30" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-9" value="Executes children from left to right, untill one returns success&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap-mode: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Executes%20children%20simultaneously%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%221500%22%20y%3D%22930%22%20width%3D%22130%22%20height%3D%2230%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="360" y="115" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-10" value="Executes an action or process upon the first tick to reach it, then updates" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="360" y="285" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-11" value="Executes children from left to right, all must return success&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap-mode: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Executes%20children%20simultaneously%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%221500%22%20y%3D%22930%22%20width%3D%22130%22%20height%3D%2230%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="360" y="200" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sfrRUzQNJs7BK_TjI92Q-12" value="Checks if condition is met at every tick" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="sfrRUzQNJs7BK_TjI92Q-1" vertex="1">
+          <mxGeometry x="360" y="370" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pIBfK09bQ8idneBQqcsJ-13" value="&lt;b&gt;LEGEND&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-550" y="1410" width="130" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
