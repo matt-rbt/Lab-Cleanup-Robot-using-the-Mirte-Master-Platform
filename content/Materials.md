@@ -76,7 +76,4 @@ The manner which in motion planners are typically implemented requires the integ
 
 ### Navigation
 
-Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem ({cite:t}`macenski2020marathon2`). Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).  
-
-### Vision
-
+Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem ({cite:t}`macenski2020marathon2`). Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).
