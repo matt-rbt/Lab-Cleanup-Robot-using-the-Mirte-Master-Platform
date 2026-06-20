@@ -25,7 +25,7 @@ no-update-date: true
 <!-- {button}`Download Process <https://matt-rbt.github.io/Mirte_Lab_Clean/build/html/index.html>` -->
 
 
-![](figures/MIRTE_Master_Cover.jpg)
+![](figures/mirte_scan.png)
 
 +++
 

@@ -18,7 +18,7 @@ The scope of this project includes how different mapping, navigation and percept
 
 The system level strategy dictates how the robot behaves in a given situation. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave. This system level architecture, as shown in {numref}`Figure {number} <fig-global_tree>`, is also used here to describe and execute the actual cleaning strategy.
 
-```{figure} figures/labcleantree.*
+```{figure} figures/labcleantree.png
 :label: fig-global_tree
 :alt: Global Behavior tree of the entire system
 ```
