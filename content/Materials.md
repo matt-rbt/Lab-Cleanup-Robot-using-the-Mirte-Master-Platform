@@ -2,7 +2,7 @@
 Within this section, all hardware employed within the MIRTE Master will be displayed and discussed.
 
 ## Hardware Specifications
-The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, below, the list of all hardware parts can be seen, excluding only trivial components such as nuts and bolts.
+The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, the list of hardware parts can be seen, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
@@ -43,12 +43,12 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - RGBD (depth) camera: Orbbec3D Astra Mini S |
 | | - RGB-camera: 720p USB camera module |
 
-Given that MIRTE doesn't work with large quantities of robots, meaning no standardized parts are available, 3D-printing was a viable choice to establish the necessary parts of the frame using (for this specific project slightly adjusted versions of) the CAD-models provided. These parts can be divided into two groups: chassis and manipulator.
+Given that MIRTE is not produced in large quantities and no standardized spare parts are available, 3D-printing was a practical way to produce the required structural parts from adjusted versions of the provided CAD models. These parts can be divided into two groups: chassis and manipulator.
 
 ## Chassis
 
-The chassis consists of a top, bottom and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels don't only act as chassis support elements but also as mounting components for several electronics parts. For both of these purposes, PETG was chosen as a good filament to use for 3D-printing the panels. This filament been used for this application due to its relatively high strength, in addition to having enough ductility, it is easy to print and is relatively cheap. The ductility not only makes the robot more resistant to impact due to it being less brittle, it also allows for some slight bending of the chassis which has the added benefit that the wheels are more likely to keep traction on the floor. \
-The variant of PETG used for this project was translucent which, aside from being aesthetically pleasing, also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines have also been added to the robot for both aesthetic purposes and it standing out more to people walking by.
+The chassis consists of a top, bottom, and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels do not only act as chassis support elements but also as mounting components for several electronics parts. For these purposes, PETG was chosen because it is easy to print, impact-resistant, and sufficiently stiff for the intended application. The aluminium plates were chosen for their rigidity and durability. Although no formal material tests were performed in this study, these choices were made to match the practical requirements of the robot's payload and expected handling. \
+The translucent PETG variant used for this project also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines were also added to make the robot more visible to people passing by.
 
 ## Manipulator
 

@@ -1,12 +1,6 @@
 # Perception
-Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A **2D detection and depth projection** approach and 3D segmentation with **point cloud clustering**.
-As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
+Perception is responsible for object detection, classification, and spatial localization. In this study, two object-detection and localization approaches were evaluated: a **2D detection and depth-projection** approach and a 3D segmentation approach based on **point-cloud clustering**. For classification, a classical computer-vision approach and a model-based approach were both considered.
 
-Originally, objects where categorized into:
-1. Graspable vs non-graspable
-2. Electronics vs non-electronics
+Initially, the goal was to distinguish between graspable and non-graspable objects and between electronics and non-electronics. However, because the standard MIRTE Master platform had limited camera quality and limited computational resources, the final scope was reduced to two practical classes: graspable versus non-graspable and colourful versus greyscale. This choice was made to keep the system feasible within the available hardware and to focus the evaluation on the most relevant objects for the laboratory-cleaning task.
 
-However, due to the limitations of the hardware of the standard MIRTE Master package (relatively low-quality camera and limited computing power) the scope got reduced to:
-
-1. Graspable vs non-graspable
-2. Colourful vs greyscale 
+A custom YOLO-based detector was trained on a small labelled dataset collected from the onboard camera, while the 3D pipeline used point-cloud filtering, plane removal, and clustering to estimate the position and orientation of candidate objects. The combination of these two perception streams was then used to support the grasping and sorting process.

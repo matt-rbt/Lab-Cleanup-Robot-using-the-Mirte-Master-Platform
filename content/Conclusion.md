@@ -1,9 +1,10 @@
 # Conclusion
 
-This work has demonstrated that the different coverage planners each have their strenghts and weaknesses: The morphology-based skeleton coverage planner excelled in cluttered environments with tight spaces, but the resulting path did not provide complete coverage of the free space in larger rooms. conversely, the spanning tree coverage planner achieved better coverage at the expense a large number of sharp turns, reducing localisation accuracy.
+This work has demonstrated that the different coverage planners each have distinct strengths and weaknesses. The morphology-based skeleton planner performed well in cluttered environments with tight spaces, while the spanning-tree planner provided better coverage in larger open spaces at the cost of more sharp turns and less accurate localization.
 
-The developed perception pipeline successfully localised and classified small objects, demonstrating that this combination is an effective solution for object recognition for the MIRTE Master.
+The developed perception pipeline successfully localized and classified small objects, demonstrating that this combination is an effective solution for object recognition on the MIRTE Master. The modifications to the manipulator also substantially improved positioning accuracy and grasp reliability, making objects manipulable even at less favorable approach angles.
 
-The modifications to the manipulator have increased its accuracy nearly two orders of magnitude, as the system no longer relies on approximate joint values. This together with the improved gripper surface made it so objects are grabbable even at odd angles.
+Overall, this work has shown that the MIRTE Master can accommodate the components required for a laboratory-cleaning robot and is therefore a viable platform for this task. At the same time, the results also show that further improvements in sensing hardware, perception robustness, and testing procedures would be necessary before the system could be deployed more widely.
 
-Overall, this work has successfully demonstrated the MIRTE Master can accomodate all components necessary to realise a laboratory-cleaning robot, and is therefore a viable platform for performing this task.
+## Future Work
+Using the software packages created as part of this work, future research can be done to evaluate the performance of the robot by testing the different coverage planners in isolation and in combination with the rest of the system. Additionally, other coverage planners, such as Voronoi-based [@voronoi] and boustrophedon [@Choset1997] planners, can be implemented and tested. It could also be interesting to observe the influence of different environments on the overall performance of the system. Another possible avenue for future research is porting the MIRTE Master software stack to a more suitable single-board computer and observing differences in computational performance.

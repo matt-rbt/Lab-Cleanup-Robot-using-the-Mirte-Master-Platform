@@ -19,8 +19,8 @@ project:
         - file: content/PointCloudProcessing.ipynb
     - file: content/Methods.md
     - file: content/Results.ipynb
-    - file: content/Conclusion.md
     - file: content/Discussion.md
+    - file: content/Conclusion.md
     - title: Appendix
       children:
       - file: content/ListOfChanges.md
