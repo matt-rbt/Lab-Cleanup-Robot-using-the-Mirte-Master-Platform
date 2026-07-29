@@ -21,4 +21,4 @@ pythreejs
 pygltflib
 pycollada
 
-trajgenpy
+sphinx-proof

@@ -7,9 +7,9 @@ In laboratory environments, small objects often fall onto the floor and need to 
 
 In laboratory environments, maintaining a good level of cleanliness is often challenging. While autonomous floor-cleaning robots are common in domestic settings, laboratory floors often contain small graspable items rather than dust or hair. A laboratory-cleaning robot therefore needs to detect, pick up, and sort such objects rather than simply sweep debris. Because not all found objects should be discarded, the system should also be able to separate reusable items, such as electronic components, from other waste. The implementation of such a system also provides useful insights into existing robotic platforms like the Mirte Master robot.
 
-The goal of this project was to develop an autonomous laboratory-cleaning robot based on the MIRTE Master platform. The robot should be able to navigate an indoor environment, detect objects, distinguish between categories of waste, and place them in the appropriate bin. This report outlines the development process and the methodology used to evaluate the resulting system.
+The goal of this project was to develop an autonomous laboratory-cleaning robot based on the MIRTE Master platform. The robot should be able to navigate an indoor environment, detect objects, distinguish between categories of waste, and place them in the appropriate bin. This report outlines the development process and implementation of the resulting system.
 
-The main goals of this project were to adapt and enhance the design of the MIRTE Master platform, implement mapping and navigation pipelines for waste discovery, develop custom waste-detection and localization algorithms, and build a waste-processing subsystem capable of classifying, manipulating, and sorting items reliably.
+From the main goal, the following sub-goals were extracted: adapt and enhance the design of the MIRTE Master platform, implement mapping and navigation pipelines for waste discovery, develop custom waste-detection and localization algorithms, and build a waste-processing subsystem capable of classifying, manipulating, and sorting items reliably.
 
 ## Related Works
 

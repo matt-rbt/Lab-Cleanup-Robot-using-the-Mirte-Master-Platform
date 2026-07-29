@@ -1,21 +1,15 @@
-# System Design and Architecture
+# Overview
 
 The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
 
-The main task of the robot can be categorized into three sub-domains. Namely: motion planning, perception and navigation.
+To realize this, the robot incorporates several distinct, but tightly knit software subsystems. Each one is responsible for a separate function of autonomous operation, but simultaneously reliant on data from one or more of the other systems.
 
-{numref}`Figure {number} <fig-task_bins>` below showcases this decomposition.
+At the highest level sits a behavior tree that orchestrates how these different subsystems interact to make the robot execute the main goal. It decides when to explore, when to approach a detected object, when to classify it, and when to pick and place it.
 
-```{figure} figures/Lab_Cleanup-Task Bins-4.drawio.*
-:label: fig-task_bins
-:alt: How each task fits into the whole system
-```
+Below this, a navigation system handles how the robot moves through the environment. It maps, then plans a coverage path, enabling the discovery of portable objects.
+The manipulation system plans and executes pick and place motions given object poses and visibility.
+Underpinning both is the perception pipeline, which provides the system with a continuous stream of object poses and classifications derived from depth and colour data.
 
-A common approach in robotics for navigation- and perception-heavy tasks is to use a global behavior tree that describes the robot's actions in different situations. This system-level architecture, as shown in {numref}`Figure {number} <fig-global_tree>`, is used here to describe and execute the cleaning strategy. The Py Trees for ROS python package is used to implement a behaviour tree due to its high level of documentation, aswell as native support in ROS 2.
+These subsystems do not operate in isolation. The behavior tree depends on perception to make decisions, perception depends on navigation to bring the camera within range of objects, and manipulation depends on the localization estimates that perception provides. Understanding the system therefore requires understanding how these parts interact, not just what each part does individually.
 
-```{figure} figures/labcleantree.png
-:label: fig-global_tree
-:alt: Global behavior tree of the entire system
-```
-
-The behavior tree provides a hierarchical approach for coordinating navigation, perception, and cleaning actions. It also provides a clear structure for debugging. As can be seen in {numref}`Figure {number} <fig-global_tree>`, the robot first explores the environment, then pauses its coverage task when an object is detected, approaches the object, checks whether it is still visible, picks it up, and places it in the appropriate basket.
+The following sections describe each subsystem in turn: behavior and task orchestration, manipulation and motion planning, perception, and navigation.

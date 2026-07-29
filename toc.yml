@@ -10,6 +10,7 @@ project:
       - file: content/Navigation.md
         children:
         - file: content/CoveragePlanners.ipynb
+      - file: content/RobotBehavior.md
       - file: content/Mechanical.ipynb
       - file: content/Manipulation.md
       - file: content/Perception.md
