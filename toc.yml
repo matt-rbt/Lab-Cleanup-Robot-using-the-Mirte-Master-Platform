@@ -18,7 +18,7 @@ project:
         - file: content/Perception2d.ipynb
         - file: content/Perception3d.ipynb
         - file: content/PointCloudProcessing.ipynb
-    - file: content/Methods.md
+    - file: content/Methods.ipynb
     - file: content/Results.ipynb
     - file: content/Discussion.md
     - file: content/Conclusion.md
