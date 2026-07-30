@@ -73,6 +73,13 @@ body {
     }
   }
 
+    /* Widen the article content area */
+  .article-grid {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
   /* Heading colours */
   & a,
   h1,
