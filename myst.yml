@@ -3,42 +3,30 @@ project:
   title: Lab Cleanup Robot using Mirte Master Platform
   # description:
   keywords: [Navigation2, ROS2, SLAM, Mobile_Manipulation]
-
   github: https://github.com/matt-rbt/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform
   date: 2026-04-21
   thumbnail: style/thumbnail.jpg
-  numbering: 
+  numbering:
     title: true
-  # specify authors in authors.yml file
-
-  # used to load /reuse materials from other repositories
   references:
     myst-guide: https://mystmd.org/guide
     JB-workshop: https://jupyter-book.github.io/workshop-template/
-    
-  # the following chapters are excluded from building the pdf version
-  exclude: 
-    - errorlog.md 
+  exclude:
+    - errorlog.md
     - README.md
     - content/Cheatsheet.md
-    
   bibliography:
     - references.bib
-  
-  # jupyter:
-  #   binder:
-  #     repo: https://github.com/executablebooks/thebe-binder-base
-
   jupyter:
     binder:
       repo: https://github.com/matt-rbt/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform
-  
+
 extends:
-  - toc.yml       # includes table of contents
-  - export.yml    # includes export configurations
-  - plugins.yml   # includes plugin configurations
-  - authors.yml   # includes author and contributor information
-  
+  - toc.yml
+  - export.yml
+  - plugins.yml
+  - authors.yml
+
 site:
   template: book-theme
   options:
@@ -47,10 +35,32 @@ site:
     logo_dark: style/tudelft-dark.png
     hide_authors: false
     style: style/custom.css
-    html:
-      sanitize: false
-      head: |
-        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  html:
+    sanitize: false
+    head: |
+      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+      <style>
+        .cover-image { position: relative; overflow: hidden; }
+        .cover-image img { display: none; }
+        .cover-video {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          min-width: 100%; min-height: 100%;
+          object-fit: cover; z-index: 0;
+        }
+      </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const cover = document.querySelector('.cover-image');
+          if (cover) {
+            const v = document.createElement('video');
+            v.src = '_static/hero.mp4';
+            v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true;
+            v.className = 'cover-video';
+            cover.prepend(v);
+          }
+        });
+      </script>
   actions:
     - title: PDF
       url: ./exports/report_tex.pdf
@@ -58,6 +68,3 @@ site:
       url: ./exports/report_typst.pdf
   parts:
     footer: style/footer.md
-  
-
-

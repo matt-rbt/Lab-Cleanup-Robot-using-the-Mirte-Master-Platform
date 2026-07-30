@@ -9,8 +9,6 @@ A common approach in robotics for navigation- and perception-heavy tasks is to u
 
 The behavior tree provides a hierarchical approach for coordinating navigation, perception, and cleaning actions. It also provides a clear structure for debugging. As seen in {numref}`Figure {number} <fig-global_tree>`, the robot first explores the environment, then pauses its coverage task whenever an object is detected, approaches the object, checks whether it is still visible, picks it up, and places it in the appropriate basket.
 
-As described in [](#coverage), the coverage task itself is executed as a sequence of waypoint segments. During execution, the system continuously monitors the Nav2 action state and publishes progress feedback. If a stop or cancel request is issued, the current navigation task is interrupted and the run ends. If a pause request is issued instead, the active segment is interrupted, the remaining waypoints are stored, and the unfinished portion is re-queued so that the task can resume from the current location once the pause is lifted.
-
 **Input:** Coverage segments $\mathcal{P}$, planner type $\tau$  
 **Output:** Task result (success / cancelled / stopped)
 
