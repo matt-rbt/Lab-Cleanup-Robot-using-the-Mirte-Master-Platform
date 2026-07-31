@@ -9,7 +9,9 @@ Before the robot can navigate properly through the environment and ensure proper
 
 For the actual motion execution, Nav2 is used as the low-level navigation framework. The coverage planners implemented in this work generate the waypoints that define the desired path, while Nav2 handles trajectory generation, obstacle avoidance, and execution of the motion in the live costmap [@macenski2020marathon2]. This separation keeps the higher-level planning logic simple while allowing the robot to respond to dynamic obstacles in real time.
 
+:::{iframe} https://drive.google.com/file/d/1i8ARpPsqGrGMDZOL6UkgrP2m6S2mQeQG/view?resourcekey/preview
+:width: 100%
+:title: Demo video
 
-:::{figure} https://github.com/matt-rbt/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/blob/main/content/figures/demo/mapping.mp4
 A demonstration of the robot mapping a space.
 :::
