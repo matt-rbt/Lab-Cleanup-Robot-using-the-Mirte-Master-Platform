@@ -6,6 +6,7 @@
 
 \usepackage[acronym]{glossaries}
 \usepackage{paracol}
+\usepackage{multicol}
 \usepackage{todonotes}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
@@ -87,18 +88,8 @@
 
 \usepackage{latex_template_/TUD-thesis-template}
 
-\usepackage{etoolbox}
-% Flag to skip the first \section (before abstract)
-\newtoggle{skipclearpage}
-\toggletrue{skipclearpage}
-
-\pretocmd{\section}{%
-  \iftoggle{skipclearpage}{%
-    \global\togglefalse{skipclearpage}%
-  }{%
-    \clearpage%
-  }%
-}{}{}
+% Sections no longer force a new page: the body flows continuously in two columns (APA style).
+% Page breaks are placed explicitly: after the abstract/contents, before the appendix and before the references.
 
 % Force figures to be placed exactly where they are in the source
 \usepackage{float}
@@ -168,11 +159,13 @@ We would like to express our sincere gratitude towards our project supervisors, 
 
 \pagenumbering{\showPageNumbers}
 
-\include{mainmatter/Introduction}
-%\include{mainmatter/Theory}
-\include{mainmatter/SystemOverview}
-\include{mainmatter/Methods}
-\include{mainmatter/Results}
+\clearpage % body text starts on a new page
+\begin{multicols}{2}
+\input{mainmatter/Introduction}
+%\input{mainmatter/Theory}
+\input{mainmatter/SystemOverview}
+\input{mainmatter/Methods}
+\input{mainmatter/Results}
 \section{Discussion}
 
 \subsection{Delays}
@@ -195,7 +188,8 @@ The final major issue encountered was time synchronization between the MIRTE Mas
 
 In addition, the implemented navigation and perception approaches were feasible but not yet fully optimized. The coverage planners traded off completeness against path smoothness, and the perception pipeline remained sensitive to lighting and object appearance. These limitations provide useful guidance for future work.
 
-\include{mainmatter/Conclusion}
+\input{mainmatter/Conclusion}
+\end{multicols}
 
 %\include{latex/latex_export/report_tex-discussion}
 
@@ -220,6 +214,7 @@ In addition, the implemented navigation and perception approaches were feasible 
 %
 % \color{black}
 
+\clearpage % appendix starts on a new page
 \section{Appendix}
 \subsection{Algorithms}
 % ┌─────────────────────────────────────────────────────────────┐
@@ -407,8 +402,12 @@ $\mathcal{O} \leftarrow [\;]$\;
 \Return $\mathcal{O}$
 \end{algorithm}
 
-\include{mainmatter/Materials}
+\clearpage % each appendix part starts on a new page (also flushes the algorithm floats)
+\begin{multicols}{2}
+\input{mainmatter/Materials}
+\end{multicols}
 
+\clearpage
 \subsection{Figures}
     \begin{figure}[H]
         \centering
