@@ -182,25 +182,8 @@ The following sections describe each subsystem in turn: behavior and task orches
 
     This section covers the articulation of the robotic arm that sits atop the MIRTE Master. Since there is hardly any competition in this space, the market leader, MoveIt 2, was used to move the arm. MoveIt 2 provides a well-documented API and directs the vast majority of computations regarding (inverse) kinematics of robotic arms and the trajectory planning thereafter \cite{moveit2_api}.
 
-    The package is already installed on the MIRTE Master and has previously been used, with limited success, to move MIRTE's arm \cite{mirte_moveit_tutorial}. However, this implementation resulted in the end effector (the tip of the arm; the wrist) being positioned more than 10 cm off-target. For a machine needing to pick up objects smaller than 6 cm, this is unacceptable. Therefore, an improved version is required. To this end, the designed behavior contains a number of improvements and concessions:
-
-    \subsubsection{Changes}
-    \begin{itemize}
-    \item The previously missing configuration file, \texttt{moveit\_cpp.yaml}, which contains additional parameters (specifically for OMPL, the motion planner), was created and added.
-
-    \item To accommodate the fact that MIRTE's arm can only move with four degrees of freedom (DOF) instead of the six assumed by MoveIt 2, planning is performed strictly for position, ignoring any orientation component of a goal pose entirely. Together with the first point, this made it possible to use more precise methods from the Move Group Interface to plan and execute movements instead of \texttt{setApproximateJointValues()}. The resulting positional accuracy is in the order of millimetres, although alignment of the gripper must be configured separately.
-
-    \item Functionality has been added to ensure that the gripper points the depth camera downward at an angle relative to the ground, so that the camera can correctly detect the floor itself and any objects on it. When an object is detected and needs to be classified, the robot points the depth camera straight down relative to the world axes for classification. This ensures that any approached object is directly below the camera. As a result, the gripper camera has a constant and uniform background, increasing classification confidence levels.
-
-    \item An action server has been developed that provides feedback to a potential action client. The server can receive goals in several formats:
-    \begin{itemize}
-    \item By specifying the name of a joint state predefined in the robot's description files.
-    \item By supplying a goal pose relative to MIRTE's frame \texttt{base\_link}.
-    \end{itemize}
-    The action server moves the arm in a way that satisfies the goal, if possible. The wrist joint can be moved separately to allow fine adjustment of the gripper's orientation. Similarly, the gripper can be controlled either by specifying a named state or by directly assigning a desired clamping angle. The gripper will move accordingly, if possible.
-    \end{itemize}
-
-    Together, these modifications facilitate the movement of the robotic arm for this specific project and enable the creation of additional custom manipulation modules for future projects.
+    The package is already installed on the MIRTE Master and has previously been used, with limited success, to move MIRTE's arm \cite{mirte_moveit_tutorial}. However, this implementation resulted in the end effector (the tip of the arm; the wrist) being positioned more than 10 cm off-target. For a machine needing to pick up objects smaller than 6 cm, this is unacceptable. Therefore, an improved version is required.
+    
     \subsection{Perception}
     Perception is responsible for object detection, classification, and spatial localization. In this study, two object-detection and localization approaches were evaluated: a \textbf{2D detection and depth-projection} approach and a 3D segmentation approach based on \textbf{point-cloud clustering}. For classification, a classical computer-vision approach and a model-based approach were both considered.
 

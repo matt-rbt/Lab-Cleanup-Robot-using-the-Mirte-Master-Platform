@@ -3,57 +3,57 @@
 \contentsline {subsection}{\numberline {1.1}Related Works}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Contribution}{2}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Roadmap}{2}{subsection.1.3}%
-\contentsline {section}{\numberline {2}System Overview}{3}{section.2}%
+\contentsline {section}{\numberline {2}System Overview}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Navigation}{3}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.0.1}Mapping}{3}{subsubsection.2.0.1}%
-\contentsline {subsubsection}{\numberline {2.0.2}Coverage Planning Algorithms}{4}{subsubsection.2.0.2}%
-\contentsline {paragraph}{Preprocessing}{4}{section*.3}%
-\contentsline {paragraph}{Morphology-Based Skeleton Path Planner}{4}{section*.4}%
-\contentsline {paragraph}{Grid-Based Spanning-Tree Planner}{5}{section*.5}%
-\contentsline {subsection}{\numberline {2.1}Robot Behavior}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Mechanical}{8}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Original MIRTE Master Platform}{8}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Design Goals for the Modified Robot}{8}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Chassis Modifications}{8}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Gripper Modifications}{9}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Current Design}{9}{subsubsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.3}Manipulation}{9}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Perception}{9}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Perception 2D}{9}{subsubsection.2.4.1}%
-\contentsline {paragraph}{Why YOLO26 Was Used}{10}{section*.6}%
-\contentsline {paragraph}{Training}{11}{section*.7}%
-\contentsline {subsubsection}{\numberline {2.3.1}Perception 3D}{12}{subsubsection.2.3.1}%
-\contentsline {paragraph}{Point Cloud-Based Object Localization}{12}{section*.8}%
-\contentsline {subsubsection}{\numberline {2.3.2}Complete Point Cloud Processing Pipeline}{13}{subsubsection.2.3.2}%
-\contentsline {section}{\numberline {3}Implementation}{15}{section.3}%
-\contentsline {paragraph}{Coverage Navigation}{15}{section*.9}%
-\contentsline {paragraph}{Manipulation}{15}{section*.10}%
-\contentsline {paragraph}{Perception}{15}{section*.11}%
-\contentsline {subsection}{\numberline {3.1}Simulation}{16}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Sim-to-Real Pipeline}{16}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Testing Environment}{16}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Testing Objects}{16}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Results}{17}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Coverage Planners}{17}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Object Localization and Classification}{18}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Manipulation}{18}{subsection.4.3}%
-\contentsline {paragraph}{Movement accuracy}{18}{section*.12}%
-\contentsline {paragraph}{Gripping performance}{18}{section*.13}%
-\contentsline {section}{\numberline {5}Discussion}{19}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Delays}{19}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Gazebo}{19}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}The MIRTE Master Platform}{19}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Conclusion}{20}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Future Work}{20}{subsection.6.1}%
-\contentsline {section}{\numberline {7}Appendix}{21}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Algorithms}{21}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Materials}{25}{subsection.7.2}%
-\contentsline {subsubsection}{\numberline {7.2.1}Hardware Specifications}{25}{subsubsection.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.2.2}Chassis}{25}{subsubsection.7.2.2}%
-\contentsline {subsubsection}{\numberline {7.2.3}Manipulator}{25}{subsubsection.7.2.3}%
-\contentsline {subsubsection}{\numberline {7.2.3}Software specifications}{26}{subsubsection.7.2.3}%
-\contentsline {paragraph}{SLAM}{26}{section*.14}%
-\contentsline {paragraph}{Manipulation}{26}{section*.15}%
-\contentsline {paragraph}{Navigation}{26}{section*.16}%
-\contentsline {subsection}{\numberline {7.3}Figures}{27}{subsection.7.3}%
-\contentsline {section}{References}{28}{section*.17}%
+\contentsline {subsubsection}{\numberline {2.1.1}Mapping}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Coverage Planning Algorithms}{3}{subsubsection.2.1.2}%
+\contentsline {paragraph}{Preprocessing}{3}{section*.3}%
+\contentsline {paragraph}{Morphology-Based Skeleton Path Planner}{3}{section*.4}%
+\contentsline {paragraph}{Grid-Based Spanning-Tree Planner}{4}{section*.5}%
+\contentsline {subsection}{\numberline {2.2}Robot Behavior}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Mechanical}{6}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Original MIRTE Master Platform}{6}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Design Goals for the Modified Robot}{6}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Chassis Modifications}{7}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Gripper Modifications}{7}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}Current Design}{7}{subsubsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.4}Manipulation}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Perception}{7}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Perception 2D}{7}{subsubsection.2.5.1}%
+\contentsline {paragraph}{Why YOLO26 Was Used}{8}{section*.6}%
+\contentsline {paragraph}{Training}{8}{section*.7}%
+\contentsline {subsubsection}{\numberline {2.5.2}Perception 3D}{9}{subsubsection.2.5.2}%
+\contentsline {paragraph}{Point Cloud-Based Object Localization}{9}{section*.8}%
+\contentsline {subsubsection}{\numberline {2.5.3}Complete Point Cloud Processing Pipeline}{10}{subsubsection.2.5.3}%
+\contentsline {section}{\numberline {3}Implementation}{11}{section.3}%
+\contentsline {paragraph}{Coverage Navigation}{11}{section*.9}%
+\contentsline {paragraph}{Manipulation}{11}{section*.10}%
+\contentsline {paragraph}{Perception}{11}{section*.11}%
+\contentsline {subsection}{\numberline {3.1}Simulation}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Sim-to-Real Pipeline}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Testing Environment}{12}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Testing Objects}{12}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Results}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Coverage Planners}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Object Localization and Classification}{13}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Manipulation}{13}{subsection.4.3}%
+\contentsline {paragraph}{Movement accuracy}{13}{section*.12}%
+\contentsline {paragraph}{Gripping performance}{13}{section*.13}%
+\contentsline {section}{\numberline {5}Discussion}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Delays}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Gazebo}{14}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}The MIRTE Master Platform}{14}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{14}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Future Work}{14}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Appendix}{15}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Algorithms}{15}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Materials}{19}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Hardware Specifications}{19}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Chassis}{19}{subsubsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.3}Manipulator}{19}{subsubsection.7.2.3}%
+\contentsline {subsubsection}{\numberline {7.2.4}Software specifications}{19}{subsubsection.7.2.4}%
+\contentsline {paragraph}{SLAM}{19}{section*.14}%
+\contentsline {paragraph}{Manipulation}{19}{section*.15}%
+\contentsline {paragraph}{Navigation}{20}{section*.16}%
+\contentsline {subsection}{\numberline {7.3}Figures}{21}{subsection.7.3}%
+\contentsline {section}{References}{22}{section*.17}%
