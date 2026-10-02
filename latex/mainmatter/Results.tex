@@ -1,9 +1,5 @@
 \section{Results}
-\begin{paracol}
-    {2}
     This section covers the observed characteristics of the implemented coverage planners, perception methods and solutions regarding manipulation. 
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
     \subsection{Coverage Planners}
     Three path planners have been compared:
     \begin{itemize}
@@ -24,8 +20,6 @@
     \caption{Skeleton path in laboratory environment}
     \label{fig_skeletonpathresult}
     \end{figure}
-    \syncallcounters
-    \switchcolumn
     
     The spanning tree coverage planner performed well in large open spaces, but unlike the morphology-based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments (see Figure \ref{fig_spanningtreeresults}), resulting in separate path loops being stitched together and, possibly, tighter spots between the loops being missed. Also, because of the nature of the coverage pattern, many small-radius turns are generated, which sometimes caused the robot to slowly accumulate drift in the odometry, resulting in less accurate localization and a less accurate map.
     
@@ -35,10 +29,6 @@
     \caption{Spanning tree path in laboratory environment}
     \label{fig_spanningtreeresults}
     \end{figure}
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
     \subsection{Object Localization and Classification}
      For object detection, a localization method and a classification method were developed. Our object localizer relies on bounding boxes that are retrieved from point clouds generated from the depth camera's depth images. Our object detector was able to find objects sized from 1\,cm to 6\,cm. A bounding box drawn around a found object in the point cloud is shown in Figure \ref{fig_boundingboxesandyolo}. The custom-made YOLO26 object-detection model worked as intended, correctly classifying the localized objects. Figure \ref{fig_boundingboxesandyolo} also shows a frame from the RGB sensor of the depth camera in the bottom-right corner.
         \begin{figure}[H]
@@ -47,8 +37,6 @@
     \caption{Bounding box drawn around found objects (center) and YOLO26 working simultaneously (bottom right)}
     \label{fig_boundingboxesandyolo}
     \end{figure}
-    \syncallcounters
-    \switchcolumn
     \subsection{Manipulation}
     \paragraph{Movement accuracy}
     The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was around 15\,cm. After the code was reworked, the actuator was controlled by actual joint values instead of approximations. This reduced the error significantly, resulting in a movement error of only 1\,mm.
@@ -61,6 +49,4 @@
     \caption{Rubberized gripping surfaces.}
     \label{fig_rubberizedgrippingsurfaces}
     \end{figure}
-    \switchcolumn
-    \end{paracol}
 
