@@ -5,15 +5,18 @@
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
     \subsection{Coverage Planners}
-    Two path planners have been compared:
+    Three path planners have been compared:
     \begin{itemize}
+    \item Boustrophedon Coverage
     \item Morphology-based Skeleton Coverage
-    \item Spanning Tree coverage
+    \item Spanning Tree Coverage
     \end{itemize}
-    
+
+    The Boustrophedon coverage planner package had compatibility issues with other packages used for navigation, which meant that Boustrophedon did not work on the MIRTE Master.
+
     The morphology-based skeleton coverage planner performed well in laboratory-like environments but worse in larger open spaces. This planner allowed the robot to maneuver efficiently between objects such as tables and chairs while still being able to get into tight places. 
     
-    The morphology-based skeleton coverage planner also resulted in the least amount of sharp turns which, due to the simple nature of the MIRTE Master odometry (wheel encoders only), helped the robot not to lose track of where it was and thus keeping the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This resulted from the lower density of the planned path, which resulted in the robot sometimes missing the edges of larger free spaces that needs to be scanned for objects.
+    The morphology-based skeleton coverage planner also resulted in the fewest sharp turns, which, given the simple odometry of the MIRTE Master (wheel encoders only), helped the robot keep track of its position and thus keep the map clean. However, the skeleton planner performed slightly worse in terms of coverage performance. This was due to the lower density of the planned path, which sometimes caused the robot to miss the edges of larger free spaces that needed to be scanned for objects.
     
     \begin{figure}[H]
     \centering
@@ -24,7 +27,7 @@
     \syncallcounters
     \switchcolumn
     
-    The spanning tree coverage planner performed well in large open spaces, but unlike the morphology based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments (see Figure \ref{fig_spanningtreeresults}), resulting in separate path loops being stitched together and possibly missing tighter spots between the loops. Also, due to the nature of the coverage pattern, a lot of smaller radius turns are generated which resulted in the robot sometimes slowly accumulating drift in the odometry, resulting in less accurate localisation and a less accurate map.
+    The spanning tree coverage planner performed well in large open spaces, but unlike the morphology-based skeleton coverage planner, it struggled more with planning paths in tighter spaces such as laboratory environments (see Figure \ref{fig_spanningtreeresults}), resulting in separate path loops being stitched together and, possibly, tighter spots between the loops being missed. Also, because of the nature of the coverage pattern, many small-radius turns are generated, which sometimes caused the robot to slowly accumulate drift in the odometry, resulting in less accurate localization and a less accurate map.
     
     \begin{figure}[H]
     \centering
@@ -37,7 +40,7 @@
     \begin{paracol}
         {2}
     \subsection{Object Localization and Classification}
-     For object detection, a localization and classification method was developed. Objects are represented by bounding boxes that are constructed by means of point clouds, which they themselves are made with the RGBD camera's depth images. This particular object detector was able to detect objects sized 1\textit{cm} to 6\textit{cm}. Figure \ref{fig_boundingboxesandyolo} below shows a point cloud and the corresponding bounding boxes constructed within. The custom-made YOLO26 object detection model worked as intended, being able to classify the localized objects correctly and consistently. Figure \ref{fig_boundingboxesandyolo} also shows this behaviour in action.
+     For object detection, a localization method and a classification method were developed. Our object localizer relies on bounding boxes that are retrieved from point clouds generated from the depth camera's depth images. Our object detector was able to find objects sized from 1\,cm to 6\,cm. A bounding box drawn around a found object in the point cloud is shown in Figure \ref{fig_boundingboxesandyolo}. The custom-made YOLO26 object-detection model worked as intended, correctly classifying the localized objects. Figure \ref{fig_boundingboxesandyolo} also shows a frame from the RGB sensor of the depth camera in the bottom-right corner.
         \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{latex/figures/BoundingBoxYolo.png}
@@ -48,10 +51,10 @@
     \switchcolumn
     \subsection{Manipulation}
     \paragraph{Movement accuracy}
-    The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was approximately 15\textit{cm}. After reworking the code, the actuator was controlled by a function that did not rely on joint approximation. This reduced the error significantly, resulting in a movement error of just a couple millimetres.
+    The manipulation of the actuator has seen major improvements regarding movement accuracy. The initial accuracy of the actuator was around 15\,cm. After the code was reworked, the actuator was controlled by actual joint values instead of approximations. This reduced the error significantly, resulting in a movement error of only 1\,mm.
 
     \paragraph{Gripping performance}
-    The gripping performance of the original robot was slightly increased by adding rubberized patches to gripping surfaces to the gripper. This has helped gripping the smooth, plastic testing objects when the gripper approached the objects at a sub-optimal angle of approach.
+    The gripping performance of the original robot was slightly improved by adding rubberized patches to the gripping surfaces of the gripper. This has significantly helped the gripper hold the smooth, plastic testing objects when it approached them at a sub-optimal angle.
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\linewidth]{latex/figures/RubberizedGrippingSurfaces.jpeg}

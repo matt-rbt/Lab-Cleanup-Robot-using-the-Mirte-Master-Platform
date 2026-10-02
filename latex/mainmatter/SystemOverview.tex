@@ -1,150 +1,39 @@
 \section{System Overview}
+
+The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
+
+To realize this, the robot incorporates several distinct, but tightly knit software subsystems. Each one is responsible for a separate function of autonomous operation, but simultaneously reliant on data from one or more of the other systems.
+
+At the highest level sits a behavior tree that orchestrates how these different subsystems interact to make the robot execute the main goal. It decides when to explore, when to approach a detected object, when to classify it, and when to pick and place it.
+
+Below this, a navigation system handles how the robot moves through the environment. It maps, then plans a coverage path, enabling the discovery of portable objects. The manipulation system plans and executes pick and place motions given object poses and visibility. Underpinning both is the perception pipeline, which provides the system with a continuous stream of object poses and classifications derived from depth and colour data.
+
+These subsystems do not operate in isolation. The behavior tree depends on perception to make decisions, perception depends on navigation to bring the camera within range of objects, and manipulation depends on the localization estimates that perception provides. Understanding the system therefore requires understanding how these parts interact, not just what each part does individually.
+
+The following sections describe each subsystem in turn: behavior and task orchestration, manipulation and motion planning, perception, and navigation.
 \begin{paracol}
     {2}
-
-   The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects and sorting these objects accordingly.
-
-    The main task of the robot can be broken down into sub-tasks, these then fit into specific niches of the entire system architecture:
-    \begin{enumerate}
-    \item \textbf{Motion planning}
-    \item \textbf{Perception}
-    \item \textbf{Navigation}
-    \end{enumerate}
-    Figure \ref{tasks} showcases this idea.
-
-    \begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=1.02\linewidth]{latex/figures/Lab_Cleanup-Task Bins-4.drawio.png}
-    \caption{Three main tasks of the Robot}
-    \label{tasks}
-    \end{figure}
-
-    The scope of this project includes how different mapping, navigation and perception approaches influence the performance of the whole system. The highest performing combination of approaches is then chosen for use in the respective subsystems.
-    
-    %\medskip
-    %\centerline{\rule{7.8cm}{0.4pt}}
-    \subsection{System Architecture}
-    
-    The system level strategy consists of how the robot behaves in each scenario that it will find itself. The tasks described above are used as a guideline to construct the full system level strategy. The standard in robotics for such navigation and perception heavy tasks is to use a global behavior tree that describes how the robot ought to behave in certain situations. This system level architecture as shown in Figure~\ref{fig:tree} is also used here to describe and execute the cleaning strategy.
-    \syncallcounters
-    \switchcolumn
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=1.01\linewidth]{latex/figures/labclean_tree.drawio-simple tree.drawio (1).png}
-        \caption{Behaviour Tree}
-        \label{fig:tree}
-    \end{figure}
-    The behavior tree provides a hierarchical approach for coordinating navigation, perception and cleaning actions, cascading through the modules. It also can easily be visualised, simplifying debugging significantly. As can be seen from the tree, the robot will initially drive around. When an object is detected, the MIRTE Master will approach, pick it up and place it in the correct basket.
-    \syncallcounters
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
-    \subsection{Mechanical}
-    
-    The CAD-model of this rendition of the MIRTE Master can be found using this link: \href{https://cad.onshape.com/documents/ee158bec245e3fe46f63c9ce/w/a0c8c76ba94ff339073118d4/e/a16fbc4a88cf67fd9fba6368?renderMode=0&uiState=6a2aaef65092a9418fe6a8f1}{CAD-Model}.
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
-    \subsubsection{Original MIRTE Master Platform}
-
-    The project is based on the MIRTE Master V2. The platform consists of a mobile base propelled by four individually driven mecanum wheels and a robotic arm, allowing the robot to navigate through an environment and interact with objects.
-
-    The original MIRTE Master hardware consists of three main parts:
-    \begin{enumerate}
-    \item \textbf{Mobile base}
-    \item \textbf{Electronics}
-    \item \textbf{Robotic arm}
-    \end{enumerate}
-    The mobile base utilizes four geared DC motors with Hall encoders, connected to 97 mm mecanum wheels. This allows the robot to move in multiple directions without having to turn first, which is useful for navigating in small indoor spaces. The base also contains various sensors, such as rearward facing ultrasonic sensors, an IMU, a 2D LiDAR and an RGBD (depth) camera mounted on the robotic arm.
-
-    The electronics of the original platform are based on an Orange Pi 3B and a Raspberry Pi Pico H. The Orange Pi functions as the main computer, while the Pico is used for lower-level control tasks such as controlling the motors and general interfacing. The MIRTE Master also includes a custom-made PCB to connect the motors, sensors, and power system in a structured manner. The main power source for the MIRTE Master is a 5Ah 12V Lion Parkside drill battery. No significant changes were made to the electronics used for this project.
-    
-    The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of of the arm for object scanning and manipulation.
-    
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
-    \subsubsection{Hardware Components}
-
-    The most important original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
-    \syncallcounters
-    \switchcolumn
-    These components provide a useful base platform for a mobile manipulation task. However, for this project, the original configuration needed some changes. The robot had to be adapted for a laboratory-cleanup task, where it should be able to move around in a laboratory environment, detect waste on the floor, and eventually collect and move objects into bins.
-
-    \subsubsection{Design Goals for the Modified Robot}
-
-    The goal of the hardware modifications was to make the MIRTE Master more suitable for collecting and transporting small waste objects. This required changes to the chassis and and gripper design.
-    
-    The main design goals were:
-    \begin{itemize}
-    \item Add space for collecting and separating waste.
-    \item Mount the camera in a useful position for object recognition.
-    \item Improve the battery mounting system.
-    \item Improve cable management.
-    \item Modify the gripper so it can pick up waste objects more reliably.
-    \end{itemize}
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
-    \subsubsection{Chassis Modifications}
-    
-    The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For this use case, the robot also needed to carry waste bins and support the manipulator during picking tasks. Therefore, the chassis was modified to improve strength and usability.
-    
-    The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made out of clear PMMA. While PMMA allows the user to see the status of the electronics clearly by looking at the LEDs on the inside, it also has a tendency to shatter easily if bent too much. During early testing of the MIRTE Master it has already shown that the PMMA was not a good choice for any type of loading resulting in shattered PMMA. Therefore a change to the material of all plates from PMMA to aluminium with a similar stiffness was essential, the difference of this being that aluminium can bend more without shattering. To still be able to see the status of the electronics by the LEDs, the six side panel elements were 3D-printed using a slightly translucent material.
-    
-    Two separate waste bins were added to the robot. These bins allow the robot to collect, store and separate objects after picking them up.
-    \syncallcounters
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
-    \subsubsection{Gripper Modifications}
-    
-    The gripper is an important part of the laboratory-cleanup robot because it directly interacts with the objects that need to be collected. The original MIRTE Master gripper is useful as a general robotic gripper, but the cleanup task requires it to handle different small objects reliably.
-
-    The original gripper geometry is suitable for holding small and large objects, however, the gripping surface is not. Electronic trash tends to have small contact points for the gripper, so good gripping performance is a must-have. For improving the grip on objects, the contact patches are layered with a layer of soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
-    
-    During the initial testing phase of the RGBD camera, it was found that the mounting location for it was too low to the ground for it to be able to confidently display any accurate results regarding the distance towards objects. While this was the intended way for the camera to be implemented, for this project it was a better plan to mount this RGBD camera onto the end of the arm, right above the gripper. This gives it elevation which makes it able to look slightly more downward and therefore it could more accurately display distances. This also makes the need for the secondary RGB camera mounted onto the gripper insignificant, as the RGBD camera can also be used for object detection.
-    
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
-    \subsubsection{Current Design}
-    The finalised design is available for viewing \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{here}.
-    %\todo{Screenshot van de robot}
-    %\begin{figure}
-    %    \centering
-    %    \includegraphics[width=0.5\linewidth]{}
-    %    \caption{Caption}
-    %    \label{fig:placeholder}
-    %\end{figure}
-    
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-
     \subsection{Navigation}
 
-    The navigation stack of this robot is responsible for two main tasks:
-    \begin{itemize}
-    \item Mapping
-    \item Coverage
-    \end{itemize}
+    The navigation stack of this robot is responsible for two main tasks: mapping and coverage. During mapping, the robot builds a representation of the environment from sensor data so that it can plan safe trajectories. During coverage, it generates a sequence of waypoints that traverses the free space while avoiding obstacles.
     \medskip
     \centerline{\rule{7.8cm}{0.4pt}}
     \subsubsection{Mapping}
-    
-    Before the robot can navigate properly through the environment and ensure proper coverage, this environment must first be known. That is where mapping approaches can be helpful. Several advanced and specialised mapping approaches already exist, but in this paper only one was considered: `frontier based mapping'. 
+
+    Before the robot can navigate through the environment and ensure proper coverage, the environment must first be known. This is where mapping approaches become useful. Several advanced and specialized mapping approaches already exist, but in this work only one was considered: frontier-based mapping. Frontier-based mapping allows the robot to start navigating the environment and expand its map as new areas are discovered, which is well suited to partially known indoor spaces \cite{SlamTBX2021}.
     \syncallcounters
     \switchcolumn
-    Unlike less advanced alternatives, frontier based mapping allows the robot to start navigating the space and propagate its behavior further down the tree as soon as the environment is mapped sufficiently. Once the environment is mapped sufficiently, the robot is allowed to navigate the space and propagate its behavior further down the tree.
-    \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
-    \subsubsection{Coverage Planning Algorithms}
+    For the actual motion execution, Nav2 is used as the low-level navigation framework. The coverage planners implemented in this work generate the waypoints that define the desired path, while Nav2 handles trajectory generation, obstacle avoidance, and execution of the motion in the live costmap \cite{macenski2020marathon2}. This separation keeps the higher-level planning logic simple while allowing the robot to respond to dynamic obstacles in real time. A video demonstration of the robot mapping a space is available \href{https://www.youtube.com/watch?v=zg_rNDsQURY}{online}.
+    \syncallcounters
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \subsubsection{Coverage Planning Algorithms}\label{sec:coverage}
 
     This section presents the algorithms employed for the discovery of portable objects. While a comprehensive technical analysis of these algorithms is beyond the scope of this work, they are described with sufficient detail to enable understanding of their application within our framework. For in-depth technical details and formal derivations, the reader is referred to the original publications cited herein.
     To demonstrate the different navigators, a costmap of the Pulse Breakout room is used. This map was obtained during testing of the coverage methods.
-    Furthermore Nav2 \cite{macenski2020marathon2} is used for low level motion planning and execution aswell as realtime control and costmap generation.
+    Furthermore, Nav2 \cite{macenski2020marathon2} is used for low-level motion planning and execution as well as real-time control and costmap generation.
 
     %In order to demonstrate the different navigators, a map provided by the \href{https://github.com/MartijnWisse/mirte\_navigation}{MIRTE Navigation} ROS2 package is used. \newline
     % . . . shows the costmap generated by Nav2.
@@ -152,11 +41,10 @@
 \paragraph{Preprocessing}
 
     Before the map can be used to plan a path, a common preprocessing algorithm can be abstracted.
-    Coverage path planners generally use either a binary map of the free space,
-    (free=1, occupied=0) or the polygons constructed from the boundaries of the free space.
+    Coverage path planners generally use either a binary map of the free space (free = 1, occupied = 0) or the polygons constructed from the boundaries of the free space.
 
     The input to the algorithm can be any 2D image displaying the free and occupied pixels.
-    In this case the input will be the costmap directly. First the costmap is thresholded to create a Figure~\ref{fig-costmap1}, which is the first output.
+    In this case, the input is the costmap directly. First, the costmap is thresholded to create a binary costmap (Figure~\ref{fig-costmap1}), which is the first output.
 
     \begin{figure}[H]
         \centering
@@ -165,11 +53,8 @@
         \label{fig-costmap1}
     \end{figure}
     \syncallcounters
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
-    Then, using this binary costmap, the contours in \ref{fig-map_contours__} are extracted.
+    \switchcolumn
+    Then, using this binary costmap, the contours are extracted (Figure~\ref{fig-map_contours__}).
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{content/figures/navigator_results/Detected_contours_(red).png}
@@ -183,7 +68,7 @@
 
     %fix een label voor dit aub
     
-    The free space is extracted using the methods discussed in the previous section. The polygons are used and converted to a binary map as to not produce too many branches for the robot to navigate through. This map is then skeletonised to extract waypoints, see Figure~\ref{fig-skeleton_free__}.
+    The free space is extracted using the methods discussed in the previous section. The polygons are used and converted to a binary map so as not to produce too many branches for the robot to navigate through. This map is then skeletonised to extract waypoints, see Figure~\ref{fig-skeleton_free__}.
 
     \begin{figure}[!htbp]
     \centering
@@ -191,10 +76,13 @@
     \caption[]{Morphological skeleton extracted from the free-space representation of the environment.}
     \label{fig-skeleton_free__}
     \end{figure}
-    Once the waypoints are obtained, a graph is constructed and leaf nodes are extracted. In the graph leaf nodes are defined by there single connection to the rest of the skeleton, these are seen as endpoints of the path. Finally, starting from the closest leaf node to the robot, the full path is planned by recursively tracing the graph from the current leaf node to the nearest unvisited leaf node.
+    Once the waypoints are obtained, a graph is constructed and leaf nodes are extracted. In the graph, leaf nodes are defined by their single connection to the rest of the skeleton; these are treated as endpoints of the path.
 
     \syncallcounters
-    \switchcolumn
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
 
     \begin{figure}[!htbp]
     \centering
@@ -203,7 +91,7 @@
     \label{fig-skeleton_leaves__}
     \end{figure}
     
-    Finally, starting from the closest leaf node to the robot, the full path is planned by recursively tracing the graph from the current leaf node to the nearest unvisited leaf node. This can be seen in Figure \ref{fig:full_path__}.
+    Finally, starting from the leaf node closest to the robot, the full path is planned by recursively tracing the graph from the current leaf node to the nearest unvisited leaf node. This can be seen in Figure \ref{fig:full_path__}.
 
     \begin{figure}
         \centering
@@ -212,14 +100,11 @@
         \label{fig:full_path__}
     \end{figure}
     \syncallcounters
-    \end{paracol}
-    \newpage
-    \begin{paracol}
-        {2}
-    \paragraph{Grid-Based Spanning Tree Planner}
-    Secondly, a grid-based spanning tree algorithm is used to plan a full coverage path over the map. This planner is based on the work of \cite{SpanningTree2001}.
+    \switchcolumn
+    \paragraph{Grid-Based Spanning-Tree Planner}
+    Secondly, a grid-based spanning-tree algorithm is used to plan a full coverage path over the map. This planner is based on the work of \cite{SpanningTree2001}.
 
-    As opposed to the Skeleton planner, this planner makes use of the binary costmap directly. Using this binary costmap, it is further discretised to a grid which is the fraction of the resolution of the original costmap, see Figure~\ref{fig-spanning_grid__}.
+    Unlike the skeleton planner, this planner uses the binary costmap directly. The binary costmap is further discretized to a grid whose resolution is a fraction of that of the original costmap, see Figure~\ref{fig-spanning_grid__}.
 
     \begin{figure}[!htbp]
     \centering
@@ -229,7 +114,7 @@
     \end{figure}
     \syncallcounters
 
-    A degree first search (DFS) is conducted over the free cells, from which sparse waypoints are created. This can be seen in Figure \ref{fig:fig-spanning_dfs__}.
+    A depth-first search (DFS) is conducted over the free cells, from which sparse waypoints are created. This can be seen in Figure \ref{fig:fig-spanning_dfs__}.
 
     \begin{figure}
         \centering
@@ -237,9 +122,12 @@
         \caption{Depth-first search spanning tree generated over the free-space grid.}
         \label{fig:fig-spanning_dfs__}
     \end{figure}
-    A black image, of the same resolution as the original costmap is then created and white squares, with half the cell width, are placed in the center of each cell and in between each cell. Waypoints are created from the contours of this tree. These waypoints represent a circumnavigation around the DFS tree.
+    A black image with the same resolution as the original costmap is then created, and white squares with half the cell width are placed in the center of each cell and between adjacent cells. Waypoints are created from the contours of this tree. These waypoints represent a circumnavigation around the DFS tree.
     \syncallcounters
-    \switchcolumn
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{latex/figures/Screenshot 2026-06-12 at 11.19.59.png}
@@ -254,29 +142,131 @@
         \caption{The path with circumnavigation removed.}
         \label{fig:placeholder}
     \end{figure}
-    A lab cleanup robot must not blindly follow waypoints. If it does it might collide with obstacles near the map boundary or collide with moving objects. \newline
-    Nav2 implements several low level real-time trajectory planners that plan inside the live updating costmap \\
-    \cite{macenski2023survey}. They handle how the waypoints are followed and how much influence the map ought to have on the generated trajectory. The system described in this section implements an MPPI controller \cite{williams2017mppi} due to its superior performance in highly dynamic environments \cite{elbouhy2024ros2planning}, like labs where students or people frequently walk. Other planners that were considered include DWB (Dynamic Window Approach Behavior-based) \cite{thrun1997dwa} and RPP (Regulated Pure Pursuit) \cite{macenski2023regulated}.
+    \syncallcounters
+    \switchcolumn
+    A lab cleanup robot must not blindly follow waypoints. If it does, it might collide with obstacles near the map boundary or collide with moving objects. \newline
+    Nav2 implements several low-level real-time trajectory planners that plan inside the live-updating costmap \cite{macenski2023survey}. They handle how the waypoints are followed and how much influence the map ought to have on the generated trajectory. The system described in this section implements an MPPI controller \cite{williams2017mppi} due to its superior performance in highly dynamic environments \cite{elbouhy2024ros2planning}, such as labs where students or other people frequently walk. Other planners that were considered include DWB (Dynamic Window Approach Behavior-based) \cite{thrun1997dwa} and RPP (Regulated Pure Pursuit) \cite{macenski2023regulated}.
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \subsection{Robot Behavior}
+
+    A common approach in robotics for navigation- and perception-heavy tasks is to use a global behavior tree that describes the robot's actions in different situations. This architecture, as shown in Figure~\ref{fig:tree}, is used here to describe and execute the cleaning strategy. The \textit{Py Trees for ROS} Python package is used to implement the behavior tree because of its thorough documentation and its native support in ROS 2.
+
+    The behavior tree provides a hierarchical approach for coordinating navigation, perception, and cleaning actions. It also provides a clear structure for debugging. As seen in Figure~\ref{fig:tree}, the robot first explores the environment, then pauses its coverage task whenever an object is detected, approaches the object, checks whether it is still visible, picks it up, and places it in the appropriate bin. The complete tree is shown in Figure~\ref{fig:tree_full} in the Appendix, and the execution of the coverage task, including pausing and resuming, is described in Algorithm~\ref{alg:coverage_exec}.
+    \syncallcounters
+    \switchcolumn
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.78\linewidth]{latex/figures/labclean_tree.drawio-simple tree.drawio (1).png}
+        \caption{Behavior tree (simplified)}
+        \label{fig:tree}
+    \end{figure}
+    \syncallcounters
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \subsection{Mechanical}
+
+    The MIRTE Master platform provides a capable but general-purpose starting point for a laboratory cleaning robot. Out of the box, it offers omnidirectional mobility, a four-degree-of-freedom manipulator, and an integrated sensor suite. However, several of its design choices were not well-suited to the specific demands of autonomous waste collection and sorting. This section documents the physical modifications made to the platform: what was changed, why, and how each modification contributes to the overall system's ability to reliably detect, grasp, and sort laboratory objects.
+    \medskip
+    \centerline{\rule{7.8cm}{0.4pt}}
+
+    \subsubsection{Original MIRTE Master Platform}
+
+    The original MIRTE Master hardware consists of three main parts:
+    \begin{enumerate}
+    \item \textbf{Mobile base}
+    \item \textbf{Electronics}
+    \item \textbf{Robotic arm}
+    \end{enumerate}
+    The mobile base utilizes four geared DC motors with Hall encoders, connected to 97 mm mecanum wheels. This configuration enables omnidirectional movement, which is useful for navigating in small indoor spaces. The base also contains rearward-facing ultrasonic sensors, an IMU, a 2D LiDAR and an RGBD (depth) camera.
+
+    The electronics of the original platform are based on an Orange Pi 3B and a Raspberry Pi Pico H, following a two-tier software architecture that separates high-level task logic from low-level execution. The Orange Pi functions as the main computer, handling computationally intensive tasks. The Pico, as the embedded controller, handles lower-level control tasks such as driving the motors and reading lightweight sensor data. The MIRTE Master also includes a custom PCB to connect the motors, sensors, and power system in a structured manner, powered by a 5 Ah 12 V Li-ion Parkside drill battery. No significant changes were made to the electronics for this project.
+
+    The robotic arm is mounted on top of the mobile base and has four degrees of freedom, which are driven by four serial bus servo motors of varying strengths. A gripper and RGBD camera are mounted at the end of the arm for object scanning and manipulation.
+
+    The original hardware components can be seen in \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/}{Materials}.
+    \syncallcounters
+    \switchcolumn
+
+    \subsubsection{Design Goals for the Modified Robot}
+
+    Despite being a capable platform, several aspects of the original design presented practical limitations for this specific use case. The PMMA chassis plates proved brittle under load, cracking during early testing. The RGBD camera, mounted low at the front of the chassis, was too close to the ground to produce reliable depth estimates for small objects on the floor. The gripper's contact surfaces lacked the friction needed to reliably grasp small, smooth electronic components. Finally, the platform had no provision for storing or separating collected objects. These shortcomings directly motivated the modifications described in the following sections.
+
+    The main design goals are:
+    \begin{itemize}
+    \item Increase the stiffness and reliability of the chassis.
+    \item Add space for collecting and separating waste.
+    \item Mount the camera in a position that enables object detection.
+    \item Improve the battery mounting system.
+    \item Improve cable management.
+    \item Modify the gripper so it can pick up waste objects more reliably.
+    \end{itemize}
+    \medskip
+    \centerline{\rule{7.8cm}{0.4pt}}
+
+    \subsubsection{Chassis Modifications}
+
+    The original MIRTE Master chassis was designed as a general-purpose mobile manipulator base. For this use case, the robot also needed to carry waste bins.
+
+    The chassis consists of six side panels and a top and a bottom plate. In the original model, the top and bottom plates were made of clear PMMA. Although PMMA allows the user to see the status of the electronics by looking at the LEDs on the inside, early testing of the MIRTE Master showed that it was not suitable, as attempts to assemble the robot often resulted in shattered plates. The fracture toughness of PMMA (0.7--1.1 MPa$\cdot$m$^{1/2}$), which is approximately 30 times lower than that of aluminium (23--35 MPa$\cdot$m$^{1/2}$), makes it prone to sudden brittle fracture under mechanical load. Therefore, the PMMA was replaced with aluminium. To still be able to see the status LEDs, the six side panels were 3D-printed using translucent PETG. Two separate waste bins were also added to the rear of the chassis, as they allow the robot to collect, store and separate objects after picking them up.
+    \syncallcounters
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    \subsubsection{Gripper Modifications}
+
+    The original MIRTE Master gripper is useful as a general robotic gripper, but the cleanup task requires it to reliably handle objects that vary widely in shape and size.
+
+    The original gripper geometry is suitable for holding small and large objects; however, the gripping surface is not. Electronic components tend to have small areas of contact with the gripper, making slippage likely during lifting. To improve gripping performance, the contact patches are layered with soft 83A TPE, coated with an additional layer of Bison Rubber anti-slip coating.
+
+    During the initial testing phase of the RGBD camera, it was found that the mounting point was too low for any objects close to the ground to be visible. Although the camera was originally intended to be mounted on the chassis, mounting it on the end of the arm proved beneficial for this project. In addition to the elevated vantage point, this allows for programmable viewing angles. Furthermore, the RGBD camera is now also used for object detection, making the secondary RGB camera unnecessary.
+
+    \subsubsection{Current Design}
+    The complete model can be explored using the interactive 3D interface on the \href{https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical/}{Mechanical} page of the online report. The CAD files can be found \href{https://cad.onshape.com/documents/ee158bec245e3fe46f63c9ce/w/a0c8c76ba94ff339073118d4/e/a16fbc4a88cf67fd9fba6368?renderMode=0&uiState=6a2aaef65092a9418fe6a8f1}{here}.
+
+    \subsection{Manipulation}
+
+    This section covers the articulation of the robotic arm that sits atop the MIRTE Master. Since there is hardly any competition in this space, the market leader, MoveIt 2, was used to move the arm. MoveIt 2 provides a well-documented API and directs the vast majority of computations regarding (inverse) kinematics of robotic arms and the trajectory planning thereafter \cite{moveit2_api}.
+
+    The package is already installed on the MIRTE Master and has previously been used, with limited success, to move MIRTE's arm \cite{mirte_moveit_tutorial}. However, this implementation resulted in the end effector (the tip of the arm; the wrist) being positioned more than 10 cm off-target. For a machine needing to pick up objects smaller than 6 cm, this is unacceptable. Therefore, an improved version is required. To this end, the designed behavior contains a number of improvements and concessions:
+    \syncallcounters
+    \switchcolumn
+
+    \subsubsection{Changes}
+    \begin{itemize}
+    \item The previously missing configuration file, \texttt{moveit\_cpp.yaml}, which contains additional parameters (specifically for OMPL, the motion planner), was created and added.
+
+    \item To accommodate the fact that MIRTE's arm can only move with four degrees of freedom (DOF) instead of the six assumed by MoveIt 2, planning is performed strictly for position, ignoring any orientation component of a goal pose entirely. Together with the first point, this made it possible to use more precise methods from the Move Group Interface to plan and execute movements instead of \texttt{setApproximateJointValues()}. The resulting positional accuracy is in the order of millimetres, although alignment of the gripper must be configured separately.
+
+    \item Functionality has been added to ensure that the gripper points the depth camera downward at an angle relative to the ground, so that the camera can correctly detect the floor itself and any objects on it. When an object is detected and needs to be classified, the robot points the depth camera straight down relative to the world axes for classification. This ensures that any approached object is directly below the camera. As a result, the gripper camera has a constant and uniform background, increasing classification confidence levels.
+
+    \item An action server has been developed that provides feedback to a potential action client. The server can receive goals in several formats:
+    \begin{itemize}
+    \item By specifying the name of a joint state predefined in the robot's description files.
+    \item By supplying a goal pose relative to MIRTE's frame \texttt{base\_link}.
+    \end{itemize}
+    The action server moves the arm in a way that satisfies the goal, if possible. The wrist joint can be moved separately to allow fine adjustment of the gripper's orientation. Similarly, the gripper can be controlled either by specifying a named state or by directly assigning a desired clamping angle. The gripper will move accordingly, if possible.
+    \end{itemize}
+
+    Together, these modifications facilitate the movement of the robotic arm for this specific project and enable the creation of additional custom manipulation modules for future projects.
+    \syncallcounters
     \end{paracol}
     \newpage
     \subsection{Perception}
     \begin{paracol}
         {2}
-    Perception is responsible for object detection, classification and spatial localization. For this study the object detection and localization approaches were limited to two. A \textbf{2D detection and depth projection} approach and 3D segmentation with \textbf{point cloud clustering}.
-    As for classification methods, this study evaluates a classical cv approach, as well as a classification model based approach.
-    
-    Originally, objects where categorised into:
-    \begin{enumerate}
-    \item Graspable vs non-graspable
-    \item Electronics vs non-electronics
-    \end{enumerate}
-    However, due to the limitations of the hardware of the standard MIRTE Master package (relatively low-quality camera and limited computing power) the scope got reduced to:
-    \begin{enumerate}
-    \item Graspable vs non-graspable
-    \item Colourful vs greyscale
-    \end{enumerate}
+    Perception is responsible for object detection, classification, and spatial localization. In this study, two object-detection and localization approaches were evaluated: a \textbf{2D detection and depth-projection} approach and a 3D segmentation approach based on \textbf{point-cloud clustering}. For classification, a classical computer-vision approach and a model-based approach were both considered.
+
+    Initially, the goal was to distinguish between graspable and non-graspable objects and between electronics and non-electronics. However, because the standard MIRTE Master platform had limited camera quality and limited computational resources, the final scope was reduced to two practical classes: graspable versus non-graspable and colourful versus greyscale. This choice was made to keep the system feasible within the available hardware and to focus the evaluation on the most relevant objects for the laboratory-cleaning task.
+
+    A custom YOLO-based detector was trained on a small labelled dataset collected from the onboard camera, while the 3D pipeline used point-cloud filtering, plane removal, and clustering to estimate the position and orientation of candidate objects. The combination of these two perception streams was then used to support the grasping and sorting process.
     \subsubsection{Perception 2D}
-    For determining the type, and possibly the distance of objects, a YOLO26 (`You Only Look Once-26') object classification model was used. A dataset was trained by recording videos using the USB camera included in the MIRTE Master hardware package, of which one in every fifteen frames got extracted to use for the training dataset. A figure of four frames in different environments is shown below in Figure \ref{fig_trainingdataset}.
+    For determining the type, and possibly the distance of objects, a YOLO26 (`You Only Look Once-26') object-detection model was used. A dataset was created by recording videos using the USB camera included in the MIRTE Master hardware package, from which one in every fifteen frames was extracted for the training dataset. A figure of four frames in different environments is shown below in Figure \ref{fig_trainingdataset}.
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{latex/figures/Screenshot 2026-06-11 at 11.59.18.png}
@@ -286,17 +276,17 @@
     
     \syncallcounters
     \switchcolumn
-    \paragraph{Why YOLO26 was used:}
+    \paragraph{Why YOLO26 Was Used}
     The YOLO object-detection family is well established, with YOLO26 \\
-    \cite{ultralytics_yolo26} being the most recent generation. YOLO26 was chosen because the robot has to detect and classify objects from a live camera on the MIRTE Master platform, which has limited processing power as it uses an OrangePi 3B which has limited computational capabilities. Object detection with limited processing power requires a lightweight model with fast inference times while still maintaining accuracy. YOLO26 is suitable for this because it was designed with deployment on low-power devices in mind. It changed the post-processing pipeline to NMS-free inference, simplified bounding-box predictions and supports deployment formats commonly used for low-power devices \cite{yolo26keyarchitecturalenhancements}.
+    \cite{ultralytics_yolo26} being the most recent generation. YOLO26 was chosen because the robot has to detect and classify objects from a live camera on the MIRTE Master platform, which has limited processing power because it uses an Orange Pi 3B. Object detection with limited processing power requires a lightweight model with fast inference times while still maintaining accuracy. YOLO26 is suitable for this because it was designed with deployment on low-power devices in mind. It uses NMS-free inference in its post-processing pipeline, simplifies bounding-box predictions, and supports deployment formats commonly used for low-power devices \cite{yolo26keyarchitecturalenhancements}.
     
-    In this case, the RK3566 NPU of the OrangePi 3B can be used for improving the performance, reducing the total inference time \cite{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of the newer YOLO26 variant over the older variants is that YOLO26 \\ allows for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognized objects \cite{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where orientation of the gripper is crucial. However, this project only uses standard object detection.
+    In this case, the RK3566 NPU of the Orange Pi 3B can be used to improve performance by reducing the total inference time \cite{Yolo11RK3566}. For this model, the Nano variant of YOLO26 was chosen to minimize inference times. Another benefit of YOLO26 over the older variants is its support for oriented bounding boxes. Unlike standard bounding boxes, oriented bounding boxes also estimate the rotation of recognized objects \cite{2026ultralyticsyoloevolutionoverview}. This could be useful for complex grasping tasks where the orientation of the gripper is crucial. However, this project only uses standard object detection.
     \end{paracol}
     \newpage
     \begin{paracol}
         {2}
-    \paragraph{Training:}
-    Training was done manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 pictures were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. A test of the perception model performed during training is shown in the figure below.
+    \paragraph{Training}
+    The training data was annotated manually using Label Studio. Initially, roughly 280 frames were captured in four different environments. Due to a large amount of blurring within the images, about 100 pictures were deleted. Of the remaining 180 pictures, 60 were imported into Label Studio and labelled per colour: green, red, purple, white, light-grey, dark-grey and black. In total, 1206 bounding boxes were drawn. A test of the perception model performed during training is shown in the figure below.
 
     \begin{figure}[!htbp]
     \centering
@@ -306,7 +296,7 @@
     \end{figure}
     %\smallskip
     \centerline{\rule{7.8cm}{0.4pt}}
-    The curves in the figure below show that the model converged during trading. This means that the model actually learns while training instead of making random or unstable decisions.
+    The curves in the figure below show that the model converged during training. This means that the model actually learns while training instead of making random or unstable decisions.
     \syncallcounters
     
     \begin{figure}[!htbp]
@@ -317,7 +307,7 @@
     \end{figure}
 
     \syncallcounters
-    The normalized confusion matrix shows how well classes are recognized by the model. As shown in the figure shown below, most classes are classified correctly, as indicated by the strong diagonal values. However, light-grey objects were among the least correctly identified objects, this is a result of exposure and lighting changing enough to where the model will classify them as background. Some of objects were missed as background, a small amount of objects were misclassified, and some objects like dark-grey and white where confused with light-grey.
+    The normalized confusion matrix shows how well classes are recognized by the model. As shown in the figure below, most classes are classified correctly, as indicated by the strong diagonal values. However, light-grey objects were among the least correctly identified objects, because changes in exposure and lighting often caused the model to classify them as background. Some objects were missed (classified as background), a small number of objects were misclassified, and some objects, such as dark-grey and white ones, were confused with light-grey.
     \syncallcounters
     \switchcolumn
     \begin{figure}[!htbp]
@@ -328,7 +318,7 @@
     \end{figure}
     \syncallcounters
     \centerline{\rule{7.8cm}{0.4pt}}
-    A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precision (how many objects where correctly predicted) and recall (how many objects where correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3-0.35.
+    A figure of the F1 confidence curve is shown below. This curve shows how the F1 metric, which combines precision (how many objects were correctly predicted) and recall (how many objects were correctly found), changes with the confidence threshold of the model. The curve shows that a good starting confidence threshold would be 0.3--0.35.
     \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1.02\linewidth]{latex/figures/Screenshot 2026-06-11 at 12.05.07.png}
@@ -341,18 +331,18 @@
     \subsubsection{Perception 3D}
     \begin{paracol}
         {2}
-    \paragraph{Point Cloud-based Object localisation:}
+    \paragraph{Point Cloud-Based Object Localization}
 
     To determine the exact location of graspable objects around the MIRTE Master, the data gathered and transmitted by the camera must be interpreted. One effective method for achieving this is through the use of point clouds.
     
     As the name suggests, point clouds are collections of points that represent a three-dimensional space. These points may contain a variety of information, but the most important characteristic of a point during this project is its position, represented by its \textit{x}, \textit{y}, and \textit{z} coordinates. During this project, the \texttt{Open3D} library was used to process the point cloud. This particular library has been selected because of its user-friendly API and popularity over PCL \cite{zhou2018open3d}.
     
-    Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \cite{Randomsampleconsensus}. With this method, point clouds can easily and quickly be filtered such that only the important parts, namely the clusters of points representing small objects on the ground, remain.
+    Planes are detected using the Random Sample Consensus (RANSAC) algorithm. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \cite{Randomsampleconsensus}. With this method, point clouds can easily and quickly be filtered such that only the important parts, namely the clusters of points representing small objects on the ground, remain.
     
-    Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong \cite{DBSCAN}. Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its dimensions.
+    Next, a clustering algorithm called DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is used. The algorithm evaluates the remaining points in the point cloud and determines the cluster to which they belong \cite{DBSCAN}. Afterwards, the identified clusters can be converted into bounding boxes, determining an object's position and orientation, as well as its dimensions.
     \syncallcounters
     \switchcolumn
-    Below, Figure~\ref{og_pc__} and Figure~\ref{bounding_boxes__} show the input to output the constructed point cloud pipeline.
+    Below, Figure~\ref{og_pc__} and Figure~\ref{bounding_boxes__} show the input and output of the point cloud pipeline.
     
      \begin{figure}[!htbp]
      \centering
@@ -368,11 +358,86 @@
      \label{bounding_boxes__}
      \end{figure}
     
-     Any objects that are in the costmap are excluded, resulting in only these bounding boxes remaining.
+     Any objects that are part of the costmap are excluded, leaving only these bounding boxes.
+    \end{paracol}
+    \newpage
+    \subsubsection{Complete Point Cloud Processing Pipeline}
+    \begin{paracol}
+        {2}
+    This section shows the practices employed to process the point cloud received from the camera topic \texttt{/camera/depth/points}. Even though the inner workings of the specific functions used are outside the scope of this project, their influence is highlighted here to show their importance.
 
-    %To determine the exact location of graspable objects around the MIRTE Master, the data gathered and sent by the camera will have to be interpreted in some way. One way to do so is using point clouds. These are, as the name suggests, clouds of points representing a 3-dimensional space. Points in these clouds can possess a variety of information, depending on their creator. However, the most important characteristic is a point's position, represented by \textit{x-}, \textit{y-}, and \textit{z-}coordinate values. This can be used to determine whether the point is part of a plane, e.g. the floor or a wall, but also desktops or table legs.
+    For completeness, a point cloud is included below to give an impression of what the input of the pipeline looks like as received from the point cloud topic.
 
-    %Detecting planes will be done using the Random Sample Consensus model, or RANSAC for short. This algorithm picks a number of points from the point cloud at random and fits a plane through them. It then evaluates which points in the point cloud are within the given distance from the plane \color{red}(Cite: Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography)\color{black}. With this method, point clouds can easily and quickly be filtered such that only the important parts - the clusters of points representing small objects on the ground - remain.
+    To do this, a sample point cloud has been saved from the Gazebo simulation and is used as the input to a filtering pipeline built with the Open3D Python library:
+    \begin{itemize}
+    \item steps:
+    \begin{itemize}
+    \item Crop the point cloud to include only points below a given height.
+    \item Copy a downsampled version of the point cloud to speed up future calculations.
+    \item Iteratively detect planes and remove the corresponding points from both point clouds. From there, the downsampled point cloud will not be used anymore.
+    \item Detect clusters from the remaining points.
+    \item Create bounding boxes for these clusters.
+    \item Reject boxes that overlap with the costmap.
+    \end{itemize}
+    \end{itemize}
 
-    %Next, an algorithm for discovering clusters is used called DBSCAN (Density-Based Spatial Clustering of Applications with Noise). The model evaluates the remaining points in the point cloud and determines the cluster to which they belong \color{red}(cite A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise)\color{black}. Afterwards, the identified clusters can be converted into bounding boxes, deciding an object's position and orientation, as well as its size. Finally, the poses (position \& orientation) of the localised objects are published to a ROS 2 topic, to be read by another node.
+    Any remaining bounding boxes are published as detected objects.
+
+    The entire pipeline, including the individual effect of each step, is shown below:
+
+    First, the original point cloud is created from the camera's depth image, as shown in Figure~\ref{pcp_og}.
+
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{content/figures/og_pc.png}
+    \caption[]{The point cloud as received from the camera topic including the eventual bounding boxes}
+    \label{pcp_og}
+    \end{figure}
+    \syncallcounters
+    \switchcolumn
+
+    Next, this point cloud is downsampled. Note that the resolution afterwards is still quite high. This is because the objects are very small, and reducing the resolution dramatically would lose details of these objects, reducing bounding-box accuracy. An example is shown below in Figure~\ref{pcp_downsampled}.
+
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{content/figures/downsampled.png}
+    \caption[]{The downsampled point cloud}
+    \label{pcp_downsampled}
+    \end{figure}
+
+    In the downsampled point cloud, planes are detected using RANSAC plane segmentation \cite{Randomsampleconsensus}. With this, large planes such as walls and tabletops are discarded from the point cloud, as can be seen in Figure~\ref{pcp_segmented}.
+
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{content/figures/planeSegmented.png}
+    \caption[]{The plane-segmented point cloud}
+    \label{pcp_segmented}
+    \end{figure}
+    \syncallcounters
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
+    Now, the remaining points are cross-referenced with the costmap obtained during mapping. Any point that lies on the costmap is excluded from the point cloud, resulting in the point cloud depicted in Figure~\ref{pcp_exclusive}.
+
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{content/figures/ExclusivePointCloud.png}
+    \caption[]{The point cloud containing only points belonging to free objects}
+    \label{pcp_exclusive}
+    \end{figure}
+    \syncallcounters
+    \switchcolumn
+
+    Finally, the remaining points are converted to clusters using DBSCAN \cite{DBSCAN}. This enables the construction of a bounding box for each cluster, each of which represents an object. Bounding boxes, however faint, can be made out in Figure~\ref{pcp_boxes} below.
+
+    \begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{content/figures/boundingBoxes.png}
+    \caption[]{Bounding boxes (in front of the robot) are drawn around the remaining clusters.}
+    \label{pcp_boxes}
+    \end{figure}
+
+    Information about these bounding boxes is then published on a ROS 2 topic, which is later used to approach and pick up the corresponding objects.
+    \syncallcounters
     \end{paracol}

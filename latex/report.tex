@@ -132,7 +132,7 @@
 \vfill
 
 \begin{abstract}
-\textit{In laboratories, items of many kinds may fall onto the floor. While implementations to clean such floors - like robotic vacuum cleaners - already exist, they do not work with trash-separation mechanics and end up disposing of all waste into the same bin. Yet, in laboratories, one may want specific types of dropped items to be returned and reused, such as electronic components. This project aims to use the open-source MIRTE Master robotic platform to combine both cleaning and reusing, by implementing a sorting system. This project presents an automated trash-detecting and sorting robot, using a 4-DOF robotic arm with gripping end-effector for grabbing, a 2-sided bin for sorting, an RGB-D camera for object-detection, MoveIt! 2 for manipulation and Nav2 combined with SLAM for navigation, built on top of the MIRTE Master platform. During this research, methods for path planning and object detection have been tested, compared and implemented with the goal of making the robot as accurate as possible while maintaining operational velocity.}
+\textit{In laboratory environments, small objects often fall onto the floor and need to be collected and separated rather than discarded collectively. This thesis presents a mobile manipulation system based on the MIRTE Master platform that combines navigation, perception, and manipulation to detect and sort objects in a laboratory setting. The system integrates a 4-DOF robotic arm, a two-bin sorting mechanism, an RGB-D camera, MoveIt 2, and Nav2 with SLAM. Different coverage planners and perception approaches were evaluated in practice. The morphology-based skeleton planner performed well in the tested laboratory-like environments but worse in larger open spaces, whereas the spanning-tree planner performed well in larger open spaces but struggled more in tighter environments. The perception pipeline was able to localize and classify representative objects, and the manipulator modifications improved grasp reliability, although the system remained sensitive to lighting conditions, hardware constraints, and synchronization issues. Overall, the work shows that the MIRTE Master is a feasible platform for autonomous laboratory cleaning, while also identifying several directions for further development.}
 \end{abstract}
 
 \clearpage
@@ -170,31 +170,29 @@ We would like to express our sincere gratitude towards our project supervisors, 
 \include{mainmatter/SystemOverview}
 \include{mainmatter/Methods}
 \include{mainmatter/Results}
-\include{mainmatter/Conclusion}
-
 \section{Discussion}
 
 \subsection{Delays}
 
-We were caught in the middle of a platform migration to a new design. This migration happened at the time that a MSc course started which used up all of the MIRTE Master robots. This meant that, for us, no robot was available from the start of our project. We also had no clarity about when a unit would be received and if more components needed to be ordered. Furthermore not all components in the MIRTE Master could be ordered given the BEP budget. This meant there was an unanticipated waiting period that extended far into the project timeline, during which testing and integration was supposed to have happened. In the end, the components were received in week 13 of the 16-week long project timeline. While the software team was able to frontload the majority of software development using Gazebo simulations, this still meant that the team only had three weeks to find out all the quirks of the MIRTE Master, troubleshoot them and simultaneously integrate the software which severely limited our ability to perform real-world quantitative and qualitative experiments.
+We were caught in the middle of a platform migration to a new design. This migration happened at the time that a master's course started, which used up all of the available MIRTE Master robots. This meant that, for us, no robot was available from the start of the project. We also had no clarity about when a unit would be received and whether additional components needed to be ordered, and we could not order all components ourselves because of budget restrictions. In the end, the components were received in week 13 of the 16-week project period. While the software team was able to front-load much of the development using Gazebo simulations, this still meant that the team had only three weeks to discover the quirks of the MIRTE Master, troubleshoot them, and integrate the software, which severely limited our ability to perform real-world quantitative and qualitative experiments.
 
 \subsection{Gazebo}
 
-Gazebo was a great tool for testing the software quickly and in an isolated manner. It also provided a way to run the programs without needing a real robot. However, learning to work with the simulator not only had a steep learning curve, it also required a lot of additional effort to set up a realistic environment: making custom worlds using Blender with objects that could be interacted with. It also required a further setup to be compatible with the existing MIRTE framework.
+Gazebo was a useful tool for testing the software stack quickly and in an isolated manner. However, learning to work with Gazebo required a steep learning curve and a significant amount of additional effort to set up a realistic environment, including custom worlds and interactive objects.
 
-When transitioning from a simulated environment to the real world, a lot of issues arose. Firstly, every ROS node dependent on up-to-date transforms and other timestamped messages now needed to be reconfigured not to use the simulated clock (which starts at zero when initialized). Secondly, the team discovered that the robot sensors produce significantly less accurate, up-to-date, and reliable feedback than the ones configured for the simulated MIRTE.
+When transferring the code base from the simulation environment to the real world, several problems occurred. The code had to be adjusted, for example by avoiding \texttt{use\_sim\_time}, and the robot's sensors were found to provide less accurate and less reliable feedback than expected.
 
 \subsection{The MIRTE Master Platform}
 
-The MIRTE Master proved to be a viable starting platform for prototyping a lab-floor cleaning robot. A lot of aspects came pre-configured: MoveIt configuration was largely set up, Nav2 parameters for MIRTE existed, a selection of configuration files for the robot were by and large integrated, operational and all the calibration and control functioned.
+The MIRTE Master proved to be a viable starting platform for a cleaning robot. Much of the required setup was already in place: MoveIt was available, Nav2 for MIRTE was present, Gazebo already existed, and many of the configuration files and calibrations were operational.
 
-However, it seemed to us that some parts of the design did not seem to be thoroughly tested prior to integration within the MIRTE Master platform. The most significant friction occurred with the components used for perception. Firstly, the RGBD camera was mounted in the front, near the bottom of the MIRTE Master which resulted in the depth camera not being able to create a usable depth image for the pointcloud. This issue was discovered by using the OrbbecViewer tool and testing for different mounting positions. From our testing, we concluded that the depth camera should never have been mounted low to the ground. Secondly, the included USB camera module was excluded from our final design because of poor performance: the camera was too blurry for use while moving and the frame rate dropped severely in different lighting and background conditions due to its automatic exposure control.
+However, some parts of the design were not tested as thoroughly as expected before integration into the MIRTE Master platform. The most significant issues were found in the perception components. The RGB-D camera was initially mounted near the front and lower part of the robot, which resulted in depth images that were not suitable for point-cloud processing. The included USB camera module was also excluded from the final design because of poor performance, including motion blur and a pronounced drop in frame rate under changing lighting conditions.
 
-The final major issue was time-synchronization between the MIRTE Master and other machines. It was discovered quite quickly that the MIRTE Master's OrangePi 3B was not up to the task of running the software stack on its own, so a lot of the processing (lab cleanup stack and point cloud creation) was outsourced to a laptop. For this to work correctly, time needed to be synchronized between the two machines. The MIRTE Master does not possess an accurate clock and when a laptop is directly connected to the MIRTE Master, no internet connection is available. This resulted in attempts to manually sync the clocks between devices, which did not have a high success-rate. Later, a \href{https://chrony-project.org/}{Chrony} was implemented as a more permanent solution which automatically synced the clock between devices within tolerances. This almost eliminated clock synchronization issues, but some errors still persisted.
+The final major issue encountered was time synchronization between the MIRTE Master and other machines. The Orange Pi 3B on the MIRTE Master was not powerful enough to run the full software stack on its own, so much of the processing had to be offloaded to a laptop. For this to work correctly, the time needed to be synchronized between the devices. Later, a custom implementation based on \href{https://chrony-project.org/}{Chrony} was used to synchronize the clocks automatically within acceptable tolerances.
 
-\subsection{Future Work}
+In addition, the implemented navigation and perception approaches were feasible but not yet fully optimized. The coverage planners traded off completeness against path smoothness, and the perception pipeline remained sensitive to lighting and object appearance. These limitations provide useful guidance for future work.
 
-Using the software packages created as a part of this work, future research can be done to evaluate the performance of the robot by testing the different coverage planners in isolation and in combination with the rest of the system. Additionally, other coverage planners, such as Voronoi-based \cite{voronoi} and boustrophedon \cite{Choset1997} coverage planners, can be implemented and tested. It can also be interesting to observe the influence of different environments on the performance of the system. One could also research if porting the MIRTE Master software stack to a more suitable SBC is possible.
+\include{mainmatter/Conclusion}
 
 %\include{latex/latex_export/report_tex-discussion}
 
@@ -410,7 +408,7 @@ $\mathcal{O} \leftarrow [\;]$\;
         \centering
         \includegraphics[width=0.99\linewidth]{latex/figures/labcleantree.png}
         \caption{Full Behavior Tree}
-        \label{fig:tree}
+        \label{fig:tree_full}
     \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
