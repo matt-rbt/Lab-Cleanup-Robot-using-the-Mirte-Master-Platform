@@ -35,7 +35,8 @@
 \usepackage{doi}
 
 % template
-\usepackage{natbib}
+% natbib is provided through biblatex (natbib=true in report.tex); loading it here made biblatex fail
+% \usepackage{natbib}
 \usepackage{fancyvrb}
 \usepackage{mdframed}
 \usepackage{xcolor}
@@ -54,7 +55,8 @@
 \newfloat{code}{thp}{loc}
 \floatname{code}{Program}
 \raggedbottom
-\bibliographystyle{abbrvnat}
-\setcitestyle{authoryear,open={(},close={)},semicolon,aysep={,}}
+% natbib-only settings, unused: the report uses biblatex (IEEE, numeric) instead of natbib
+% \bibliographystyle{abbrvnat}
+% \setcitestyle{authoryear,open={(},close={)},semicolon,aysep={,}}
 
 % End Definitions

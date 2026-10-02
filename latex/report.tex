@@ -26,6 +26,10 @@
 \globalcounter{table}
 \addbibresource{main.bib}
 
+% Figure paths are written relative to the repository root (latex/figures/..., content/figures/...).
+% Also search one level up so the report compiles from inside latex/ as well as from the repo root.
+\graphicspath{{./}{../}}
+
 \newcommand\note[1]{\textcolor{red}{#1}}
 \makeglossaries
 
@@ -122,7 +126,6 @@
 \textsc{
 \small{Authors: Matthew de Lannoy, Otto Meijerhof, Max van 't Hart, Florian van den Berg}%
 \\
-
 \small{Delft University of Technology}
 }}
 
@@ -196,23 +199,26 @@ In addition, the implemented navigation and perception approaches were feasible 
 
 %\include{latex/latex_export/report_tex-discussion}
 
-\color{gray}
-
-\include{latex/latex_export/report_tex-introduction}
-%\include{latex/latex_export/report_tex-theory}
-\include{latex/latex_export/report_tex-systemoverview}
-\include{latex/latex_export/report_tex-mechanical}
-\include{latex/latex_export/report_tex-navigation}
-\include{latex/latex_export/report_tex-coverageplanners}
-\include{latex/latex_export/report_tex-perception}
-\include{latex/latex_export/report_tex-perception2d}
-\include{latex/latex_export/report_tex-perception3d}
-\include{latex/latex_export/report_tex-methods}
-\include{latex/latex_export/report_tex-results}
-\include{latex/latex_export/report_tex-conclusion}
-\include{latex/latex_export/report_tex-materials}
-
-\color{black}
+% --- Disabled: stale MyST export (old text, gray). It cannot be \include'd when compiling from latex/
+% --- (its .aux files need latex/latex/latex_export) and it references figures that are not in the repo.
+% --- Re-run the 'MyST PDF builder [LaTeX]' workflow and re-enable if you want to compare against it.
+% \color{gray}
+%
+% \include{latex/latex_export/report_tex-introduction}
+% %\include{latex/latex_export/report_tex-theory}
+% \include{latex/latex_export/report_tex-systemoverview}
+% \include{latex/latex_export/report_tex-mechanical}
+% \include{latex/latex_export/report_tex-navigation}
+% \include{latex/latex_export/report_tex-coverageplanners}
+% \include{latex/latex_export/report_tex-perception}
+% \include{latex/latex_export/report_tex-perception2d}
+% \include{latex/latex_export/report_tex-perception3d}
+% \include{latex/latex_export/report_tex-methods}
+% \include{latex/latex_export/report_tex-results}
+% \include{latex/latex_export/report_tex-conclusion}
+% \include{latex/latex_export/report_tex-materials}
+%
+% \color{black}
 
 \section{Appendix}
 \subsection{Algorithms}
