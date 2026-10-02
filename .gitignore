@@ -4,3 +4,23 @@
 .venv
 .vscode
 build
+# LaTeX artifacts (builds go to latex/build)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.glo
+*.gls
+*.acn
+*.acr
+*.ist
+*.glg
