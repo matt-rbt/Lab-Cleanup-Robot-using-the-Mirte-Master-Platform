@@ -13,7 +13,7 @@ $$
 p(m \mid z_{1:t}, x_{1:t})
 $$
 
-Where:
+where:
 
 * $m$ is the map
 * $z_{1:t}$ are sensor measurements
@@ -24,16 +24,16 @@ Different SLAM approaches (e.g., grid-based vs feature-based) trade off accuracy
 ---
 
 ## Navigation
-Navigation refers to the process of planning and executing collision-free motion from a start to a goal position, typically after the map has been established using the previously discussed Mapping process. It is typically decomposed into:
+Navigation refers to the process of planning and executing collision-free motion from a start position to a goal position, usually after the map has been established using the Mapping process discussed above. It is typically decomposed into:
 
 * **Global planning**: computing an optimal path on a map.
 * **Local planning**: generating feasible velocity commands.
 
 Modern navigation systems use costmaps and search-based planners such as A* or Dijkstra. In Nav2, navigation is modular, allowing different planners and controllers to be interchanged.
-Since Local planning can mostly be left to Nav2 for this section only some theory is discussed on how coverage path planning is done in this case.
+Since local planning can largely be left to Nav2, this section discusses only the theory behind how coverage path planning is done in this case.
 
 ### Global Planning Methods
-Global Path planning includes two major steps. Namely Decomposition and Path planning
+Global path planning includes two major steps: decomposition and path planning.
 
 ---
 

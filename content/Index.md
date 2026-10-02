@@ -1,5 +1,5 @@
 ---
-title: Lab Cleanup Robot using Mirte Master Platform
+title: Lab Cleanup Robot using MIRTE Master Platform
 site:
   hide_outline: true
   hide_toc: true
@@ -18,7 +18,7 @@ no-update-date: true
 
 +++ { "kind": "split-image" }
 
-## Lab Cleanup Robot using Mirte Master Platform
+## Lab Cleanup Robot using MIRTE Master Platform
 
 {button}`View Source code <https://github.com/matt-rbt/Mirte_Lab_Clean.git>`  
 {button}`View Documentation <https://matt-rbt.github.io/Mirte_Lab_Clean/build/html/index.html>`
@@ -29,5 +29,5 @@ no-update-date: true
 
 +++
 
-This thesis reports on the application of the Mirte Master Platform to lab cleanup and sorting. It covers aspects such as perception and classification and cleanup strategies
+This thesis reports on the application of the MIRTE Master Platform to lab cleanup and sorting. It covers aspects such as perception, classification, and cleanup strategies.
 

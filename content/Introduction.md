@@ -5,7 +5,7 @@ In laboratory environments, small objects often fall onto the floor and need to 
 
 ## Introduction
 
-In laboratory environments, maintaining a good level of cleanliness is often challenging. While autonomous floor-cleaning robots are common in domestic settings, laboratory floors often contain small graspable items rather than dust or hair. A laboratory-cleaning robot therefore needs to detect, pick up, and sort such objects rather than simply sweep debris. Because not all found objects should be discarded, the system should also be able to separate reusable items, such as electronic components, from other waste. The implementation of such a system also provides useful insights into existing robotic platforms like the Mirte Master robot.
+In laboratory environments, maintaining a good level of cleanliness is often challenging. While autonomous floor-cleaning robots are common in domestic settings, laboratory floors often contain small graspable items rather than dust or hair. A laboratory-cleaning robot therefore needs to detect, pick up, and sort such objects rather than simply sweep debris. Because not all found objects should be discarded, the system should also be able to separate reusable items, such as electronic components, from other waste. The implementation of such a system also provides useful insights into existing robotic platforms like the MIRTE Master robot.
 
 The goal of this project was to develop an autonomous laboratory-cleaning robot based on the MIRTE Master platform. The robot should be able to navigate an indoor environment, detect objects, distinguish between categories of waste, and place them in the appropriate bin. This report outlines the development process and implementation of the resulting system.
 
@@ -19,7 +19,7 @@ In parallel, research on mobile manipulation has shown that robust object percep
 
 ## Contribution
 
-This work serves as a practical application of the MIRTE Master platform for a specific laboratory-cleaning task. The main contribution is to show how the platform can be extended with a waste-sorting mechanism and to evaluate which navigation and perception approaches are most suitable for this purpose. By integrating perception, navigation, and manipulation in a real-world setup, the project provides insight into the platform's practical strengths and limitations, aswell as its potential for extensibility and modularity.
+This work serves as a practical application of the MIRTE Master platform for a specific laboratory-cleaning task. The main contribution is to show how the platform can be extended with a waste-sorting mechanism and to evaluate which navigation and perception approaches are most suitable for this purpose. By integrating perception, navigation, and manipulation in a real-world setup, the project provides insight into the platform's practical strengths and limitations, as well as its potential for extensibility and modularity.
 
 ## Roadmap
 

@@ -1,8 +1,8 @@
 # Materials
-Within this section, all hardware employed within the MIRTE Master will be displayed and discussed.
+This section presents and discusses all hardware used in the MIRTE Master.
 
 ## Hardware Specifications
-The majority of the hardware used for this implementation of the MIRTE Master stems from the standard components implemented by the MIRTE team. Within this [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) section, the list of hardware parts can be seen, excluding only trivial components such as nuts and bolts.
+Most of the hardware used in this implementation of the MIRTE Master comes from the standard components provided by the MIRTE team. The table below lists the hardware parts, excluding only trivial components such as nuts and bolts.
 
 | Category | Components |
 |---|---|
@@ -18,11 +18,11 @@ The majority of the hardware used for this implementation of the MIRTE Master st
 | | - Main computer: Orange Pi 3B V1.1.1 |
 | | - Microcontroller: Raspberry Pi Pico H |
 | | - MIRTE custom PCB |
-| | - Micro-SD-card |
+| | - microSD card |
 | | - 12V RGB LED-strip |
 | **Manipulation** | |
 | | - Upper arm limb, lower arm limb (3D-printed) |
-| | - Schoulder joint bracket, wrist joint bracket (3D-printed) |
+| | - Shoulder joint bracket, wrist joint bracket (3D-printed) |
 | | - Double gears, bars for 4-bar linkage of gripper, triangle tips for gripper, TPE gripper ends (3D-printed) |
 | | - Mounting bracket for RGB-camera module (3D-printed) |
 | | - 5x Hiwonder bus servo-motors |
@@ -47,33 +47,33 @@ Given that MIRTE is not produced in large quantities and no standardized spare p
 
 ## Chassis
 
-The chassis consists of a top, bottom, and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels do not only act as chassis support elements but also as mounting components for several electronics parts. For these purposes, PETG was chosen because it is easy to print, impact-resistant, and sufficiently stiff for the intended application. The aluminium plates were chosen for their rigidity and durability. Although no formal material tests were performed in this study, these choices were made to match the practical requirements of the robot's payload and expected handling. \
+The chassis consists of a top, bottom, and manipulator-mounting plate, for which aluminium plates with a thickness of 1.5 mm were used, as well as several side panels. These side panels not only act as chassis support elements but also serve as mounting points for several electronic components. For these purposes, PETG was chosen because it is easy to print, impact-resistant, and sufficiently stiff for the intended application. The aluminium plates were chosen for their rigidity and durability. Although no formal material tests were performed in this study, these choices were made to match the practical requirements of the robot's payload and expected handling. \
 The translucent PETG variant used for this project also enables the user to look at the status lights on the inside of the chassis. This would otherwise not have been possible due to the aluminium top and bottom plates. During printing, orange PETG accent lines were also added to make the robot more visible to people passing by.
 
 ## Manipulator
 
-The manipulator consists of several components that can be found within the list at the top of the [Materials](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/materials/) webpage. This system can be divided into four groups: brackets, limbs, servo-motors and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but that only actuates the gripping mechanism and therefore doesn't add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
+The manipulator consists of several components, which are listed in the table at the top of this page. This system can be divided into four groups: brackets, limbs, servo-motors, and the gripping mechanism. Given that there are four servo-motors, the arm is defined to have four degrees of freedom to be able to reach all places around the robot. There is a fifth servo-motor mounted, but it only actuates the gripping mechanism and therefore does not add any degree of freedom to the system. All of this, including the chassis, can be seen in the interactive display near the bottom of the [Mechanical](https://matt-rbt.github.io/Lab-Cleanup-Robot-using-the-Mirte-Master-Platform/mechanical) overview page.
 
 ## Software Specifications
 
 The MIRTE Master robotic platform has free open-source software available for any user to install. \
 The latest stable release is used in this robotic system. This software comes packaged inside a ROS application {cite:t}`ROS2_2022`, a standardized framework for developing distributed robotic systems. This allows for the use of a wide variety of cross-compatible plugins and additional software packages, making rapid prototyping and development more efficient.
 
-The particular ROS distribution the MIRTE Master platform implements is ROS2 Humble Hawksbill on Ubuntu 22.04.
+The ROS distribution used by the MIRTE Master platform is ROS 2 Humble Hawksbill on Ubuntu 22.04.
 
 ### SLAM
 
-Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this, SLAM (Simultaneous Localization and Mapping) is used. This way the robot can dynamically update its environment based on measurements from its LiDAR scanner.
-The robot created an occupancy grid map as an image while estimating the robot's pose.
+Before the robot is able to perform any complex task in an environment, the environment must first be mapped. For this, SLAM (Simultaneous Localization and Mapping) is used. This way, the robot can dynamically update its map of the environment based on measurements from its LiDAR scanner.
+The robot creates an occupancy grid map, represented as an image, while estimating its own pose.
 The two most widely adopted SLAM frameworks in the ROS ecosystem are Cartographer [@cartographer] and SLAM Toolbox [@SlamTBX2021]. For the MIRTE Master platform, SLAM Toolbox was selected due to its superior mapping accuracy and localization performance when reliable odometry is available [@slamvscart]. Since the MIRTE Master is dedicated to running the core robotics software stack and is not burdened by other computationally intensive workloads, the higher computational requirements of SLAM Toolbox do not pose a significant limitation. Consequently, prioritizing mapping accuracy over computational efficiency makes SLAM Toolbox the most suitable choice for this application.
-To implement SLAM into the MIRTE Master robot, SLAM Toolbox is used. This software package was chosen due to its native ROS2 support and good integration with other ROS2 packages. Slam Toolbox allows for straight forward modification of mapping behavior using the set of parameters it provides. In the case of the MIRTE Master, there are several projects that have implemented SLAM Toolbox, so finding a ready-to-use set of SLAM parameters for this robot is relatively simple. The [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package is used for configuration files and SLAM parameter settings.
-It was assumed the robot would only navigate in unknown environments without predefined or reoccurring maps. Therefore localization (using AMCL) was disabled in the application.
+SLAM Toolbox was also chosen for its native ROS 2 support and good integration with other ROS 2 packages. SLAM Toolbox allows for straightforward modification of mapping behavior using the set of parameters it provides. In the case of the MIRTE Master, there are several projects that have implemented SLAM Toolbox, so finding a ready-to-use set of SLAM parameters for this robot is relatively simple. The [Mirte Navigation](https://github.com/MartijnWisse/mirte_navigation) ROS package is used for configuration files and SLAM parameter settings.
+It was assumed that the robot would only navigate in unknown environments without predefined or recurring maps. Localization (using AMCL) was therefore disabled in the application.
 
 ### Manipulation
 
-While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (cartesian-space) control over the end effector position. \
-The manner which in motion planners are typically implemented requires the integration of several complex subsystems like inverse and forward kinematic solvers, trajectory planners and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 ({cite:t}`Coleman2014MoveIt`) was used.
+While the arm on the MIRTE Master can be controlled in joint-space, the implementation relies on task-space (Cartesian-space) control over the end-effector position. \
+The manner in which motion planners are typically implemented requires the integration of several complex subsystems, such as inverse and forward kinematics solvers, trajectory planners, and path planners. To accomplish the goal of task-space control over the arm, MoveIt 2 ({cite:t}`Coleman2014MoveIt`) was used.
 
 ### Navigation
 
-Robot navigation also has a challenge analogous to that of robot manipulation, namely that of workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem ({cite:t}`macenski2020marathon2`). Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).
+Robot navigation poses a challenge analogous to that of robot manipulation: workspace control. The robot must be able to navigate to or through a set of waypoints given in the coordinate system of the map, while also implementing a real-time controller for obstacle avoidance. Similar to MoveIt 2, Nav2 is used as a solution to this problem ({cite:t}`macenski2020marathon2`). Aside from path planning and real-time control, Nav2 also provides a [Costmap](https://docs.nav2.org/configuration/packages/configuring-costmaps.html).

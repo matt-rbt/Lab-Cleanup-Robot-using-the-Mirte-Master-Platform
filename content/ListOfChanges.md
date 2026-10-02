@@ -2,19 +2,19 @@
 
 ## Clock Synchronization
 
-To syncronise the two machines' clocks, use the following command:
+To synchronize the two machines' clocks, use the following command:
 
 ```bash
 sudo date -s "date_and_time"
 ```
 
-example:
+Example:
 
 ```bash
 sudo date -s "2026-01-01 12:01:01"
 ```
 
-Install image pipeline:
+Install the image pipeline:
 
 ```bash
 sudo apt install ros-humble-image-pipeline
@@ -24,7 +24,7 @@ sudo apt install ros-humble-image-pipeline
 
 ## `mirte-gazebo/launch/gazebo_mirte_world_generated.launch.xml`
 
-### Add verbosity and add to gazebo model path
+### Add verbosity and add to the Gazebo model path
 
 ```xml
 <launch>
@@ -62,7 +62,7 @@ sudo apt install ros-humble-image-pipeline
       <ray>
         <scan>
           <horizontal>
-            <!-- for some reason 1 does not work, we neex 2x2 -->
+            <!-- for some reason 1 does not work, we need 2x2 -->
             <samples>2</samples>
             <resolution>1</resolution> 
             <min_angle>-0.26</min_angle>
@@ -102,7 +102,7 @@ _gripper_link_joint_r_mimic
 
 ## `mirte-ros-packages/mirte_description/mirte_master_description/urdf/arm.xacro`
 
-### Replace the joint limit of the `shoulder_lift_joint` (line 55) to:
+### Replace the joint limit of the `shoulder_lift_joint` (line 55) with:
 
 ```xml
 <limit
@@ -225,16 +225,16 @@ Copy the following lines exactly and place them under the `"home"` move group (l
 Insert an SD card with an image into the MIRTE.
 Wait for flashing to conclude.
 
-Turn on the MIRTE Master and wait for the hotspot to turn on.
-Connect to the MIRTE's wifi.
+Turn on the MIRTE Master and wait for the hotspot to start.
+Connect to the MIRTE's Wi-Fi network.
 
-On your pc, insert the command:
+On your PC, enter the command:
 
 ```bash
 ssh mirte@mirte_local
 ```
 
-and insert the password:
+and enter the password:
 
 ```text
 mirte_mirte
@@ -273,4 +273,4 @@ ros2 run mirte_test mirte_master_set_voltage_ranges
 ros2 run mirte_test mirte_master_calibrate
 ```
 
-Turn off ROS2 on the MIRTE and reassemble the arm components so they match the `"home"` pose.
+Turn off ROS 2 on the MIRTE and reassemble the arm components so they match the `"home"` pose.
