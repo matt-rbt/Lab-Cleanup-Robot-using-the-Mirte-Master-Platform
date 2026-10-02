@@ -1,28 +1,27 @@
 \section{System Overview}
 
-The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
-
-To realize this, the robot incorporates several distinct, but tightly knit software subsystems. Each one is responsible for a separate function of autonomous operation, but simultaneously reliant on data from one or more of the other systems.
-
-At the highest level sits a behavior tree that orchestrates how these different subsystems interact to make the robot execute the main goal. It decides when to explore, when to approach a detected object, when to classify it, and when to pick and place it.
-
-Below this, a navigation system handles how the robot moves through the environment. It maps, then plans a coverage path, enabling the discovery of portable objects. The manipulation system plans and executes pick and place motions given object poses and visibility. Underpinning both is the perception pipeline, which provides the system with a continuous stream of object poses and classifications derived from depth and colour data.
-
-These subsystems do not operate in isolation. The behavior tree depends on perception to make decisions, perception depends on navigation to bring the camera within range of objects, and manipulation depends on the localization estimates that perception provides. Understanding the system therefore requires understanding how these parts interact, not just what each part does individually.
-
-The following sections describe each subsystem in turn: behavior and task orchestration, manipulation and motion planning, perception, and navigation.
 \begin{paracol}
     {2}
+    The setup consists of a mobile manipulator (MIRTE Master) tasked with autonomously exploring an indoor laboratory environment, identifying and localizing objects, distinguishing between electronics and other objects, and sorting these objects accordingly.
+
+    To realize this, the robot incorporates several distinct, but tightly knit software subsystems. Each one is responsible for a separate function of autonomous operation, but simultaneously reliant on data from one or more of the other systems.
+
+    At the highest level sits a behavior tree that orchestrates how these different subsystems interact to make the robot execute the main goal. It decides when to explore, when to approach a detected object, when to classify it, and when to pick and place it.
+
+    Below this, a navigation system handles how the robot moves through the environment. It maps, then plans a coverage path, enabling the discovery of portable objects. The manipulation system plans and executes pick and place motions given object poses and visibility. Underpinning both is the perception pipeline, which provides the system with a continuous stream of object poses and classifications derived from depth and colour data.
+
+    These subsystems do not operate in isolation. The behavior tree depends on perception to make decisions, perception depends on navigation to bring the camera within range of objects, and manipulation depends on the localization estimates that perception provides. Understanding the system therefore requires understanding how these parts interact, not just what each part does individually.
+
+    The following sections describe each subsystem in turn: behavior and task orchestration, manipulation and motion planning, perception, and navigation.
     \subsection{Navigation}
 
     The navigation stack of this robot is responsible for two main tasks: mapping and coverage. During mapping, the robot builds a representation of the environment from sensor data so that it can plan safe trajectories. During coverage, it generates a sequence of waypoints that traverses the free space while avoiding obstacles.
     \medskip
-    \centerline{\rule{7.8cm}{0.4pt}}
+    \switchcolumn
     \subsubsection{Mapping}
 
     Before the robot can navigate through the environment and ensure proper coverage, the environment must first be known. This is where mapping approaches become useful. Several advanced and specialized mapping approaches already exist, but in this work only one was considered: frontier-based mapping. Frontier-based mapping allows the robot to start navigating the environment and expand its map as new areas are discovered, which is well suited to partially known indoor spaces \cite{SlamTBX2021}.
     \syncallcounters
-    \switchcolumn
     For the actual motion execution, Nav2 is used as the low-level navigation framework. The coverage planners implemented in this work generate the waypoints that define the desired path, while Nav2 handles trajectory generation, obstacle avoidance, and execution of the motion in the live costmap \cite{macenski2020marathon2}. This separation keeps the higher-level planning logic simple while allowing the robot to respond to dynamic obstacles in real time. A video demonstration of the robot mapping a space is available \href{https://www.youtube.com/watch?v=zg_rNDsQURY}{online}.
     \syncallcounters
     \end{paracol}
@@ -86,7 +85,7 @@ The following sections describe each subsystem in turn: behavior and task orches
 
     \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.99\linewidth]{content/figures/navigator_results/skeleton_tree_leaves.png}
+    \includegraphics[width=0.7\linewidth]{content/figures/navigator_results/skeleton_tree_leaves.png}
     \caption{Leaf nodes identified on the skeleton graph, representing endpoints used during path generation.}
     \label{fig-skeleton_leaves__}
     \end{figure}
@@ -237,29 +236,8 @@ The following sections describe each subsystem in turn: behavior and task orches
     \syncallcounters
     \switchcolumn
 
-    \subsubsection{Changes}
-    \begin{itemize}
-    \item The previously missing configuration file, \texttt{moveit\_cpp.yaml}, which contains additional parameters (specifically for OMPL, the motion planner), was created and added.
-
-    \item To accommodate the fact that MIRTE's arm can only move with four degrees of freedom (DOF) instead of the six assumed by MoveIt 2, planning is performed strictly for position, ignoring any orientation component of a goal pose entirely. Together with the first point, this made it possible to use more precise methods from the Move Group Interface to plan and execute movements instead of \texttt{setApproximateJointValues()}. The resulting positional accuracy is in the order of millimetres, although alignment of the gripper must be configured separately.
-
-    \item Functionality has been added to ensure that the gripper points the depth camera downward at an angle relative to the ground, so that the camera can correctly detect the floor itself and any objects on it. When an object is detected and needs to be classified, the robot points the depth camera straight down relative to the world axes for classification. This ensures that any approached object is directly below the camera. As a result, the gripper camera has a constant and uniform background, increasing classification confidence levels.
-
-    \item An action server has been developed that provides feedback to a potential action client. The server can receive goals in several formats:
-    \begin{itemize}
-    \item By specifying the name of a joint state predefined in the robot's description files.
-    \item By supplying a goal pose relative to MIRTE's frame \texttt{base\_link}.
-    \end{itemize}
-    The action server moves the arm in a way that satisfies the goal, if possible. The wrist joint can be moved separately to allow fine adjustment of the gripper's orientation. Similarly, the gripper can be controlled either by specifying a named state or by directly assigning a desired clamping angle. The gripper will move accordingly, if possible.
-    \end{itemize}
-
-    Together, these modifications facilitate the movement of the robotic arm for this specific project and enable the creation of additional custom manipulation modules for future projects.
     \syncallcounters
-    \end{paracol}
-    \newpage
     \subsection{Perception}
-    \begin{paracol}
-        {2}
     Perception is responsible for object detection, classification, and spatial localization. In this study, two object-detection and localization approaches were evaluated: a \textbf{2D detection and depth-projection} approach and a 3D segmentation approach based on \textbf{point-cloud clustering}. For classification, a classical computer-vision approach and a model-based approach were both considered.
 
     Initially, the goal was to distinguish between graspable and non-graspable objects and between electronics and non-electronics. However, because the standard MIRTE Master platform had limited camera quality and limited computational resources, the final scope was reduced to two practical classes: graspable versus non-graspable and colourful versus greyscale. This choice was made to keep the system feasible within the available hardware and to focus the evaluation on the most relevant objects for the laboratory-cleaning task.
@@ -274,6 +252,10 @@ The following sections describe each subsystem in turn: behavior and task orches
     \label{fig_trainingdataset}
     \end{figure}
     
+    \end{paracol}
+    \newpage
+    \begin{paracol}
+        {2}
     \syncallcounters
     \switchcolumn
     \paragraph{Why YOLO26 Was Used}

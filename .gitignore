@@ -1,5 +1,6 @@
 # MyST build outputs
 *.pdf
+*.aux
 .venv
 .vscode
 build
